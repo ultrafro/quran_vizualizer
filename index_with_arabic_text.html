@@ -1,0 +1,349 @@
+﻿<html>
+    <head>
+        <title>Quran?</title>
+        <script src="https://d3js.org/d3.v3.min.js"></script>
+        <script src="https://cdn.rawgit.com/anvaka/panzoom/v4.4.0/dist/panzoom.min.js"></script>
+        <script src = "quran_json_string_juz.js"></script>
+
+    </head>
+    <body >
+
+	<svg id="main_svg" width="100%" height="100%" direction="rtl">
+		<g id="gunit">
+	  <!-- <circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />
+ -->	  
+			 <text x="0" y="15" fill="red">I love SVG!
+			        cool. ‎        عالمگیر ویب کو حقیقی طور پر عالمگ
+	        </text>
+	    </g>
+	</svg>
+
+	<script>
+		//quran_json_string - has the entire book, english and arabic
+		//var svg = document.getElementById('main_svg');
+		var svg = document.getElementById('gunit');
+		var pz = panzoom(document.getElementById("gunit"));
+
+		document.onkeypress = function (e) {
+		    e = e || window.event;
+		    console.log("keycode: " + e.keyCode);
+		    if(e.keyCode==100){ //'d'
+		    	toggleZoom();
+		    }
+		    // use e.keyCode
+		};
+
+		tz = false;
+		function toggleZoom(){
+			if(tz==false){
+				tz = true;
+				console.log("zooming to: 10,10,5");
+				pz.zoomAbs(0,0,5);
+			}else{
+				tz = false;
+								console.log("zooming to: 10,10,.1");
+				pz.zoomAbs(0,0,1);
+			}
+		}
+
+		/*
+		panzoom(document.getElementById("gunit"));
+		panzoom(document.getElementById('gunit'), {
+		  zoomSpeed: 10.0 // 6.5% per mouse wheel event
+		});
+
+		panzoom(document.getElementById('gunit'), {
+		  maxZoom: 1,
+		  minZoom: 0.1
+		});
+
+		panzoom(document.getElementById('gunit'), {
+		  smoothScroll: false
+		});
+		*/
+		//var svg = document.getElementsByTagName('svg')[0]; //Get svg element
+
+
+		function mouseOverEffect(){
+			//console.log('mouse over: ' + this);
+			this.setAttributeNS(null,'fill','blue');
+
+		}
+
+		function mouseoutEffect(){
+			//console.log('mouse out: ' + this);
+			this.setAttributeNS(null,'fill','red');
+
+			//console.log(this.getBBox().width);
+		}
+
+		function addWWText(text, WW_width){
+
+			//assumed width
+			font_size=20;
+			char_width=.38*font_size;
+
+
+
+			var txt = document.createElementNS( "http://www.w3.org/2000/svg", 'text');
+			txt.setAttributeNS(null, 'x', 400);
+			txt.setAttributeNS(null, 'y', 45);	
+			txt.setAttributeNS(null,'fill','red');
+			txt.setAttributeNS(null,'font-size',font_size);
+			txt.addEventListener('mouseover',mouseOverEffect);
+			txt.addEventListener('mouseout',mouseoutEffect);
+
+			column_counter = 0;
+			var words = text.split(" ");
+			for(kk = 0; kk<words.length; kk++){
+				nw = words[kk];
+				console.log(nw);
+				if(nw.length*char_width + column_counter < WW_width){
+					var helloTxt = document.createTextNode("  " + nw);
+					txt.appendChild(helloTxt);
+					column_counter = column_counter + nw.length*char_width;
+
+					//add word
+				}else{
+					//add to new line
+
+
+
+
+					var tspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+					tspan.setAttributeNS(null,'dy',20);
+					tspan.setAttributeNS(null,'x',400);
+					var helloTxt = document.createTextNode("  " + nw + "  ");
+					tspan.appendChild(helloTxt);
+					//tspan.setAttributeNS(null,'dy',20);
+					txt.appendChild(tspan);
+					
+					column_counter = nw.length*char_width;
+
+					//txt.appendChild(helloTxt);
+
+				}
+			}
+			document.getElementById("gunit").appendChild(txt);	
+			//ww_text = "";
+
+/*
+			var txt = document.createElementNS( "http://www.w3.org/2000/svg", 'text');
+			txt.setAttributeNS(null, 'x', 0);
+			txt.setAttributeNS(null, 'y', 45);	
+			txt.setAttributeNS(null,'fill','red');
+			txt.setAttributeNS(null,'font-size','20px');
+			txt.addEventListener('mouseover',mouseOverEffect);
+			txt.addEventListener('mouseout',mouseoutEffect);
+			txt.
+			var helloTxt = document.createTextNode(text);
+			txt.appendChild(helloTxt);		
+			//document.getElementById("main_svg").appendChild(txt);
+			document.getElementById("gunit").appendChild(txt);			
+*/
+		}
+
+		function addWWTextArabic(text, WW_width){
+
+			//assumed width
+			font_size=20;
+			//char_width=.38*font_size;
+			char_width=.22*font_size;
+
+
+			var txt = document.createElementNS( "http://www.w3.org/2000/svg", 'text');
+			txt.setAttributeNS(null, 'x', 400);
+			txt.setAttributeNS(null, 'y', 45);	
+			txt.setAttributeNS(null,'fill','red');
+			txt.setAttributeNS(null,'font-size',font_size);
+			txt.addEventListener('mouseover',mouseOverEffect);
+			txt.addEventListener('mouseout',mouseoutEffect);
+
+			column_counter = 0;
+			var words = text.split(" ");
+
+/*
+			for(kk = 0; kk<2; kk++){
+				var helloTxt = document.createTextNode(" " + words[kk] + " ");
+				txt.appendChild(helloTxt);
+			}
+*/
+			//new method:
+			column_counter = 0;
+	  		current_line = words[0];
+	  		line_count = 0;
+			for(kk = 1; kk<words.length; kk++){
+				nw = words[kk];
+				console.log('working with word: ' + nw);
+				console.log("current line: " + current_line);
+				if((current_line.length + nw.length)*char_width < WW_width){
+					//add it to the current string
+					current_line = current_line + " " + nw;
+				}else{
+					line_count = line_count + 1;
+					//add the current line, start a new one:
+					console.log(line_count + " adding new line: " + current_line);
+					//console.log(current_line);
+					var tspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+					tspan.setAttributeNS(null,'y',45-(20*line_count));
+					tspan.setAttributeNS(null,'x',400);
+					var helloTxt = document.createTextNode(current_line);
+					tspan.appendChild(helloTxt);
+					txt.appendChild(tspan);
+					current_line = nw;
+				}
+			}
+			if(current_line.length > 0){
+				line_count = line_count + 1;
+				console.log(line_count + " adding last line at y: " + (45-20*line_count) + " : " + current_line);
+
+				//console.log(current_line);
+				var tspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+				tspan.setAttributeNS(null,'y',45-(20*line_count));
+				tspan.setAttributeNS(null,'x',400);
+				var helloTxt = document.createTextNode(current_line);
+				tspan.appendChild(helloTxt);
+				txt.appendChild(tspan);
+			}
+
+				line_count = line_count + 1;
+				var tspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+				tspan.setAttributeNS(null,'y',45-(20*line_count));
+				tspan.setAttributeNS(null,'x',400);
+				var helloTxt = document.createTextNode("ن");
+				tspan.appendChild(helloTxt);
+				txt.appendChild(tspan);
+
+
+/*
+			for(kk = 0; kk<words.length; kk++){
+				nw = words[kk];
+				console.log(nw);
+
+				if(nw.length*char_width + column_counter < WW_width){
+					var tspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+					tspan.setAttributeNS(null,'dy',0);
+					tspan.setAttributeNS(null,'x',400- column_counter);
+					var helloTxt = document.createTextNode(" " + nw + " ");
+					tspan.appendChild(helloTxt);
+					//tspan.setAttributeNS(null,'dy',20);
+					txt.appendChild(tspan);
+					
+					column_counter = column_counter + nw.length*char_width;
+				}else{
+					//slide it back
+					var tspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+					tspan.setAttributeNS(null,'dy',20);
+					tspan.setAttributeNS(null,'x',400);
+					var helloTxt = document.createTextNode(" " + nw + "");
+					tspan.appendChild(helloTxt);
+					//tspan.setAttributeNS(null,'dy',20);
+					txt.appendChild(tspan);
+					
+					column_counter = nw.length*char_width;
+				}
+			}
+*/
+			document.getElementById("gunit").appendChild(txt);	
+			//ww_text = "";
+
+/*
+			var txt = document.createElementNS( "http://www.w3.org/2000/svg", 'text');
+			txt.setAttributeNS(null, 'x', 0);
+			txt.setAttributeNS(null, 'y', 45);	
+			txt.setAttributeNS(null,'fill','red');
+			txt.setAttributeNS(null,'font-size','20px');
+			txt.addEventListener('mouseover',mouseOverEffect);
+			txt.addEventListener('mouseout',mouseoutEffect);
+			txt.
+			var helloTxt = document.createTextNode(text);
+			txt.appendChild(helloTxt);		
+			//document.getElementById("main_svg").appendChild(txt);
+			document.getElementById("gunit").appendChild(txt);			
+*/
+		}
+
+
+		//addWWText("really super long string, let's see if we can wrap it? I hope so", 25);
+		var arabic_string = 'أصلي أن هذه الأداة ستعمل. إن لم يكن ، على الأقل أنا حاولت. وإذا نجحت ، أتمنى ، إن شاء  أن تكون فعالة في تعلم المزيد'
+		//addWWTextArabic(quran_json_string[1].arabic, 100);
+		addWWTextArabic(arabic_string.substring(0,100),100);
+		//addWWText("really super long string, let's see if we can wrap it? I hope so", 25);
+
+		/*
+		for(i = 0; i<quran_json_string.length; i++){
+		//for(i = 0; i<80000; i++){
+			var txt = document.createElementNS( "http://www.w3.org/2000/svg", 'text');
+			txt.setAttributeNS(null, 'x', 0);
+			txt.setAttributeNS(null, 'y', i*3 + 30);	
+			txt.setAttributeNS(null,'fill','red');
+			txt.setAttributeNS(null,'font-size','3px');
+			txt.addEventListener('mouseover',mouseOverEffect);
+			txt.addEventListener('mouseout',mouseoutEffect);
+			var helloTxt = document.createTextNode(quran_json_string[i].arabic);
+			txt.appendChild(helloTxt);		
+			//document.getElementById("main_svg").appendChild(txt);
+			document.getElementById("gunit").appendChild(txt);					
+		}
+		*/
+
+
+	</script>
+
+	</body>
+</html>
+
+
+
+<!--     <script>
+		var nodeFontSize = 12;
+
+		var svg = d3.select("body").append("svg:svg").attr("height","100%").attr("width","100%").attr("direction","rtl")
+					.call(d3.behavior.zoom().on("zoom", redraw))
+		              .append("g");
+
+
+
+		 
+		var text = svg.append("svg:text")
+		    .attr("x", 480)
+		    .attr("y", 250)
+		    .attr("dy", ".35em")
+		    .attr("text-anchor", "middle")
+		    .attr("font-size", nodeFontSize + "px")
+		    .text("This is the text I want to make zoomable");
+		    //.text("ها الكلام انا اريد ان اودع في الورقة");
+		 
+		var bbox = text.node().getBBox();
+		 
+		var rect = svg.append("svg:rect")
+		    .attr("x", bbox.x)
+		    .attr("y", bbox.y)
+		    .attr("width", bbox.width)
+		    .attr("height", bbox.height)
+		    .style("fill", "#ccc")
+		    .style("fill-opacity", ".3")
+		    .style("stroke", "#666")
+		    .style("stroke-width", "1.5px");
+
+		//Redraw for zoom
+		function redraw() {
+		  window.console && console.log("here", d3.event.translate, d3.event.scale);
+		  scale_min = 0.1;
+		  scale_max = 3;
+		  clamped_scale = Math.min(Math.max(d3.event.scale, scale_min), scale_max);
+		  clamped_scale = d3.event.scale;
+		  svg.attr("transform",
+		      "translate(" + d3.event.translate + ")"
+		      + " scale(" + clamped_scale + ")");
+		  //d3.selectAll("text").style("font-size", (nodeFontSize/d3.event.scale) + "px");
+		} 
+
+		function quran_text(){
+
+		}
+
+
+    </script>
+    </body>
+</html> -->
