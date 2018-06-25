@@ -11,8 +11,8 @@
 
 
 	<div class="topnav" align="center">
-	  <input id="search_text_bar" type="text" placeholder="Search..">
-	  <button id="search_button" > click to search through english </button>
+	  <input id="search_text_bar" type="text" size="45" placeholder="Search for a term in the English trasnlation">
+	  <button id="search_button" > Search! </button>
 	</div>
 
 	<div style="text-align:center;">
@@ -42,14 +42,14 @@
 
 			//clear previous search index list:
 			for(i = 0; i<search_idx_list.length; i++){
-				box_list[search_idx_list[i]].setAttributeNS(null,'fill','red');
+				box_list[search_idx_list[i]].setAttributeNS(null,'fill',base_color);
 			}
 			search_idx_list=[];
 
 			for(i = 0; i<6235; i++){
 				if(quran_json_string[i].english.toUpperCase().includes(term.toUpperCase())){
 					search_idx_list.push(i);
-					box_list[i].setAttributeNS(null,'fill','green');
+					box_list[i].setAttributeNS(null,'fill',highlight_color);
 				}
 			}
 
@@ -66,7 +66,7 @@
 			if(search_idx_list.includes(id_num)){
 				this.setAttributeNS(null,'fill','purple');
 			}else{
-				this.setAttributeNS(null,'fill','blue');
+				this.setAttributeNS(null,'fill',select_color);
 			}
 
 			document.getElementById('arabic_text_p').innerHTML= quran_json_string[id_num].arabic;
@@ -83,9 +83,9 @@
 			id_num = parseInt(id_num);
 
 			if(search_idx_list.includes(id_num)){
-				this.setAttributeNS(null,'fill','green');
+				this.setAttributeNS(null,'fill',highlight_color);
 			}else{
-				this.setAttributeNS(null,'fill','red');
+				this.setAttributeNS(null,'fill',base_color);
 			}
 
 			document.getElementById('arabic_text_p').innerHTML = 'arabic text:';
@@ -94,19 +94,19 @@
 			document.getElementById('sura_text_p').innerHTML ='sura number';
 			document.getElementById('aya_text_p').innerHTML ='aya number';
 
-			console.log(this.id);
+			//console.log(this.id);
 		}
 
 
 		function addBox(text, width, start_x, start_y, id_num){
-			factor = 0.01;
-
+			//factor = 0.01;
+			//console.log('adding box, time=' + Date.now());
 			var box = document.createElementNS( "http://www.w3.org/2000/svg", 'rect');
 			box.setAttributeNS(null, 'x', start_x);
 			box.setAttributeNS(null, 'y', start_y);
 			box.setAttributeNS(null, 'width', width);
 			box.setAttributeNS(null, 'height', factor*text.length);
-			box.setAttributeNS(null, 'fill', 'red');
+			box.setAttributeNS(null, 'fill', base_color);
 			box.addEventListener('mouseover',mouseOverEffect);
 			box.addEventListener('mouseout',mouseoutEffect);
 			box.id = "id_" + id_num;
@@ -117,6 +117,33 @@
 
 		//some settings:
 		box_width = 20;
+		factor = 0.01;
+		delay = 0;
+		console.log('factor: ' + factor);
+
+		base_color = 'rgb(255,0,0)'
+		base_color = '#112E44'
+		highlight_color = 'rgb(0,100,0)'
+		highlight_color = '#FCF0D2'
+		select_color = 'rgb(0,0,100)'
+		select_color = '#A9A79B'
+
+		bg_color = '#92794D'
+		bg_color = '#DDBF8B'
+
+		document.body.style.backgroundColor = bg_color;
+
+
+		document.getElementById("search_text_bar").addEventListener("keyup", function(event) {
+		  // Cancel the default action, if needed
+		  event.preventDefault();
+		  // Number 13 is the "Enter" key on the keyboard
+		  if (event.keyCode === 13) {
+		    // Trigger the button element with a click
+		    document.getElementById("search_button").click();
+		  }
+		});
+
 
 		juz_height = [];
 		for(juz_counter = 0; juz_counter<30; juz_counter++){
@@ -126,6 +153,7 @@
 		for(i = 0; i<6235; i++)
 		//for(i = 0; i<1000; i++)
 		{
+			delay = delay + .5;
 			aya = quran_json_string[i];
 			juz = aya.juz_number-1;
 			arabic = aya.arabic;
@@ -139,8 +167,11 @@
 			//for debugging purposes:
 			//console.log("number: " + i + " chapter: " + aya.chapter + " verse: " + aya.verse + " juz: " + juz + " " + box_width + " " + c_start_x + " " + c_start_y);
 
-			additional_height = addBox(arabic, box_width, c_start_x, c_start_y, i);
-			juz_height[juz] = juz_height[juz]+additional_height;
+
+			//additional_height = setTimeout(addBox(arabic, box_width, c_start_x, c_start_y, i),delay);
+			setTimeout(addBox,delay,arabic,box_width,c_start_x,c_start_y,i);
+			//juz_height[juz] = juz_height[juz]+additional_height;
+			juz_height[juz] = juz_height[juz]+arabic.length*factor+.1;
 		}
 	</script>
 
