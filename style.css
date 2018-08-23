@@ -2,10 +2,75 @@
   position: relative;
   display: inline-block;
   width: 35%;
-  top: 0px;
   z-index: 90;
 }
 
+
+
+.aya{
+	text-align:center;
+	border:1px solid green
+}
+
+.aya{
+	 color: #111; 
+	 font-family: 'Helvetica Neue', sans-serif; 
+	 font-size: 20px; 
+	 font-weight: bold; 
+	 letter-spacing: -1px; 
+	 line-height: 1; 
+	 text-align: center;
+}
+
+.aya{
+	color: #7c795d; 
+	font-family: 'Trocchi', serif; 
+	font-size: 20px; 
+	font-weight: normal; 
+	line-height: 48px; 
+	margin: 0;
+}
+
+.ayaEnglish{
+	text-align:center;
+	color: #7c795d; 
+	font-family: 'Trocchi', serif; 
+	font-size: 18px; 
+	font-weight: normal; 
+	line-height: 48px; 
+	margin: 0;
+}
+
 .step {
-  margin-bottom: 50%;
+  margin-bottom: 100%;
+}
+
+
+
+.anchor{
+  display: block;
+  height: 115px; /*same height as header*/
+  margin-top: -115px; /*same height as header*/
+  visibility: hidden;
+}
+
+.vertical-menu {
+    width: 200px; /* Set a width if you like */
+}
+
+.vertical-menu a {
+    background-color: #eee; /* Grey background color */
+    color: black; /* Black text color */
+    display: block; /* Make the links appear below each other */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.vertical-menu a:hover {
+    background-color: #ccc; /* Dark grey background on mouse-over */
+}
+
+.vertical-menu a.active {
+    background-color: #4CAF50; /* Add a green color to the "active/current" link */
+    color: white;
 }
