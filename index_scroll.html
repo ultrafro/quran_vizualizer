@@ -9,9 +9,40 @@
     </head>
     <body >
 
+    	<div id="infobox" style="position: fixed; width: 100%; top:0%; z-index: 100; background:green; padding:5px; ">
+			<div id="arabic_text_p"> Aya Text </div>
+			<div id="english_text_p"> English Translation </div>
+			<div   >
+				<div id="sura_text_p" style="float: left;"> Surah Number </div>
+				<div  style="float: left;"> &emsp; </div>
+				<div id="aya_text_p" style="float: left;"> Aya Number </div>
+				<div  style="float: left;"> &emsp; </div>
+				<div id="juz_text_p" style="float: left;"> Juz Number </div>
+			</div>
+		</div>
+
+
 <!--     <div class="row"> -->
-    	<div class="column" id="quran_container" style="position: fixed;"></div>
-    	<div class="column" id="content" style="position: absolute; width: 40%; left: 50%; top: 12%">
+    	<div class="column" style="position: fixed; top: 10%">
+    		<div class="topnav" align="center">
+				<input id="search_text_bar" type="text" size="45" placeholder="Search for a term in the English translation"> <button id="search_button" > Search! </button>
+			</div>
+
+<!-- 
+			<p id="arabic_text_p" align="center"> Aya Text </p>
+			<p id="english_text_p" align="center"> English Translation </p>
+			<p id="sura_text_p" align="center"> Surah Number </p>
+			<p id="aya_text_p" align="center"> Aya Number </p>
+			<p id="juz_text_p" align="center"> Juz Number </p>
+ -->
+			<div id="quran_container" style="position: fixed; top: 15%">
+			</div>
+		</div>
+
+
+
+    	<div class="column" id="content" style="position: absolute; width: 40%; left: 50%; top: 10%">
+
 
 
 		<section class="step">
@@ -165,6 +196,21 @@
 		//All prophets table
 		//99 names box
 
+		document.getElementById('search_button').onclick=search;
+
+		function shuffleArray(array) {
+		    for (var i = array.length - 1; i > 0; i--) {
+		        var j = Math.floor(Math.random() * (i + 1));
+		        var temp = array[i];
+		        array[i] = array[j];
+		        array[j] = temp;
+		    }
+
+		}
+
+
+		var interval = null;
+
 
 		function red(){
 			for(i = 0; i<box_list.length; i++){
@@ -201,13 +247,191 @@
 
 		}
 
+		var freeformCleared = 0;
+		function freeform(){
+			if(!freeformCleared){
+				for(i=0; i<box_list.length; i++){
+					box_list[i].transition()
+								.duration(800)
+								.attr('fill', base_color)
+				}
+				console.log('freeform cleaned');
+				freeformCleared = 1;							
+			}
 
+		}
+
+		function alaq(){
+			console.log('alaq called');
+			//surah 96
+			for(i=0; i<box_list.length; i++){
+
+				//if(quran_json_string[i].chapter>=90){
+				if(quran_json_string[i].chapter==95){	
+					//console.log('setting: ' + i + ' red');
+					box_list[i].transition()
+    						.duration(400)
+    						.attr('fill', 'red')
+    						.transition()
+    						.duration(400)
+    						.attr('fill','black')
+    						.transition()
+    						.duration(400)
+    						.attr('fill','red')
+    						.transition()
+    						.duration(400)
+    						.attr('fill','black')
+				}else{
+					
+					
+					box_list[i].transition()
+    						.duration(800)
+    						.attr('fill', 'rgba(255,255,255,.5)')
+					
+
+					/*
+					box_list[i].transition()
+    						.duration(400)
+    						.attr('fill', 'rgba(255,255,255,.5)')
+    						.transition()
+    						.duration(400)
+    						.attr('fill','rgba(0,0,0,.5)')
+    						.transition()
+    						.duration(400)
+    						.attr('fill','rgba(255,255,255,.5)')
+    						.transition()
+    						.duration(400)
+    						.attr('fill','rgba(0,0,0,.5)')    						
+					*/
+				}
+			}
+
+		}
+
+		function surah(){
+			//color_list = colors.distinct(114);
+			color_idx = [];
+			for(i = 0; i<114; i++){
+				color_idx.push(i);
+			}
+						console.dir(color_idx);
+			shuffleArray(color_idx);
+
+
+
+
+			for(i = 0; i<box_list.length; i++){
+				chapter = quran_json_string[i].chapter;
+				box_list[i].transition()
+							.duration(800)
+							.attr('fill',d3.hsl(color_idx[[chapter-1]]/114*360, 1, .5));
+			}
+		}
+
+		function jesus(){
+			console.log('calling jesus');
+			for(i = 0; i<box_list.length; i++){
+				english = quran_json_string[i].english;
+				found = 0;	
+				if(english.toUpperCase().includes(' ISA ')){
+					box_list[i].transition()
+    						.duration(400)
+    						.attr('fill','white')
+    						.transition()
+    						.duration(400)
+    						.attr('fill','black')
+    						.transition()
+    						.duration(400)
+    						.attr('fill','white')
+    						.transition()
+    						.duration(400)
+    						.attr('fill','black')
+					found = 1;
+				}
+				if(english.toUpperCase().includes(' MARIUM ')){
+					box_list[i].transition()
+    						.duration(400)
+    						.attr('fill','yellow')
+    						.transition()
+    						.duration(400)
+    						.attr('fill','black')
+    						.transition()
+    						.duration(400)
+    						.attr('fill','yellow')
+    						.transition()
+    						.duration(400)
+    						.attr('fill','black')
+					found = 1;
+				}
+				if(!found){
+					box_list[i].transition()
+								.duration(800)
+								.attr('fill','rgba(0,0,0,.5)');
+				}
+					
+			}
+
+		}
+
+		function fatiha(){
+			console.log('fatiha called');
+			//surah 96
+			for(i=0; i<box_list.length; i++){
+
+				//if(quran_json_string[i].chapter>=90){
+				if(quran_json_string[i].chapter==1){	
+					//console.log('setting: ' + i + ' red');
+					box_list[i].transition()
+    						.duration(400)
+    						.attr('fill', 'red')
+    						.transition()
+    						.duration(400)
+    						.attr('fill','black')
+    						.transition()
+    						.duration(400)
+    						.attr('fill','red')
+    						.transition()
+    						.duration(400)
+    						.attr('fill','black')
+				}else{
+					
+					box_list[i].transition()
+    						.duration(800)
+    						.attr('fill', 'rgba(255,255,255,.5)')
+					
+				}
+			}
+		}
+
+		function prophets(){
+
+		}
+
+		function names(){
+
+		}
+
+
+
+
+
+		//freeform
+		//Surah al-Alaq
+		//Surah colors
+		//al-fatiha
+		//Jesus green, mary purple
+		//All prophets table
+		//99 names box
 
 
 		activateFunctions = [];
-		activateFunctions[0] = red;
-		activateFunctions[1] = green;
-		activateFunctions[2] = blue;
+		activateFunctions[0] = freeform;
+		activateFunctions[1] = alaq;
+		activateFunctions[2] = surah;
+		activateFunctions[3] = fatiha;
+		activateFunctions[4] = jesus;
+		activateFunctions[5] = prophets;
+		activateFunctions[5] = names;
 
 		progressFunctions = [];
 		progressFunctions[0] = nada;
@@ -230,20 +454,44 @@
 
 		currentIndex=-5;
 		window.addEventListener('scroll',function(e) {
-		    console.log("scrolling");
+		    
 
-			var pos = window.pageYOffset - 10;
-			var sectionIndex = d3.bisect(sectionPositions, pos);
+			var pos = window.pageYOffset+10;
+			//console.log("scrolling: " + pos);
+
+			//find first element > pos, select oen right before it:
+			greaterSection = -1;
+			for(i = 0; i<sectionPositions.length; i++){
+				if(pos>sectionPositions[i]){
+					greaterSection = i;
+				}
+			}
+			greaterSection = greaterSection + 1;
+			var sectionIndex;
+			if(greaterSection > 0){
+				sectionIndex = greaterSection - 1;
+			}else{
+				sectionIndex = 0;
+			}
+			//console.log('setting section index to: ' + sectionIndex);
+			//var sectionIndex = d3.bisect(sectionPositions, pos);
 			var progress = pos;
 			sectionIndex = Math.min(sectionPositions.length - 1, sectionIndex);
+
+
 
 			if (currentIndex !== sectionIndex) {
 				//dispatch.active(sectionIndex);
 				console.log('setting current index to: ' + sectionIndex);
+				clearInterval(interval);
 			    currentIndex = sectionIndex;
-			    activateFunctions[sectionIndex]();
+			    console.log('starting interval: ' + sectionIndex);
+			    //activateFunctions[sectionIndex]();
+			    interval = setInterval(function(){activateFunctions[sectionIndex]()},1600);
+			    freeformCleared = 0;
+			    //activateFunctions[sectionIndex]();
 			}else{
-				progressFunctions[sectionIndex](progress);
+				//progressFunctions[sectionIndex](progress);
 			}
 
 
@@ -260,7 +508,7 @@
 	
 		window.addEventListener("resize",function(){
 			clearTimeout(resizeId);
-			resizeId = setTimeout(redraw, 500);
+			resizeId = setTimeout(redraw, 100);
 		});
 
 		var box_list = [];
@@ -271,8 +519,11 @@
 		padding_x = 10;
 		padding_y = 0.5;
 		container_width = 0.4;
-		container_height = 0.9;
+		container_height = 0.80;
 		box_width = container_width*(window.innerWidth/30 - padding_x);
+
+
+
 		factor = 0.01;
 		delay = 0;
 		console.log('factor: ' + factor);
@@ -291,6 +542,80 @@
 
 		redraw();
 
+
+		var search_idx_list = [];
+		function search(){
+			term = document.getElementById("search_text_bar").value;
+			console.log('searching for: ' + term.toUpperCase());
+
+			//clear previous search index list:
+			for(i = 0; i<search_idx_list.length; i++){
+				box_list[search_idx_list[i]].attr('fill',base_color);
+			}
+			search_idx_list=[];
+
+			for(i = 0; i<6235; i++){
+				if(quran_json_string[i].english.toUpperCase().includes(term.toUpperCase())){
+					search_idx_list.push(i);
+					box_list[i].attr('fill',highlight_color);
+				}
+			}
+
+		}
+
+		function handleMouseOver(d,i){
+			//console.log('this id: ' + this.id);
+			//console.dir(this);
+			//console.dir(d);
+			//console.dir(i);
+			//console.dir(d3.select(this));
+			id_num = this.id.substring(3,this.id.length);
+			id_num = parseInt(id_num);
+			//console.log('found id num: ' + id_num);
+
+			if(search_idx_list.includes(id_num)){
+				d3.select(this).attr({
+	              fill: "orange"
+	            });			
+				//this.setAttributeNS(null,'fill','purple');
+			}else{
+				d3.select(this).attr({
+	              fill: select_color
+	            });
+				//this.setAttributeNS(null,'fill',select_color);
+			}
+
+			document.getElementById('arabic_text_p').innerHTML= quran_json_string[id_num].arabic;
+			document.getElementById('english_text_p').innerHTML = quran_json_string[id_num].english;
+			document.getElementById('juz_text_p').innerHTML ="juz: " + quran_json_string[id_num].juz_number;
+			document.getElementById('sura_text_p').innerHTML ="surah: " + quran_json_string[id_num].chapter;
+			document.getElementById('aya_text_p').innerHTML ="aya: " + quran_json_string[id_num].verse;
+		}
+
+		function handleMouseOut(d,i){
+			//console.log('mouse out: ' + this);
+
+			id_num = this.id.substring(3,this.id.length);
+			id_num = parseInt(id_num);
+
+			if(search_idx_list.includes(id_num)){
+				d3.select(this).attr({
+	              fill: highlight_color
+	            });
+			}else{
+				d3.select(this).attr({
+	              fill: base_color
+	            });
+			}
+
+			document.getElementById('arabic_text_p').innerHTML = 'arabic text:';
+			document.getElementById('english_text_p').innerHTML = 'english translation:';
+			document.getElementById('juz_text_p').innerHTML ='juz number';
+			document.getElementById('sura_text_p').innerHTML ='sura number';
+			document.getElementById('aya_text_p').innerHTML ='aya number';
+
+			//console.log(this.id);
+		}
 
 
 		function addBox(text, width, start_x, start_y, id_num){
@@ -314,7 +639,11 @@
 					                            .attr("x", start_x)
 					                            .attr("y", start_y)
 					                            .attr("width", width)
-					                            .attr("height", factor*text.length);
+					                            .attr("height", factor*text.length)
+					                            .attr("id", "id_" + id_num)
+					                            .attr("fill",base_color)
+					                            .on("mouseover", handleMouseOver)
+          										.on("mouseout", handleMouseOut);
 			box.id = "id_" + id_num;
 			box_list.push(box);
 			return factor* text.length;
@@ -331,10 +660,20 @@
         	svgContainer
 	          .attr("width", width*container_width)
 	          .attr("height", height*container_height);
-	        box_width = ((container_width*window.innerWidth)/30 - padding_x);
+	        box_width = ((container_width*window.innerWidth)/31 - padding_x);
 
-	        factor = (height*container_height) / (23170 + padding_y);
-			
+
+	        //number of ayas in first juz: 111
+	        //length of arabic text in first juz (characters): 23959
+	        //number of ayas in first juz: 563
+	        //length of arabic text in first juz (characters): 21823
+	        //height of juz stack = num_ayas*padding + length_arabic*factor
+	        //so: factor = (height_juz_stack - (num_ayas*padding))/length_arabic
+	        //factor = (height*container_height) / (23170 + padding_y);
+			//factor = (height*container_height - 111*padding_y)/23959;
+			factor = (height*container_height - 563*padding_y)/21823;
+			console.log('setting factor to: ' + factor);
+
 			for(i = 0; i<box_list.length; i++){
 				//svgContainer.select(box_list[i]).remove();
 				box_list[i].remove();
@@ -345,7 +684,7 @@
 			//setup quran element
 			juz_height = [];
 			for(juz_counter = 0; juz_counter<30; juz_counter++){
-				juz_height[juz_counter] = 50;
+				juz_height[juz_counter] = 0;
 			}
 
 
@@ -359,19 +698,23 @@
 			// }
 			// console.log('col length: '  + col_length);
 
+			debug_n_aya_count = 0;
+			debug_l_arabic_count = 0;
 
 			for(i = 0; i<6235; i++)
 			//for(i = 0; i<1000; i++)
 			{
-				delay = delay + .5;
+				delay = delay ;//+ .0001;
 				aya = quran_json_string[i];
 				juz = aya.juz_number-1;
 				arabic = aya.arabic;
 
-				super_offset = (svgContainer[0][0].clientWidth - (box_width+10)*30)/2;
+				super_offset = (svgContainer[0][0].clientWidth - (box_width+padding_x)*30)/2;
 				//console.log('super offset: ' + super_offset);
 
-				c_start_x = svgContainer[0][0].clientWidth - super_offset -  (juz*(box_width+10));
+				c_start_x = svgContainer[0][0].clientWidth - super_offset -  (juz*(box_width+padding_x));
+
+				c_start_x = svgContainer[0][0].clientWidth -  ((juz+1)*(box_width+padding_x));
 				c_start_y = juz_height[juz];
 
 				//for debugging purposes:
@@ -383,7 +726,14 @@
 				setTimeout(addBox,delay,arabic,box_width,c_start_x,c_start_y,i);
 				//juz_height[juz] = juz_height[juz]+additional_height;
 				juz_height[juz] = juz_height[juz]+arabic.length*factor+padding_y;
+
+				if(juz==29){
+					debug_n_aya_count++;
+					debug_l_arabic_count = debug_l_arabic_count + arabic.length;
+				}
 			}
+			console.log('number of ayas in 30th juz: ' + debug_n_aya_count);
+			console.log('length of arabic in 30th juz: ' + debug_l_arabic_count);
 		}
 
 
