@@ -4,6 +4,7 @@
         <script src="https://d3js.org/d3.v3.min.js"></script>
 <!--         <script src="https://cdn.rawgit.com/anvaka/panzoom/v4.4.0/dist/panzoom.min.js"></script> -->
         <script src = "quran_json_string.js"></script>
+        <script src = "prophet_json_string.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
 
     </head>
@@ -51,7 +52,7 @@
 		</div>
 
 
-    	<div class="column" id="content" style="position: absolute; width: 40%; left: 45%; top: 25%">
+    	<div class="column" id="content" style="position: absolute; width: 40%; height: 100%; left: 45%; top: 25%">
 
 
 		<span class="anchor" id="IntroductionAnchor"></span>
@@ -205,6 +206,175 @@
 	    <section class="step" id="Prophets">
 
 	    	In fact, you can explore all the prophets and their mentions by name. Highlight your mouse over the name to see where they are mentioned.
+
+	    	<p>
+	    	<p>
+
+	    	<div id="prophetTable">
+	    	</div>
+<!-- 
+	    	<table width="100%">
+	    		<tr>
+	    			<td>
+	    				<div class="prophet">
+	    					Noah (English)
+	    					Nuh (Arabic)
+	    				</div>
+	    			</td>
+	       			<td>
+	    				<div class="prophet">
+	    					Noah (English)
+	    					Nuh (Arabic)
+	    				</div>	       				
+	    			</td>
+	    			<td>
+	    				<div class="prophet">
+	    					Noah (English)
+	    					Nuh (Arabic)
+	    				</div>	    				
+	    			</td>
+	       			<td>
+	    				<div class="prophet">
+	    					Noah (English)
+	    					Nuh (Arabic)
+	    				</div>	       				
+	    			</td>
+	    			<td>
+	    				<div class="prophet">
+	    					Noah (English)
+	    					Nuh (Arabic)
+	    				</div>	    				
+	    			</td>
+	    		</tr>
+	    		<tr>
+	    			<td>
+	    				<div class="prophet">
+	    					Noah (English)
+	    					Nuh (Arabic)
+	    				</div>
+	    			</td>
+	       			<td>
+	    				<div class="prophet">
+	    					Noah (English)
+	    					Nuh (Arabic)
+	    				</div>	       				
+	    			</td>
+	    			<td>
+	    				<div class="prophet">
+	    					Noah (English)
+	    					Nuh (Arabic)
+	    				</div>	    				
+	    			</td>
+	       			<td>
+	    				<div class="prophet">
+	    					Noah (English)
+	    					Nuh (Arabic)
+	    				</div>	       				
+	    			</td>
+	    			<td>
+	    				<div class="prophet">
+	    					Noah (English)
+	    					Nuh (Arabic)
+	    				</div>	    				
+	    			</td>
+	    		</tr>
+	    		<tr>
+	    			<td>
+	    				<div class="prophet">
+	    					Noah (English)
+	    					Nuh (Arabic)
+	    				</div>
+	    			</td>
+	       			<td>
+	    				<div class="prophet">
+	    					Noah (English)
+	    					Nuh (Arabic)
+	    				</div>	       				
+	    			</td>
+	    			<td>
+	    				<div class="prophet">
+	    					Noah (English)
+	    					Nuh (Arabic)
+	    				</div>	    				
+	    			</td>
+	       			<td>
+	    				<div class="prophet">
+	    					Noah (English)
+	    					Nuh (Arabic)
+	    				</div>	       				
+	    			</td>
+	    			<td>
+	    				<div class="prophet">
+	    					Noah (English)
+	    					Nuh (Arabic)
+	    				</div>	    				
+	    			</td>
+	    		</tr>
+	    		<tr>
+	    			<td>
+	    				<div class="prophet">
+	    					Noah (English)
+	    					Nuh (Arabic)
+	    				</div>
+	    			</td>
+	       			<td>
+	    				<div class="prophet">
+	    					Noah (English)
+	    					Nuh (Arabic)
+	    				</div>	       				
+	    			</td>
+	    			<td>
+	    				<div class="prophet">
+	    					Noah (English)
+	    					Nuh (Arabic)
+	    				</div>	    				
+	    			</td>
+	       			<td>
+	    				<div class="prophet">
+	    					Noah (English)
+	    					Nuh (Arabic)
+	    				</div>	       				
+	    			</td>
+	    			<td>
+	    				<div class="prophet">
+	    					Noah (English)
+	    					Nuh (Arabic)
+	    				</div>	    				
+	    			</td>
+	    		</tr>
+	    		<tr>
+	    			<td>
+	    				<div class="prophet">
+	    					Noah (English)
+	    					Nuh (Arabic)
+	    				</div>
+	    			</td>
+	       			<td>
+	    				<div class="prophet">
+	    					Noah (English)
+	    					Nuh (Arabic)
+	    				</div>	       				
+	    			</td>
+	    			<td>
+	    				<div class="prophet">
+	    					Noah (English)
+	    					Nuh (Arabic)
+	    				</div>	    				
+	    			</td>
+	       			<td>
+	    				<div class="prophet">
+	    					Noah (English)
+	    					Nuh (Arabic)
+	    				</div>	       				
+	    			</td>
+	    			<td>
+	    				<div class="prophet">
+	    					Noah (English)
+	    					Nuh (Arabic)
+	    				</div>	    				
+	    			</td>
+	    		</tr>	    			    			    			    		
+	    	</table> -->
 	    </section>
 
 		<span class="anchor" id="99NamesAnchor"></span>
@@ -259,6 +429,71 @@
 			}			
 		}
 		setupNavBar();
+
+
+		var prophetDivList = [];
+		function setupProphetTable(){
+			var table = document.getElementById('prophetTable');
+
+			var numRows = 5;
+			var numCols = 5;
+
+			var rowDiv = null;
+			for(var i = 0; i<prophet_json_string.length; i++){
+				var row = Math.floor(i/numCols);
+				var col = i%numCols;
+
+
+				if(col==0){
+					//add new row!
+					var newRowDiv = document.createElement("div");
+					newRowDiv.classList.add("prophetRow");
+					table.appendChild(newRowDiv);
+					rowDiv = newRowDiv;
+				}
+
+				//add new column element
+				var newColDiv = document.createElement("div");
+				newColDiv.classList.add("prophetColumn");
+				newColDiv.index = i;
+				prophetDivList.push(newColDiv);
+
+				if(i%2==0){
+					newColDiv.classList.add("prophetOffColor");
+				}
+
+				var englishDiv = document.createElement("div");
+				englishDiv.classList.add("prophetEnglish");
+				englishDiv.innerHTML = prophet_json_string[i].EnglishName;
+				newColDiv.appendChild(englishDiv);
+
+				var transliteratedDiv = document.createElement("div");
+				transliteratedDiv.classList.add("prophetTransliterated");
+				transliteratedDiv.innerHTML = prophet_json_string[i].TransliteratedName;
+				newColDiv.appendChild(transliteratedDiv);
+
+				var arabicDiv = document.createElement("div");
+				arabicDiv.classList.add("prophetArabic");
+				arabicDiv.innerHTML = prophet_json_string[i].ArabicName;
+				newColDiv.appendChild(arabicDiv);
+
+				newColDiv.addEventListener('click', function (event) {
+					console.log('prophet selected: ' + prophet_json_string[this.index].TranslationName);
+					searchTerm(prophet_json_string[this.index].TranslationName);
+
+					for(var jj = 0; jj<prophetDivList.length; jj++){
+						prophetDivList[jj].classList.remove('prophetSelected');
+					}
+					this.classList.add('prophetSelected');
+		        });
+
+				rowDiv.appendChild(newColDiv);
+
+			}
+
+		}
+		setupProphetTable();
+
 
 		function setupArabicText(){
 			console.log("setting up arabic text");
@@ -644,6 +879,23 @@
 				}
 			}
 
+		}
+
+		function searchTerm(term){
+			console.log('searching for: ' + term.toUpperCase());
+
+			//clear previous search index list:
+			for(i = 0; i<search_idx_list.length; i++){
+				box_list[search_idx_list[i]].attr('fill',base_color);
+			}
+			search_idx_list=[];
+
+			for(i = 0; i<6235; i++){
+				if(quran_json_string[i].english.toUpperCase().includes(term.toUpperCase())){
+					search_idx_list.push(i);
+					box_list[i].attr('fill',highlight_color);
+				}
+			}
 		}
 
 		function handleMouseOver(d,i){
