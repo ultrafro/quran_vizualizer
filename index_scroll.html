@@ -5,6 +5,7 @@
 <!--         <script src="https://cdn.rawgit.com/anvaka/panzoom/v4.4.0/dist/panzoom.min.js"></script> -->
         <script src = "quran_json_string.js"></script>
         <script src = "prophet_json_string.js"></script>
+        <script src = "names99_string.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
 
     </head>
@@ -390,6 +391,8 @@
 
 			<p>
 			99 names box:
+			<div id="names99Table">
+	    	</div>
 
 	    </section>
 
@@ -493,6 +496,69 @@
 
 		}
 		setupProphetTable();
+
+		var names99DivList = [];
+		function setupNamesTable(){
+			var table = document.getElementById('names99Table');
+
+			var numRows = 10;
+			var numCols = 10;
+
+			var rowDiv = null;
+			for(var i = 0; i<names99_string.length; i++){
+				var row = Math.floor(i/numCols);
+				var col = i%numCols;
+
+
+				if(col==0){
+					//add new row!
+					var newRowDiv = document.createElement("div");
+					newRowDiv.classList.add("names99Row");
+					table.appendChild(newRowDiv);
+					rowDiv = newRowDiv;
+				}
+
+				//add new column element
+				var newColDiv = document.createElement("div");
+				newColDiv.classList.add("names99Column");
+				newColDiv.index = i;
+				prophetDivList.push(newColDiv);
+
+				if(i%2==0){
+					newColDiv.classList.add("names99OffColor");
+				}
+
+				var englishDiv = document.createElement("div");
+				englishDiv.classList.add("names99English");
+				englishDiv.innerHTML = names99_string[i].Translation;
+				newColDiv.appendChild(englishDiv);
+
+				var transliteratedDiv = document.createElement("div");
+				transliteratedDiv.classList.add("names99Transliterated");
+				transliteratedDiv.innerHTML = names99_string[i].Transliteration;
+				newColDiv.appendChild(transliteratedDiv);
+
+				var arabicDiv = document.createElement("div");
+				arabicDiv.classList.add("names99Arabic");
+				arabicDiv.innerHTML = names99_string[i].Arabic;
+				newColDiv.appendChild(arabicDiv);
+
+				newColDiv.addEventListener('click', function (event) {
+					console.log('names99 selected: ' + names99_string[this.index].Translation);
+					//searchTermArabic(names99_string[this.index].Arabic);
+					searchTerm(names99_string[this.index].Translation);
+
+					for(var jj = 0; jj<prophetDivList.length; jj++){
+						names99DivList[jj].classList.remove('names99Selected');
+					}
+					this.classList.add('names99Selected');
+		        });
+
+				rowDiv.appendChild(newColDiv);
+
+			}
+		}
+		setupNamesTable();
 
 
 		function setupArabicText(){
@@ -906,6 +972,23 @@
 
 			for(i = 0; i<6235; i++){
 				if(quran_json_string[i].english.toUpperCase().includes(term.toUpperCase())){
+					search_idx_list.push(i);
+					box_list[i].attr('fill',highlight_color);
+				}
+			}
+		}
+
+		function searchTermArabic(term){
+			console.log('searching for: ' + term);
+
+			//clear previous search index list:
+			for(i = 0; i<search_idx_list.length; i++){
+				box_list[search_idx_list[i]].attr('fill',base_color);
+			}
+			search_idx_list=[];
+
+			for(i = 0; i<6235; i++){
+				if(quran_json_string[i].arabic.includes(term)){
 					search_idx_list.push(i);
 					box_list[i].attr('fill',highlight_color);
 				}
