@@ -631,7 +631,7 @@
 			for(i = 0; i<114; i++){
 				color_idx.push(i);
 			}
-						console.dir(color_idx);
+			//console.dir(color_idx);
 			shuffleArray(color_idx);
 
 
@@ -721,11 +721,19 @@
 		}
 
 		function prophets(){
-
+			for(i=0; i<box_list.length; i++){
+				box_list[i].transition()
+							.duration(800)
+							.attr('fill', base_color)
+			}
 		}
 
 		function names(){
-
+				for(i=0; i<box_list.length; i++){
+					box_list[i].transition()
+								.duration(800)
+								.attr('fill', base_color)
+				}
 		}
 
 
@@ -804,9 +812,15 @@
 			    currentIndex = sectionIndex;
 			    console.log('starting interval: ' + sectionIndex);
 			    //activateFunctions[sectionIndex]();
-			    activateFunctions[sectionIndex]();
-			    interval = setInterval(function(){activateFunctions[sectionIndex]()},1600);
-			    freeformCleared = 0;
+
+			    if(sectionIndex != 5 && sectionIndex != 6){
+				    activateFunctions[sectionIndex]();
+				    interval = setInterval(function(){activateFunctions[sectionIndex]()},1600);
+				    freeformCleared = 0;
+
+			    }else{
+			    	activateFunctions[sectionIndex]();
+			    }
 			    //activateFunctions[sectionIndex]();
 			}else{
 				//progressFunctions[sectionIndex](progress);
