@@ -6,15 +6,19 @@
         <script src = "quran_json_string.js"></script>
         <script src = "prophet_json_string.js"></script>
         <script src = "names99_string.js"></script>
+        <script src = "diacritics.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
 
     </head>
     <body >
 
-    	<div id="infobox" style="position: fixed; width: 85%; top:0%; z-index: 100; background:green; padding:5px; ">
-			<div id="arabic_text_p"> Aya Text </div>
-			<div id="english_text_p"> English Translation </div>
-			<div   >
+    	<div id="infobox" class="infoBoxClass infoBoxClassInvisible" >
+    		<p>
+			<div id="arabic_text_p" class="arabic_text_p_class"> Aya Text </div>
+			<p>
+			<div id="english_text_p" class="english_text_p_class"> English Translation </div>
+			<p>
+			<div id="stats_text_p" class="stats_text_p_class">
 				<div id="sura_text_p" style="float: left;"> Surah Number </div>
 				<div  style="float: left;"> &emsp; </div>
 				<div id="aya_text_p" style="float: left;"> Aya Number </div>
@@ -23,10 +27,13 @@
 			</div>
 		</div>
 
+		<div id="logo" class="logoClass">
+			<img src="logo.png" height="10%">
+		</div>
 
 <!--     <div class="row"> -->
     	<div class="column" style="position: fixed; top: 10%">
-    		<div class="topnav" align="center">
+    		<div class="topnav" align="center" style="text-align: center;">
 				<input id="search_text_bar" type="text" size="45" placeholder="Search for a term in the English translation"> <button id="search_button" > Search! </button>
 			</div>
 
@@ -42,7 +49,7 @@
 		</div>
 
 
-		<div id="navbar" class="vertical-menu" style="position: fixed; width: 10%; left: 88%; top: 0%">
+		<div id="navbar" class="vertical-menu navbarClass">
 		  <a href="#IntroductionAnchor" class="btn active">Introduction</a>
 		  <a href="#RevelationAnchor" class="btn">Revelation</a>
 		  <a href="#ChaptersAnchor" class="btn">Chapters</a>
@@ -70,6 +77,7 @@
 
 	    	Muhammad did not know how to read or write, nor did he have knowledge of previous scriptures. He lived in Mecca in the Arabian peninsula at a time of idolatry, social corruption, and injustice. Muslims believe that the angel Gabriel visited Muhammad while he was meditating in the cave of Hira. 
 
+	    	<p>
 	    	<img src="images/hira_map.PNG" width=100%>
 	    	<p>
 
@@ -213,169 +221,6 @@
 
 	    	<div id="prophetTable">
 	    	</div>
-<!-- 
-	    	<table width="100%">
-	    		<tr>
-	    			<td>
-	    				<div class="prophet">
-	    					Noah (English)
-	    					Nuh (Arabic)
-	    				</div>
-	    			</td>
-	       			<td>
-	    				<div class="prophet">
-	    					Noah (English)
-	    					Nuh (Arabic)
-	    				</div>	       				
-	    			</td>
-	    			<td>
-	    				<div class="prophet">
-	    					Noah (English)
-	    					Nuh (Arabic)
-	    				</div>	    				
-	    			</td>
-	       			<td>
-	    				<div class="prophet">
-	    					Noah (English)
-	    					Nuh (Arabic)
-	    				</div>	       				
-	    			</td>
-	    			<td>
-	    				<div class="prophet">
-	    					Noah (English)
-	    					Nuh (Arabic)
-	    				</div>	    				
-	    			</td>
-	    		</tr>
-	    		<tr>
-	    			<td>
-	    				<div class="prophet">
-	    					Noah (English)
-	    					Nuh (Arabic)
-	    				</div>
-	    			</td>
-	       			<td>
-	    				<div class="prophet">
-	    					Noah (English)
-	    					Nuh (Arabic)
-	    				</div>	       				
-	    			</td>
-	    			<td>
-	    				<div class="prophet">
-	    					Noah (English)
-	    					Nuh (Arabic)
-	    				</div>	    				
-	    			</td>
-	       			<td>
-	    				<div class="prophet">
-	    					Noah (English)
-	    					Nuh (Arabic)
-	    				</div>	       				
-	    			</td>
-	    			<td>
-	    				<div class="prophet">
-	    					Noah (English)
-	    					Nuh (Arabic)
-	    				</div>	    				
-	    			</td>
-	    		</tr>
-	    		<tr>
-	    			<td>
-	    				<div class="prophet">
-	    					Noah (English)
-	    					Nuh (Arabic)
-	    				</div>
-	    			</td>
-	       			<td>
-	    				<div class="prophet">
-	    					Noah (English)
-	    					Nuh (Arabic)
-	    				</div>	       				
-	    			</td>
-	    			<td>
-	    				<div class="prophet">
-	    					Noah (English)
-	    					Nuh (Arabic)
-	    				</div>	    				
-	    			</td>
-	       			<td>
-	    				<div class="prophet">
-	    					Noah (English)
-	    					Nuh (Arabic)
-	    				</div>	       				
-	    			</td>
-	    			<td>
-	    				<div class="prophet">
-	    					Noah (English)
-	    					Nuh (Arabic)
-	    				</div>	    				
-	    			</td>
-	    		</tr>
-	    		<tr>
-	    			<td>
-	    				<div class="prophet">
-	    					Noah (English)
-	    					Nuh (Arabic)
-	    				</div>
-	    			</td>
-	       			<td>
-	    				<div class="prophet">
-	    					Noah (English)
-	    					Nuh (Arabic)
-	    				</div>	       				
-	    			</td>
-	    			<td>
-	    				<div class="prophet">
-	    					Noah (English)
-	    					Nuh (Arabic)
-	    				</div>	    				
-	    			</td>
-	       			<td>
-	    				<div class="prophet">
-	    					Noah (English)
-	    					Nuh (Arabic)
-	    				</div>	       				
-	    			</td>
-	    			<td>
-	    				<div class="prophet">
-	    					Noah (English)
-	    					Nuh (Arabic)
-	    				</div>	    				
-	    			</td>
-	    		</tr>
-	    		<tr>
-	    			<td>
-	    				<div class="prophet">
-	    					Noah (English)
-	    					Nuh (Arabic)
-	    				</div>
-	    			</td>
-	       			<td>
-	    				<div class="prophet">
-	    					Noah (English)
-	    					Nuh (Arabic)
-	    				</div>	       				
-	    			</td>
-	    			<td>
-	    				<div class="prophet">
-	    					Noah (English)
-	    					Nuh (Arabic)
-	    				</div>	    				
-	    			</td>
-	       			<td>
-	    				<div class="prophet">
-	    					Noah (English)
-	    					Nuh (Arabic)
-	    				</div>	       				
-	    			</td>
-	    			<td>
-	    				<div class="prophet">
-	    					Noah (English)
-	    					Nuh (Arabic)
-	    				</div>	    				
-	    			</td>
-	    		</tr>	    			    			    			    		
-	    	</table> -->
 	    </section>
 
 		<span class="anchor" id="99NamesAnchor"></span>
@@ -390,10 +235,10 @@
 			</div>
 
 			<p>
-			99 names box:
 			<div id="names99Table">
 	    	</div>
 
+	    	<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 	    </section>
 
 
@@ -411,8 +256,75 @@
 		//All prophets table
 		//99 names box
 
+		var highlighted_list = [];
+
 		//set up search bar
 		document.getElementById('search_button').onclick=search;
+
+		document.getElementById("search_text_bar").addEventListener("keyup", function(event) {
+		  // Cancel the default action, if needed
+		  event.preventDefault();
+		  // Number 13 is the "Enter" key on the keyboard
+		  if (event.keyCode === 13) {
+		    // Trigger the button element with a click
+		    document.getElementById("search_button").click();
+		  }
+		});
+
+
+		function stripDiacritics(rawString) {
+			var list = [];
+		   //return rawString.replace(/ُ|ِ|َ|ٍ|ً|ّ/g,"");
+		   stripped = rawString; 
+
+
+		   //var re = new RegExp(diacritics,'g');
+		  // stripped = rawString.replace(re,'');
+
+		  var broken = stripped.split(daggerAliph).join(clean_aliph);
+		  var together = stripped.split(daggerAliph).join('');
+
+		   for(var i = 0; i<diacritics.length; i++){
+
+		   		broken = broken.split(diacritics[i]).join('');
+		   		together = together.split(diacritics[i]).join('');
+
+		   		stripped = stripped.split(diacritics[i]).join('');
+		   		//stripped = stripped.replace(diacritics[i],"");
+		   		//console.log("stripped: " + stripped);
+		   }
+
+		   for(var i = 0; i<aliphs.length; i++){
+		   		broken = broken.split(aliphs[i]).join(clean_aliph);
+		   		together = together.split(aliphs[i]).join(clean_aliph);
+		   		stripped = stripped.split(aliphs[i]).join(clean_aliph);
+		   		//console.log("stripped: " + stripped);
+		   }
+
+		   list.push(broken);
+		   list.push(together);
+		   return list;
+
+		   		   
+		   //console.log(stripped);
+
+		   /*
+		   stripped2 = stripped.replace("ْ","");
+		   console.log("stripped 2: " + stripped2);
+		   stripped = stripped.replace("ْ","");
+
+		   stripped = stripped.replace("َ","");
+		   stripped = stripped.replace("ً","");
+		   stripped = stripped.replace("ُ","");
+		   stripped = stripped.replace("ٌ","");
+		   stripped = stripped.replace("ّ","");
+		   stripped = stripped.replace("ِ","");
+		   stripped = stripped.replace("ٍ","");
+			*/
+
+		   //return stripped;   
+		}
+
 
 		//set up navigation bar:
 		function setupNavBar(){
@@ -439,7 +351,7 @@
 			var table = document.getElementById('prophetTable');
 
 			var numRows = 5;
-			var numCols = 5;
+			var numCols = 4;
 
 			var rowDiv = null;
 			for(var i = 0; i<prophet_json_string.length; i++){
@@ -461,7 +373,7 @@
 				newColDiv.index = i;
 				prophetDivList.push(newColDiv);
 
-				if(i%2==0){
+				if((i+row)%2==0){
 					newColDiv.classList.add("prophetOffColor");
 				}
 
@@ -502,7 +414,7 @@
 			var table = document.getElementById('names99Table');
 
 			var numRows = 10;
-			var numCols = 10;
+			var numCols = 4;
 
 			var rowDiv = null;
 			for(var i = 0; i<names99_string.length; i++){
@@ -524,35 +436,46 @@
 				newColDiv.index = i;
 				prophetDivList.push(newColDiv);
 
-				if(i%2==0){
+				if((i+row)%2==0){
 					newColDiv.classList.add("names99OffColor");
 				}
 
-				var englishDiv = document.createElement("div");
-				englishDiv.classList.add("names99English");
-				englishDiv.innerHTML = names99_string[i].Translation;
-				newColDiv.appendChild(englishDiv);
-
-				var transliteratedDiv = document.createElement("div");
-				transliteratedDiv.classList.add("names99Transliterated");
-				transliteratedDiv.innerHTML = names99_string[i].Transliteration;
-				newColDiv.appendChild(transliteratedDiv);
 
 				var arabicDiv = document.createElement("div");
 				arabicDiv.classList.add("names99Arabic");
 				arabicDiv.innerHTML = names99_string[i].Arabic;
 				newColDiv.appendChild(arabicDiv);
 
+				var transliteratedDiv = document.createElement("div");
+				transliteratedDiv.classList.add("names99Transliterated");
+				transliteratedDiv.innerHTML = names99_string[i].Transliteration;
+				newColDiv.appendChild(transliteratedDiv);
+
+				var englishDiv = document.createElement("div");
+				englishDiv.classList.add("names99English");
+				englishDiv.innerHTML = names99_string[i].Translation;
+				newColDiv.appendChild(englishDiv);
+
 				newColDiv.addEventListener('click', function (event) {
 					console.log('names99 selected: ' + names99_string[this.index].Translation);
 					//searchTermArabic(names99_string[this.index].Arabic);
-					searchTerm(names99_string[this.index].Translation);
 
-					for(var jj = 0; jj<prophetDivList.length; jj++){
+					arabicNameWithAL = names99_string[this.index].Arabic;
+					arabicNameWithoutAL = arabicNameWithAL.substring(2); //grab 2nd index until end of string
+					console.log('searching for: ' + arabicNameWithAL + ' and: ' + arabicNameWithoutAL);
+					ayaList1 = getAyaIndiciesArabic(arabicNameWithAL);
+					ayaList2 = getAyaIndiciesArabic(arabicNameWithoutAL);
+					ayaList = ayaList1.concat(ayaList2);
+					highlightAyas(ayaList);
+
+					//searchTerm(names99_string[this.index].Translation);
+
+					for(var jj = 0; jj<names99DivList.length; jj++){
 						names99DivList[jj].classList.remove('names99Selected');
 					}
 					this.classList.add('names99Selected');
 		        });
+		        names99DivList.push(newColDiv);
 
 				rowDiv.appendChild(newColDiv);
 
@@ -650,7 +573,7 @@
 			for(i=0; i<box_list.length; i++){
 
 				//if(quran_json_string[i].chapter>=90){
-				if(quran_json_string[i].chapter==95){	
+				if(quran_json_string[i].chapter==96){	
 					//console.log('setting: ' + i + ' red');
 					box_list[i].transition()
     						.duration(400)
@@ -795,6 +718,7 @@
 		}
 
 		function names(){
+			console.log('clearing for names!');
 				for(i=0; i<box_list.length; i++){
 					box_list[i].transition()
 								.duration(800)
@@ -822,7 +746,7 @@
 		activateFunctions[3] = fatiha;
 		activateFunctions[4] = jesus;
 		activateFunctions[5] = prophets;
-		activateFunctions[5] = names;
+		activateFunctions[6] = names;
 
 		progressFunctions = [];
 		progressFunctions[0] = nada;
@@ -978,6 +902,41 @@
 			}
 		}
 
+		function highlightAyas(ayaList){
+
+			//console.log('highlighting ayas: ' + ayaList);
+			//console.log('current search idx list: ' + search_idx_list);
+
+			//clear previous search index list:
+			for(i = 0; i<search_idx_list.length; i++){
+				box_list[search_idx_list[i]].attr('fill',base_color);
+			}
+			search_idx_list=[];
+			
+			for(i = 0; i<ayaList.length; i++){
+				search_idx_list.push(ayaList[i]);
+				box_list[ayaList[i]].attr('fill',highlight_color);
+			}	
+		}
+
+		function getAyaIndiciesArabic(term){
+			var ayaList = [];
+
+			for(i = 0; i<6235; i++){
+				var strippedAyaList = stripDiacritics(quran_json_string[i].arabic);
+				var strippedTermList = stripDiacritics(term);
+				var strippedTerm = strippedTermList[0];
+				for(jj = 0; jj<strippedAyaList.length; jj++){
+					if(strippedAyaList[jj].includes(strippedTerm)){
+						ayaList.push(i);
+					}					
+				}
+			}
+
+			return ayaList;
+		}
+
+
 		function searchTermArabic(term){
 			console.log('searching for: ' + term);
 
@@ -988,9 +947,14 @@
 			search_idx_list=[];
 
 			for(i = 0; i<6235; i++){
-				if(quran_json_string[i].arabic.includes(term)){
-					search_idx_list.push(i);
-					box_list[i].attr('fill',highlight_color);
+				var strippedAyaList = stripDiacritics(quran_json_string[i].arabic);
+				var strippedTermList = stripDiacritics(term);
+				var strippedTerm = strippedTermList[0];
+				for(jj = 0; jj<strippedAyaList.length; jj++){
+					if(strippedAyaList[jj].includes(strippedTerm)){
+						search_idx_list.push(i);
+						box_list[i].attr('fill',highlight_color);
+					}					
 				}
 			}
 		}
@@ -1017,6 +981,14 @@
 				//this.setAttributeNS(null,'fill',select_color);
 			}
 
+			highlighted_list.push(id_num);
+			//console.log('added to highlihgted list: ');
+			//console.log(highlighted_list);
+
+			//console.log('displaying block');
+			//document.getElementById('infobox').display = "block";
+			document.getElementById('infobox').classList.remove("infoBoxClassInvisible");
+			document.getElementById('infobox').classList.add("infoBoxClassVisible");
 			document.getElementById('arabic_text_p').innerHTML= quran_json_string[id_num].arabic;
 			document.getElementById('english_text_p').innerHTML = quran_json_string[id_num].english;
 			document.getElementById('juz_text_p').innerHTML ="juz: " + quran_json_string[id_num].juz_number;
@@ -1040,6 +1012,26 @@
 	            });
 			}
 
+
+			for(var i = highlighted_list.length - 1; i >= 0; i--) {
+			    if(highlighted_list[i] === id_num) {
+
+			       highlighted_list.splice(i, 1);
+			     	//console.log('removing: ' + id_num + ' now its: ' + highlighted_list)
+			    }
+			}
+
+			//highlighted_list.remove(id_num);
+			if(highlighted_list.length == 0){
+				//console.log(highlighted_list);
+				//console.log('displaying none');	
+				//document.getElementById('infobox').display = "none";	
+
+				document.getElementById('infobox').classList.add("infoBoxClassInvisible");
+				document.getElementById('infobox').classList.remove("infoBoxClassVisible");		
+			}
+
+			
 			document.getElementById('arabic_text_p').innerHTML = 'arabic text:';
 			document.getElementById('english_text_p').innerHTML = 'english translation:';
 			document.getElementById('juz_text_p').innerHTML ='juz number';

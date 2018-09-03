@@ -5,15 +5,39 @@
   z-index: 90;
 }
 
+.logoClass{
+	border-radius: 6px;
+	position: fixed; 
+	width: 100%;
+	left:0%; 
+	top:0%; 
+	z-index: 80;  
+	padding:0px;
+
+	background-color: #DDBF8B;
+
+	vertical-align:middle;
+	text-align:center;
+}
+
+.navbarClass{
+	position: fixed; 
+	width: 10%; 
+	left: 88%; 
+	top: 12%
+}
+
 /* Create two equal columns that floats next to each other */
 .prophetColumn {
+	border-radius: 20px;
     float: left;
-    width: 15%;
-    min-height: 13vh;
+    width: 18%;
+    min-height: 16vh;
     padding: 10px 10px;
     color: #7c795d;
     background-color:#4CAF50; 
-    border: 1px solid #999999;
+    /*border: 1px solid #999999;*/
+    border: 1px;
 }
 
 
@@ -78,12 +102,14 @@
 /* Create two equal columns that floats next to each other */
 .names99Column {
     float: left;
-    width: 4%;
-    min-height: 4vh;
+    border-radius: 25px;
+    width: 19%;
+    min-height: 20vh;
     padding: 10px 10px;
     color: #7c795d;
     background-color:#4CAF50; 
-    border: 1px solid #999999;
+    /*border: 1px solid #999999;*/
+    border: 1px;
 }
 
 
@@ -110,10 +136,13 @@
     clear: both;
 }
 
-.names99English{
-	 color: #111; 
+
+.names99Arabic{
+	 position: relative;
+	 top: 0vh;
+	 color: #313; 
 	 font-family: 'Helvetica Neue', sans-serif; 
-	 font-size: 5px; 
+	 font-size: 25px; 
 	 font-weight: bold; 
 	 letter-spacing: -1px; 
 	 line-height: 1; 
@@ -122,27 +151,30 @@
 
 .names99Transliterated{
 	 position: relative;
-	 top: 3vh;
+	 top: 4vh;
 	 color: #221; 
 	 font-family: 'Helvetica Neue', sans-serif; 
-	 font-size: 5px; 
+	 font-size: 15px; 
 	 font-weight: bold; 
 	 letter-spacing: -1px; 
 	 line-height: 1; 
 	 text-align: center;
 }
 
-.names99Arabic{
-	 position: relative;
-	 top: 5vh;
-	 color: #313; 
+.names99English{
+	position: relative;
+	 color: #111;
+	 top: 7vh; 
 	 font-family: 'Helvetica Neue', sans-serif; 
-	 font-size: 5px; 
+	 font-size: 12px; 
 	 font-weight: bold; 
 	 letter-spacing: -1px; 
 	 line-height: 1; 
 	 text-align: center;
 }
+
+
+
 
 
 
@@ -172,14 +204,23 @@
 	margin: 0;
 }
 
+.aya{
+	color: #333399;
+}
+
 .ayaEnglish{
 	text-align:center;
+	border:1px solid green;
 	color: #7c795d; 
 	font-family: 'Trocchi', serif; 
 	font-size: 18px; 
 	font-weight: normal; 
 	line-height: 48px; 
 	margin: 0;
+}
+
+.ayaEnglish{
+	color: #333399;
 }
 
 .step {
@@ -214,4 +255,58 @@
 .vertical-menu a.active {
     background-color: #4CAF50; /* Add a green color to the "active/current" link */
     color: white;
+}
+
+.infoBoxClass{
+	border-radius: 6px;
+	position: fixed; 
+	width: 85%; 
+	top:0%; 
+	z-index: 100; 
+	background:green; 
+	padding:5px;
+}
+
+.infoBoxClassVisible{
+	display: block;
+}
+
+.infoBoxClassInvisible{
+	display: none;
+}
+
+.arabic_text_p_class{
+	 color: #111; 
+	 font-family: 'Helvetica Neue', sans-serif; 
+	 font-size: 20px; 
+	 font-weight: bold; 
+	 letter-spacing: -1px; 
+	 line-height: 1; 
+	 text-align: center;
+}
+
+.english_text_p_class{
+	position: relative;
+	top: 0vh;
+		 color: #111; 
+	 font-family: 'Helvetica Neue', sans-serif; 
+	 font-size: 16px; 
+	 font-weight: bold; 
+	 letter-spacing: -1px; 
+	 line-height: 1; 
+	 text-align: center;
+}
+
+.stats_text_p_class{
+	position: relative;
+	top: 0vh;
+	margin: auto;
+    width: 20%;
+		 color: #111; 
+	 font-family: 'Helvetica Neue', sans-serif; 
+	 font-size: 16px; 
+	 font-weight: bold; 
+	 letter-spacing: -1px; 
+	 line-height: 1; 
+	 text-align: center;
 }
