@@ -1,0 +1,179 @@
+<html>
+    <head>
+        <title>Quran?</title>
+        <script src="https://d3js.org/d3.v3.min.js"></script>
+        <script src="https://cdn.rawgit.com/anvaka/panzoom/v4.4.0/dist/panzoom.min.js"></script>
+        <script src = "quran_json_string.js"></script>
+
+    </head>
+    <body >
+
+
+
+	<div class="topnav" align="center">
+	  <input id="search_text_bar" type="text" size="45" placeholder="Search for a term in the English translation">
+	  <button id="search_button" > Search! </button>
+	</div>
+
+	<div style="text-align:center;">
+		<svg id="main_svg" width="1200px" height="400px" align="center" >
+			<g id="gunit">
+		    </g>
+		</svg>
+	</div>
+
+	<p id="arabic_text_p" align="center"> Aya Text </p>
+   	<p id="english_text_p" align="center"> English Translation </p>
+   	<p id="sura_text_p" align="center"> Surah Number </p>
+   	<p id="aya_text_p" align="center"> Aya Number </p>
+   	<p id="juz_text_p" align="center"> Juz Number </p>
+
+	<script>
+		//quran_json_string - has the entire book, english and arabic
+		//var svg = document.getElementById('main_svg');
+		var svg = document.getElementById('gunit');
+		var pz = panzoom(document.getElementById("gunit"));
+		var box_list = [];
+
+		var search_idx_list = [];
+		function search(){
+			term = document.getElementById("search_text_bar").value;
+			console.log('searching for: ' + term.toUpperCase());
+
+			//clear previous search index list:
+			for(i = 0; i<search_idx_list.length; i++){
+				box_list[search_idx_list[i]].setAttributeNS(null,'fill',base_color);
+			}
+			search_idx_list=[];
+
+			for(i = 0; i<6235; i++){
+				if(quran_json_string[i].english.toUpperCase().includes(term.toUpperCase())){
+					search_idx_list.push(i);
+					box_list[i].setAttributeNS(null,'fill',highlight_color);
+				}
+			}
+
+		}
+
+		document.getElementById('search_button').onclick=search;
+
+		function mouseOverEffect(){
+			//console.log('mouse over: ' + this);
+
+			id_num = this.id.substring(3,this.id.length);
+			id_num = parseInt(id_num);
+
+			if(search_idx_list.includes(id_num)){
+				this.setAttributeNS(null,'fill','purple');
+			}else{
+				this.setAttributeNS(null,'fill',select_color);
+			}
+
+			document.getElementById('arabic_text_p').innerHTML= quran_json_string[id_num].arabic;
+			document.getElementById('english_text_p').innerHTML = quran_json_string[id_num].english;
+			document.getElementById('juz_text_p').innerHTML ="juz: " + quran_json_string[id_num].juz_number;
+			document.getElementById('sura_text_p').innerHTML ="surah: " + quran_json_string[id_num].chapter;
+			document.getElementById('aya_text_p').innerHTML ="aya: " + quran_json_string[id_num].verse;
+		}
+
+		function mouseoutEffect(){
+			//console.log('mouse out: ' + this);
+
+			id_num = this.id.substring(3,this.id.length);
+			id_num = parseInt(id_num);
+
+			if(search_idx_list.includes(id_num)){
+				this.setAttributeNS(null,'fill',highlight_color);
+			}else{
+				this.setAttributeNS(null,'fill',base_color);
+			}
+
+			document.getElementById('arabic_text_p').innerHTML = 'arabic text:';
+			document.getElementById('english_text_p').innerHTML = 'english translation:';
+			document.getElementById('juz_text_p').innerHTML ='juz number';
+			document.getElementById('sura_text_p').innerHTML ='sura number';
+			document.getElementById('aya_text_p').innerHTML ='aya number';
+
+			//console.log(this.id);
+		}
+
+
+		function addBox(text, width, start_x, start_y, id_num){
+			//factor = 0.01;
+			//console.log('adding box, time=' + Date.now());
+			var box = document.createElementNS( "http://www.w3.org/2000/svg", 'rect');
+			box.setAttributeNS(null, 'x', start_x);
+			box.setAttributeNS(null, 'y', start_y);
+			box.setAttributeNS(null, 'width', width);
+			box.setAttributeNS(null, 'height', factor*text.length);
+			box.setAttributeNS(null, 'fill', base_color);
+			box.addEventListener('mouseover',mouseOverEffect);
+			box.addEventListener('mouseout',mouseoutEffect);
+			box.id = "id_" + id_num;
+			document.getElementById("gunit").appendChild(box);
+			box_list.push(box);
+			return factor* text.length;
+		}
+
+		//some settings:
+		box_width = 20;
+		factor = 0.01;
+		delay = 0;
+		console.log('factor: ' + factor);
+
+		base_color = 'rgb(255,0,0)'
+		base_color = '#112E44'
+		highlight_color = 'rgb(0,100,0)'
+		highlight_color = '#FCF0D2'
+		select_color = 'rgb(0,0,100)'
+		select_color = '#A9A79B'
+
+		bg_color = '#92794D'
+		bg_color = '#DDBF8B'
+
+		document.body.style.backgroundColor = bg_color;
+
+
+		document.getElementById("search_text_bar").addEventListener("keyup", function(event) {
+		  // Cancel the default action, if needed
+		  event.preventDefault();
+		  // Number 13 is the "Enter" key on the keyboard
+		  if (event.keyCode === 13) {
+		    // Trigger the button element with a click
+		    document.getElementById("search_button").click();
+		  }
+		});
+
+
+		juz_height = [];
+		for(juz_counter = 0; juz_counter<30; juz_counter++){
+			juz_height[juz_counter] = 50;
+		}
+
+		for(i = 0; i<6235; i++)
+		//for(i = 0; i<1000; i++)
+		{
+			delay = delay + .5;
+			aya = quran_json_string[i];
+			juz = aya.juz_number-1;
+			arabic = aya.arabic;
+
+			super_offset = (1200 - (box_width+10)*30)/2;
+			//console.log('super offset: ' + super_offset);
+
+			c_start_x = 1200 - super_offset -  (juz*(box_width+10));
+			c_start_y = juz_height[juz];
+
+			//for debugging purposes:
+			//console.log("number: " + i + " chapter: " + aya.chapter + " verse: " + aya.verse + " juz: " + juz + " " + box_width + " " + c_start_x + " " + c_start_y);
+
+
+			//additional_height = setTimeout(addBox(arabic, box_width, c_start_x, c_start_y, i),delay);
+			setTimeout(addBox,delay,arabic,box_width,c_start_x,c_start_y,i);
+			//juz_height[juz] = juz_height[juz]+additional_height;
+			juz_height[juz] = juz_height[juz]+arabic.length*factor+.1;
+		}
+	</script>
+
+	</body>
+</html>
