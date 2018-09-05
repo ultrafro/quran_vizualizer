@@ -27,6 +27,24 @@
 			</div>
 		</div>
 
+		<div id="permanentbox" class="permanentBoxClass permanentBoxClassInvisible">
+			<div id="permanent_x_button" class="xbuttonClass">
+				<img src="x-symbol.png" class="xbuttonImageClass">
+			</div>
+			<p>
+			<div id="permanent_arabic_text_p" class="arabic_text_p_class"> Aya Text </div>
+			<p>
+			<div id="permanent_english_text_p" class="english_text_p_class"> English Translation </div>
+			<p>
+			<div id="permanent_stats_text_p" class="stats_text_p_class">
+				<div id="permanent_sura_text_p" style="float: left;"> Surah Number </div>
+				<div  style="float: left;"> &emsp; </div>
+				<div id="permanent_aya_text_p" style="float: left;"> Aya Number </div>
+				<div  style="float: left;"> &emsp; </div>
+				<div id="permanent_juz_text_p" style="float: left;"> Juz Number </div>
+			</div>
+		</div>
+
 		<div id="logo" class="logoClass">
 			<img src="logo.png" height="10%">
 		</div>
@@ -207,7 +225,7 @@
 	    	In Islam, Muhammad, Jesus, Moses, and all the prophets are considered non-divine humans who deliver the message of God to the believers. Muslims believe in the virgin-birth of Jesus, but the Quran is clear that he was not divine and was not the son of God. That doesn't stop Jesus from playing a central role in Islam. Jesus is mentioned by name 25 times in the Quran, while Muhammad is mentioned only 4 times by name.
 
 	    	<p>
-	    	Here we highlight all the times Jesus is mentioned in Green and Mary in Purple.
+	    	Here we highlight all the times Jesus is mentioned in white and Mary in yellow.
 
 	    </section>
 
@@ -239,6 +257,7 @@
 	    	</div>
 
 	    	<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+	    	<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 	    </section>
 
 
@@ -256,6 +275,28 @@
 		//All prophets table
 		//99 names box
 
+
+		//active list:
+		var activeList = [];
+		fillActiveList();
+
+		function addToActiveList(index){
+			activeList[index]=1;
+		}
+
+		function clearActiveList(){
+			for(var i = 0; i<quran_json_string.length; i++){
+				activeList[i] = 0;
+			}			
+		}
+
+		function fillActiveList(){
+			for(var i = 0; i<quran_json_string.length; i++){
+				activeList[i] = 1;
+			}				
+		}
+
+
 		var highlighted_list = [];
 
 		//set up search bar
@@ -270,6 +311,10 @@
 		    document.getElementById("search_button").click();
 		  }
 		});
+
+
+		//setup x button on permanent box div
+		document.getElementById("permanent_x_button").onclick=handleXOut;
 
 
 		function stripDiacritics(rawString) {
@@ -395,6 +440,7 @@
 				newColDiv.addEventListener('click', function (event) {
 					console.log('prophet selected: ' + prophet_json_string[this.index].TranslationName);
 					searchTerm(prophet_json_string[this.index].TranslationName);
+					//todo: get index and remove/add to active list.
 
 					for(var jj = 0; jj<prophetDivList.length; jj++){
 						prophetDivList[jj].classList.remove('prophetSelected');
@@ -467,6 +513,11 @@
 					ayaList2 = getAyaIndiciesArabic(arabicNameWithoutAL);
 					ayaList = ayaList1.concat(ayaList2);
 					highlightAyas(ayaList);
+
+					clearActiveList();
+					for(var jj = 0; jj<ayaList.length; jj++){
+						addToActiveList(ayaList[jj]);
+					}
 
 					//searchTerm(names99_string[this.index].Translation);
 
@@ -562,18 +613,22 @@
 								.attr('fill', base_color)
 				}
 				console.log('freeform cleaned');
-				freeformCleared = 1;							
+				freeformCleared = 1;
+
+				fillActiveList();							
 			}
 
 		}
 
 		function alaq(){
 			console.log('alaq called');
+			clearActiveList();
 			//surah 96
 			for(i=0; i<box_list.length; i++){
 
 				//if(quran_json_string[i].chapter>=90){
-				if(quran_json_string[i].chapter==96){	
+				if(quran_json_string[i].chapter==96){
+					addToActiveList(i);	
 					//console.log('setting: ' + i + ' red');
 					box_list[i].transition()
     						.duration(400)
@@ -616,6 +671,8 @@
 
 		function surah(){
 			//color_list = colors.distinct(114);
+
+			fillActiveList();
 			color_idx = [];
 			for(i = 0; i<114; i++){
 				color_idx.push(i);
@@ -636,10 +693,13 @@
 
 		function jesus(){
 			console.log('calling jesus');
+
+			clearActiveList();
 			for(i = 0; i<box_list.length; i++){
 				english = quran_json_string[i].english;
 				found = 0;	
 				if(english.toUpperCase().includes(' ISA ')){
+					addToActiveList(i);
 					box_list[i].transition()
     						.duration(400)
     						.attr('fill','white')
@@ -655,6 +715,7 @@
 					found = 1;
 				}
 				if(english.toUpperCase().includes(' MARIUM ')){
+					addToActiveList(i);
 					box_list[i].transition()
     						.duration(400)
     						.attr('fill','yellow')
@@ -681,11 +742,13 @@
 
 		function fatiha(){
 			console.log('fatiha called');
+			clearActiveList();
 			//surah 96
 			for(i=0; i<box_list.length; i++){
 
 				//if(quran_json_string[i].chapter>=90){
 				if(quran_json_string[i].chapter==1){	
+					addToActiveList(i);
 					//console.log('setting: ' + i + ' red');
 					box_list[i].transition()
     						.duration(400)
@@ -710,6 +773,7 @@
 		}
 
 		function prophets(){
+			fillActiveList();
 			for(i=0; i<box_list.length; i++){
 				box_list[i].transition()
 							.duration(800)
@@ -718,6 +782,7 @@
 		}
 
 		function names(){
+			fillActiveList();
 			console.log('clearing for names!');
 				for(i=0; i<box_list.length; i++){
 					box_list[i].transition()
@@ -959,6 +1024,45 @@
 			}
 		}
 
+		function handleMouseDown(d,i){
+			id_num = this.id.substring(3,this.id.length);
+			id_num = parseInt(id_num);
+
+			if(!activeList[id_num]){
+				return;
+			}
+
+
+			if(search_idx_list.includes(id_num)){
+				d3.select(this).attr({
+	              fill: "orange"
+	            });			
+				//this.setAttributeNS(null,'fill','purple');
+			}else{
+				d3.select(this).attr({
+	              fill: select_color
+	            });
+				//this.setAttributeNS(null,'fill',select_color);
+			}
+			highlighted_list.push(id_num);		
+
+			document.getElementById('permanentbox').classList.remove("permanentBoxClassInvisible");
+			document.getElementById('permanentbox').classList.add("permanentBoxClassVisible");
+			document.getElementById('permanent_arabic_text_p').innerHTML= quran_json_string[id_num].arabic;
+			document.getElementById('permanent_english_text_p').innerHTML = quran_json_string[id_num].english;
+			document.getElementById('permanent_juz_text_p').innerHTML ="juz: " + quran_json_string[id_num].juz_number;
+			document.getElementById('permanent_sura_text_p').innerHTML ="surah: " + quran_json_string[id_num].chapter;
+			document.getElementById('permanent_aya_text_p').innerHTML ="aya: " + quran_json_string[id_num].verse;				
+		}
+
+		function handleXOut(){
+			if(document.getElementById('permanentbox').classList.contains("permanentBoxClassVisible")){
+				document.getElementById('permanentbox').classList.remove("permanentBoxClassVisible");
+				document.getElementById('permanentbox').classList.add("permanentBoxClassInvisible");
+			}
+		}
+
+
 		function handleMouseOver(d,i){
 			//console.log('this id: ' + this.id);
 			//console.dir(this);
@@ -968,6 +1072,10 @@
 			id_num = this.id.substring(3,this.id.length);
 			id_num = parseInt(id_num);
 			//console.log('found id num: ' + id_num);
+
+			if(!activeList[id_num]){
+				return;
+			}
 
 			if(search_idx_list.includes(id_num)){
 				d3.select(this).attr({
@@ -994,6 +1102,11 @@
 			document.getElementById('juz_text_p').innerHTML ="juz: " + quran_json_string[id_num].juz_number;
 			document.getElementById('sura_text_p').innerHTML ="surah: " + quran_json_string[id_num].chapter;
 			document.getElementById('aya_text_p').innerHTML ="aya: " + quran_json_string[id_num].verse;
+
+			//put id box in right spot
+			document.getElementById('infobox').style.left = this.getBoundingClientRect().left + 50;
+			document.getElementById('infobox').style.top = this.getBoundingClientRect().top + 0;			
+
 		}
 
 		function handleMouseOut(d,i){
@@ -1001,6 +1114,10 @@
 
 			id_num = this.id.substring(3,this.id.length);
 			id_num = parseInt(id_num);
+
+			if(!activeList[id_num]){
+				return;
+			}
 
 			if(search_idx_list.includes(id_num)){
 				d3.select(this).attr({
@@ -1067,7 +1184,8 @@
 					                            .attr("id", "id_" + id_num)
 					                            .attr("fill",base_color)
 					                            .on("mouseover", handleMouseOver)
-          										.on("mouseout", handleMouseOut);
+          										.on("mouseout", handleMouseOut)
+          										.on("click",handleMouseDown);
 			box.id = "id_" + id_num;
 			box_list.push(box);
 			return factor* text.length;
