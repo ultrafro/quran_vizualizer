@@ -7,6 +7,7 @@
         <script src = "prophet_json_string.js"></script>
         <script src = "names99_string.js"></script>
         <script src = "diacritics.js"></script>
+        <script src = "cache99_string.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
 
     </head>
@@ -68,13 +69,13 @@
 
 
 		<div id="navbar" class="vertical-menu navbarClass">
-		  <a href="#IntroductionAnchor" class="btn active">Introduction</a>
-		  <a href="#RevelationAnchor" class="btn">Revelation</a>
-		  <a href="#ChaptersAnchor" class="btn">Chapters</a>
-  		  <a href="#OpeningAnchor" class="btn">Opening</a>
-		  <a href="#JesusAnchor" class="btn">Jesus</a>
-		  <a href="#ProphetsAnchor" class="btn">Prophets</a>
-		  <a href="#99NamesAnchor" class="btn">99 Names of God</a>
+		  <a href="#IntroductionAnchor" sectionName="Introduction" class="btn active">Introduction</a>
+		  <a href="#RevelationAnchor" sectionName="Revelation" class="btn">Revelation</a>
+		  <a href="#ChaptersAnchor" sectionName="Chapters" class="btn">Chapters</a>
+  		  <a href="#OpeningAnchor" sectionName="Opening" class="btn">Opening</a>
+		  <a href="#JesusAnchor" sectionName="Jesus" class="btn">Jesus</a>
+		  <a href="#ProphetsAnchor" sectionName="Prophets" class="btn">Prophets</a>
+		  <a href="#99NamesAnchor" sectionName="99Names" class="btn">99 Names of God</a>
 		</div>
 
 
@@ -390,6 +391,24 @@
 		}
 		setupNavBar();
 
+		function highlightNavBar(sectionName){
+			var btnContainer = document.getElementById("navbar");
+			var btns = btnContainer.getElementsByClassName("btn");
+			for(var i = 0; i<btns.length; i++){
+				//console.log('button href: ' + btns[i].getAttribute("sectionName") + ' section name: ' + sectionName);
+				if(btns[i].getAttribute("sectionName") == sectionName){
+					console.log('activating ' + btns[i].getAttribute("sectionName"));
+					btns[i].classList.remove("active");
+					btns[i].classList.add("active");
+					//btns[i].className.replace("active","");
+					//btns[i].className += " active";
+				}else{
+					console.log('clearing ' + btns[i].getAttribute("sectionName"));
+					btns[i].classList.remove("active");
+				}
+			}
+		}
+
 
 		var prophetDivList = [];
 		function setupProphetTable(){
@@ -506,14 +525,20 @@
 					console.log('names99 selected: ' + names99_string[this.index].Translation);
 					//searchTermArabic(names99_string[this.index].Arabic);
 
+					/* manual search:
 					arabicNameWithAL = names99_string[this.index].Arabic;
 					arabicNameWithoutAL = arabicNameWithAL.substring(2); //grab 2nd index until end of string
 					console.log('searching for: ' + arabicNameWithAL + ' and: ' + arabicNameWithoutAL);
 					ayaList1 = getAyaIndiciesArabic(arabicNameWithAL);
 					ayaList2 = getAyaIndiciesArabic(arabicNameWithoutAL);
 					ayaList = ayaList1.concat(ayaList2);
-					highlightAyas(ayaList);
+	
+					*/
 
+					//precached search, done using function: preSearch99();
+					ayaList = cache99_string[this.index].AyaList;
+
+					highlightAyas(ayaList);
 					clearActiveList();
 					for(var jj = 0; jj<ayaList.length; jj++){
 						addToActiveList(ayaList[jj]);
@@ -533,6 +558,33 @@
 			}
 		}
 		setupNamesTable();
+
+
+		function preSearch99(){
+			var cache99 = [];
+
+			for(var i = 0; i<names99_string.length; i++){
+			//for(var i = 0; i<10; i++){				
+				arabicNameWithAL = names99_string[i].Arabic;
+				arabicNameWithoutAL = arabicNameWithAL.substring(2); //grab 2nd index until end of string
+				ayaList1 = getAyaIndiciesArabic(arabicNameWithAL);
+				ayaList2 = getAyaIndiciesArabic(arabicNameWithoutAL);
+				ayaList = ayaList1.concat(ayaList2);
+
+				var entry = new Object();
+				entry.Number = i;
+				entry.Transliteration = names99_string[i].Transliteration;
+				entry.Arabic = names99_string[i].Arabic;
+				entry.Translation = names99_string[i].Translation;
+				entry.SearchTerm = names99_string[i].SearchTerm;
+				entry.AyaList = ayaList;
+
+				cache99[i] = entry;
+				console.log('term: ' + names99_string[i].Arabic + ' ' + ayaList);
+			}
+			var cache99_string = JSON.stringify(cache99);
+			console.log(cache99_string);
+		}
 
 
 		function setupArabicText(){
@@ -821,6 +873,7 @@
 
 		//get section positions:
 		sectionPositions = [];
+		sectionNames = [];
 		var startPos;
 		d3.selectAll('section').each(function(d,i) {
 		  var top = this.getBoundingClientRect().top;
@@ -829,6 +882,7 @@
 		    startPos = top;
 		  }
 		  sectionPositions.push(top - startPos);
+		  sectionNames.push(this.id);
 		  console.log('adding section: ' + top);
 		});
 
@@ -867,6 +921,10 @@
 			    currentIndex = sectionIndex;
 			    console.log('starting interval: ' + sectionIndex);
 			    //activateFunctions[sectionIndex]();
+
+			    //highlight correct nav bar item:
+			    highlightNavBar(sectionNames[currentIndex]);
+
 
 			    if(sectionIndex != 5 && sectionIndex != 6){
 				    activateFunctions[sectionIndex]();
@@ -928,6 +986,8 @@
 		document.body.style.backgroundColor = bg_color;
 
 		redraw();
+
+
 
 
 		var search_idx_list = [];
