@@ -27,6 +27,36 @@
 	top: 12%
 }
 
+.pagerButton{
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+}
+
+.pagerButton:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.pagerButton:active {
+    background-color: #aaa;
+    color: black;
+}
+
+.previous {
+    background-color: #f1f1f1;
+    color: black;
+}
+
+.next {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.round {
+    border-radius: 50%;
+}
+
 /* Create two equal columns that floats next to each other */
 .prophetColumn {
 	border-radius: 20px;

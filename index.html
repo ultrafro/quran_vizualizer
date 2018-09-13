@@ -49,6 +49,8 @@
     	<div class="column" style="position: fixed; top: 10%">
     		<div class="topnav" align="center" style="text-align: center;">
 				<input id="search_text_bar" type="text" size="45" placeholder="Search for a term in the English translation"> <button id="search_button" > Search! </button>
+				<div class="pagerButton previous round" onclick="previous()">&#8249;</div>
+				<div href="#" class="pagerButton previous round" onclick="next()">&#8250;</div>
 			</div>
 
 <!-- 
@@ -268,10 +270,10 @@
 	<script src = "setupVisualization.js"></script>
 	<script>
 		document.body.style.backgroundColor = bg_color;
-		setupUI();
-		fillActiveList();
-		setupActivateFunctions();
-		setupSectionPositions();
+		setupUI(); //first function in setupUI.js
+		fillActiveList(); //todo: describe activeList
+		setupActivateFunctions(); //defined in sectionFunctions.js
+		setupSectionPositions(); //defined in sectionFunctions.js9
 		setupSectionScroll();
 		setupVisualization();
 	</script>

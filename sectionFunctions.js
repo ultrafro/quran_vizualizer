@@ -157,7 +157,7 @@ function surah(){
 	}
 }
 
-
+//todo: handle case where term ends with a period.
 function jesus(){
 	console.log('calling jesus');
 

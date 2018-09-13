@@ -30,6 +30,9 @@ var resizeId;
 //list of ayas which are highlihgted during search
 var search_idx_list = [];
 
+//item which is selected when clicked. used for paging mostly
+var selected_idx_list = [];
+
 
 //some settings:
 padding_x = 10;

@@ -138,7 +138,10 @@ function handleMouseDown(d,i){
         });
 		//this.setAttributeNS(null,'fill',select_color);
 	}
-	highlighted_list.push(id_num);		
+	highlighted_list.push(id_num);	
+
+	selected_list=[];
+	selected_list.push(id_num);	
 
 	document.getElementById('permanentbox').classList.remove("permanentBoxClassInvisible");
 	document.getElementById('permanentbox').classList.add("permanentBoxClassVisible");

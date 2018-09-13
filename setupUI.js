@@ -39,6 +39,80 @@ function setupSearchBar(){
 	});
 }
 
+
+//handle the next and previous buttons for cycling through highlighted ayas 
+// or all ayas if nothign is highlighted
+function next(){
+
+	var currentActive = -1;
+	if(selected_idx_list.length > 0){
+		var selected = selected_idx_list[0];
+		if(activeList[selected]){
+			currentActive = selected;
+		}else{
+			console.log('warning: somehow an item was clicked thats not on the active list');
+		}
+	}else{
+		var firstActive = 0;
+		for(var i = 0; i<activeList.length; i++){
+			if(activeList[i] && !firstActive){
+				firstActive = 1;
+				currentActive = i;
+			}
+		}
+	}
+
+	//find the next legal thing
+	var nextActive = currentActive;
+	var found = 0;
+	for(var i = 0; i<activeList.length; i++){
+		if(activeList[i] && (i>currentActive) && !found){
+			found = 1;
+			nextActive = i;
+		}
+	}
+
+	//click next active:
+	box_list[nextActive].click();
+}
+
+
+
+function previous(){
+	var currentActive = -1;
+	if(selected_list.length > 0){
+		var selected = selected_idx_list[0];
+		if(activeList[selected]){
+			currentActive = selected;
+		}else{
+			console.log('warning: somehow an item was clicked thats not on the active list');
+		}
+	}else{
+		var firstActive = 0;
+		for(var i = 0; i<activeList.length; i++){
+			if(activeList[i] && !firstActive){
+				firstActive = 1;
+				currentActive = i;
+			}
+		}
+	}
+
+	//find the previous legal thing
+	var previousActive = currentActive;
+	var found = 0;
+	for(var i = activeList.length-1; i>=0; i--){
+		if(activeList[i] && (i<currentActive) && !found){
+			found = 1;
+			previousActive = i;
+		}
+	}
+
+	//click next active:
+	box_list[previousActive].click();
+}
+
+
+
 function handleXOut(){
 	if(document.getElementById('permanentbox').classList.contains("permanentBoxClassVisible")){
 		document.getElementById('permanentbox').classList.remove("permanentBoxClassVisible");
