@@ -244,11 +244,12 @@ function setupProphetTable(){
 			console.log('prophet selected: ' + prophet_json_string[this.index].TranslationName);
 			searchTerm(prophet_json_string[this.index].TranslationName);
 			//todo: get index and remove/add to active list.
-
+			//clearActiveList();
 			for(var jj = 0; jj<prophetDivList.length; jj++){
 				prophetDivList[jj].classList.remove('prophetSelected');
 			}
 			this.classList.add('prophetSelected');
+			//addToActiveList();
         });
 
 		rowDiv.appendChild(newColDiv);
