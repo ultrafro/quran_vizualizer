@@ -5,13 +5,13 @@ function addToActiveList(index){
 }
 
 function clearActiveList(){
-	for(var i = 0; i<quran_json_string.length; i++){
+	for(var i = 0; i<6235; i++){
 		activeList[i] = 0;
 	}			
 }
 
 function fillActiveList(){
-	for(var i = 0; i<quran_json_string.length; i++){
+	for(var i = 0; i<6235; i++){
 		activeList[i] = 1;
 	}				
 }
@@ -66,7 +66,7 @@ function shuffleArray(array) {
 function search(){
 	term = document.getElementById("search_text_bar").value;
 	console.log('searching for: ' + term.toUpperCase());
-
+	clearActiveList();
 	//clear previous search index list:
 	for(i = 0; i<search_idx_list.length; i++){
 		box_list[search_idx_list[i]].attr('fill',base_color);
@@ -76,6 +76,7 @@ function search(){
 	for(i = 0; i<6235; i++){
 		if(quran_json_string[i].english.toUpperCase().includes(term.toUpperCase())){
 			search_idx_list.push(i);
+			addToActiveList(i);
 			box_list[i].attr('fill',highlight_color);
 		}
 	}
@@ -84,7 +85,7 @@ function search(){
 
 function searchTerm(term){
 	console.log('searching for: ' + term.toUpperCase());
-
+	clearActiveList();
 	//clear previous search index list:
 	for(i = 0; i<search_idx_list.length; i++){
 		box_list[search_idx_list[i]].attr('fill',base_color);
@@ -94,6 +95,7 @@ function searchTerm(term){
 	for(i = 0; i<6235; i++){
 		if(quran_json_string[i].english.toUpperCase().includes(term.toUpperCase())){
 			search_idx_list.push(i);
+			addToActiveList(i);
 			box_list[i].attr('fill',highlight_color);
 		}
 	}
@@ -103,6 +105,7 @@ function highlightAyas(ayaList){
 
 	//console.log('highlighting ayas: ' + ayaList);
 	//console.log('current search idx list: ' + search_idx_list);
+	clearActiveList();
 
 	//clear previous search index list:
 	for(i = 0; i<search_idx_list.length; i++){
@@ -112,6 +115,7 @@ function highlightAyas(ayaList){
 	
 	for(i = 0; i<ayaList.length; i++){
 		search_idx_list.push(ayaList[i]);
+		addToActiveList(ayaList[i]);
 		box_list[ayaList[i]].attr('fill',highlight_color);
 	}	
 }

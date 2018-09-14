@@ -53,6 +53,7 @@ function next(){
 			console.log('warning: somehow an item was clicked thats not on the active list');
 		}
 	}else{
+		console.log('couldnt find a selected one, so placing on the first');
 		var firstActive = 0;
 		for(var i = 0; i<activeList.length; i++){
 			if(activeList[i] && !firstActive){
@@ -62,25 +63,44 @@ function next(){
 		}
 	}
 
+	//console.log("currentActive: " + i);
+
 	//find the next legal thing
 	var nextActive = currentActive;
 	var found = 0;
+	var firstFound = 0;
+	var firstActive = -5;
 	for(var i = 0; i<activeList.length; i++){
-		if(activeList[i] && (i>currentActive) && !found){
-			found = 1;
-			nextActive = i;
+		if(activeList[i] && !found){
+
+			if(!firstFound){
+				firstFound = 1;
+				firstActive = i;
+			}
+
+			if(i>currentActive){
+				found = 1;
+				nextActive = i;				
+			}
+
 		}
+	}
+	if(!found){
+		nextActive = firstActive;
 	}
 
 	//click next active:
-	box_list[nextActive].click();
+	console.log('clicking on next Active: ' + nextActive);
+	var e = document.createEvent('UIEvents');
+	e.initUIEvent('click', true, true, /* ... */);
+	box_list[nextActive].node().dispatchEvent(e);
 }
 
 
 
 function previous(){
 	var currentActive = -1;
-	if(selected_list.length > 0){
+	if(selected_idx_list.length > 0){
 		var selected = selected_idx_list[0];
 		if(activeList[selected]){
 			currentActive = selected;
@@ -98,17 +118,35 @@ function previous(){
 	}
 
 	//find the previous legal thing
+	var firstFound = 0;
+	var firstActive = -5;
 	var previousActive = currentActive;
 	var found = 0;
 	for(var i = activeList.length-1; i>=0; i--){
-		if(activeList[i] && (i<currentActive) && !found){
-			found = 1;
-			previousActive = i;
+		if(activeList[i] && !found){
+
+
+			if(!firstFound){
+				firstFound = 1;
+				firstActive = i;
+			}
+
+			if(i<currentActive){
+				found = 1;
+				previousActive = i;				
+			}
 		}
 	}
 
-	//click next active:
-	box_list[previousActive].click();
+	if(!found){
+		previousActive = firstActive;
+	}
+
+	//click previous active:
+	console.log('clicking on previous Active: ' + previousActive);
+	var e = document.createEvent('UIEvents');
+	e.initUIEvent('click', true, true, /* ... */);
+	box_list[previousActive].node().dispatchEvent(e);
 }
 
 

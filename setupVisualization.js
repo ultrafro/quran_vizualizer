@@ -130,7 +130,15 @@ function handleMouseDown(d,i){
 	if(search_idx_list.includes(id_num)){
 		d3.select(this).attr({
           fill: "orange"
-        });			
+        });
+        //color other search_idx_list elements the select_color:
+        for(var i = 0; i<selected_idx_list.length; i++){
+        	box_list[selected_idx_list[i]].attr({
+        		fill: select_color
+        	});
+        }
+
+
 		//this.setAttributeNS(null,'fill','purple');
 	}else{
 		d3.select(this).attr({
@@ -140,8 +148,9 @@ function handleMouseDown(d,i){
 	}
 	highlighted_list.push(id_num);	
 
-	selected_list=[];
-	selected_list.push(id_num);	
+	//selected_list=[];
+	selected_idx_list=[];
+	selected_idx_list.push(id_num);	
 
 	document.getElementById('permanentbox').classList.remove("permanentBoxClassInvisible");
 	document.getElementById('permanentbox').classList.add("permanentBoxClassVisible");
@@ -206,7 +215,9 @@ function handleMouseOut(d,i){
 	id_num = this.id.substring(3,this.id.length);
 	id_num = parseInt(id_num);
 
+	//console.log('handling mouseout for: ' + id_num);
 	if(!activeList[id_num]){
+		//console.log('element: ' + id_num + ' is not active during mouseout');
 		return;
 	}
 
@@ -229,14 +240,19 @@ function handleMouseOut(d,i){
 	    }
 	}
 
+	document.getElementById('infobox').classList.add("infoBoxClassInvisible");
+	document.getElementById('infobox').classList.remove("infoBoxClassVisible");
+
+
 	//highlighted_list.remove(id_num);
+	//console.log('highlihgt list length after removal: ' + highlighted_list.length);
 	if(highlighted_list.length == 0){
 		//console.log(highlighted_list);
 		//console.log('displaying none');	
 		//document.getElementById('infobox').display = "none";	
 
-		document.getElementById('infobox').classList.add("infoBoxClassInvisible");
-		document.getElementById('infobox').classList.remove("infoBoxClassVisible");		
+		//document.getElementById('infobox').classList.add("infoBoxClassInvisible");
+		//document.getElementById('infobox').classList.remove("infoBoxClassVisible");		
 	}
 
 	
