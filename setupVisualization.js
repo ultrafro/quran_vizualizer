@@ -18,12 +18,37 @@ function addBox(text, width, start_x, start_y, id_num){
 			                            .attr("height", factor*text.length)
 			                            .attr("id", "id_" + id_num)
 			                            .attr("fill",base_color)
+			                            .attr("visibility","hidden")
 			                            .on("mouseover", handleMouseOver)
   										.on("mouseout", handleMouseOut)
   										.on("click",handleMouseDown);
+
+
+	// var box = svgContainer.append("rect")
+	// 		                            .attr("x", start_x)
+	// 		                            .attr("y", start_y)
+	// 		                            .attr("width", width)
+	// 		                            .attr("height", factor*text.length)										
 	box.id = "id_" + id_num;
 	box_list.push(box);
+
 	return factor* text.length;
+}
+
+function revealBox(id_num){
+	//console.log('revealing box: '  + id_num);
+	box_list[id_num].transition()
+					.attr("visibility","visible");
+}
+
+function revealBoxSection(sectionNumber, numSections){
+	//console.log('revealing box: '  + id_num);
+	var N = Math.ceil(box_list.length / numSections);
+	var start = (sectionNumber*N);
+	for(var i = 0; i<N; i++){
+		box_list[start + i].transition()
+							.attr("visibility","visible");
+	}
 }
 
 
@@ -82,28 +107,33 @@ function redraw()
 	for(i = 0; i<6235; i++)
 	//for(i = 0; i<1000; i++)
 	{
-		delay = delay;//+ .0001;
+		thisDelay = i*delay;//+ .0001;
 		aya = quran_json_string[i];
 		juz = aya.juz_number-1;
 		arabic = aya.arabic;
 
-		super_offset = (svgContainer[0][0].clientWidth - (box_width+padding_x)*30)/2;
-		//console.log('super offset: ' + super_offset);
+		clientWidth = svgContainer.attr("width");
+		clientHeight = svgContainer.attr("height");
+		//clientWidth = svgContainer[0][0].clientWidth;
+		//clientHeight = svgContainer[0][0].clientHeight;
 
-		c_start_x = svgContainer[0][0].clientWidth - super_offset -  (juz*(box_width+padding_x));
-
-		c_start_x = svgContainer[0][0].clientWidth -  ((juz+1)*(box_width+padding_x));
+		super_offset = (clientWidth - (box_width + padding_x)*30)/2;
+		c_start_x = clientWidth - super_offset - (juz*(box_width+padding_x));
+		c_start_x = clientWidth - ((juz+1)*(box_width+padding_x));
 		c_start_y = juz_height[juz];
+
 
 		//for debugging purposes:
 		//console.log("number: " + i + " chapter: " + aya.chapter + " verse: " + aya.verse + " juz: " + juz + " " + box_width + " " + c_start_x + " " + c_start_y);
 
 
-		//additional_height = setTimeout(addBox(arabic, box_width, c_start_x, c_start_y, i),delay);
-		//addBox(arabic,box_width,c_start_x,c_start_y,i);
-		
-		//addBox(delay, arabic, box_width, c_start_x, c_start_y, i);
-		setTimeout(addBox,delay,arabic,box_width,c_start_x,c_start_y,i);
+
+		addBox(arabic,box_width,c_start_x,c_start_y,i);
+		//console.log('thisDela: ' + thisDelay);
+		//setTimeout(addBox,thisDelay,arabic,box_width,c_start_x,c_start_y,i);
+		//setTimeout(revealBox,thisDelay,i);
+
+
 		
 		//juz_height[juz] = juz_height[juz]+additional_height;
 		juz_height[juz] = juz_height[juz]+arabic.length*factor+padding_y;
@@ -113,6 +143,13 @@ function redraw()
 			debug_l_arabic_count = debug_l_arabic_count + arabic.length;
 		}
 	}
+
+	var numSections = 90;
+	for(var i = 0; i<numSections; i++){
+		var thisDelay = delay*i;
+		setTimeout(revealBoxSection, thisDelay, i, numSections);
+	}
+
 	console.log('number of ayas in 30th juz: ' + debug_n_aya_count);
 	console.log('length of arabic in 30th juz: ' + debug_l_arabic_count);
 }

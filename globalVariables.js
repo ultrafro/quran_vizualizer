@@ -44,7 +44,7 @@ box_width = container_width*(window.innerWidth/30 - padding_x);
 
 
 factor = 0.01;
-delay = 0;
+delay = 30;
 console.log('factor: ' + factor);
 
 base_color = 'rgb(255,0,0)'

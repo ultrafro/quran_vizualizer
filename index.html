@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>Quran?</title>
-        <script src="https://d3js.org/d3.v3.min.js"></script>
+        <script src="https://d3js.org/d3.v5.min.js"></script>
 <!--         <script src="https://cdn.rawgit.com/anvaka/panzoom/v4.4.0/dist/panzoom.min.js"></script> -->
         <link rel="stylesheet" type="text/css" href="style.css">
 
@@ -270,12 +270,19 @@
 	<script src = "setupVisualization.js"></script>
 	<script>
 		document.body.style.backgroundColor = bg_color;
-		setupUI(); //first function in setupUI.js
-		fillActiveList(); //todo: describe activeList
-		setupActivateFunctions(); //defined in sectionFunctions.js
-		setupSectionPositions(); //defined in sectionFunctions.js9
-		setupSectionScroll();
-		setupVisualization();
+
+		window.onload = init;
+
+
+		function init(){
+			setupUI(); //first function in setupUI.js
+			fillActiveList(); //todo: describe activeList
+			setupActivateFunctions(); //defined in sectionFunctions.js
+			setupSectionPositions(); //defined in sectionFunctions.js9
+			setupSectionScroll();
+			setupVisualization();
+		}
+
 
 		//preSearch99wikipedia();
 	</script>
