@@ -195,3 +195,67 @@ function preSearch99(){
 	var cache99_string = JSON.stringify(cache99);
 	console.log(cache99_string);
 }
+
+
+//todo: document this function
+function preSearch99wikipedia(){
+	var cache99 = [];
+
+	for(var i = 0; i<names99_string.length; i++){
+	//for(var i = 0; i<10; i++){
+
+
+		wikiReferenceString = names99_string[i].WikipediaMentionsClean;
+		//parse this string.
+
+		ayaList = [];
+
+
+
+		parts = wikiReferenceString.split(',');
+
+		for(var jj = 0; jj<parts.length; jj++){
+			part = parts[jj];
+
+			if(part == "first"){
+				for(var kk = 0; kk<quran_json_string.length; kk++){
+					if((quran_json_string[kk].verse == 1)){
+						//console.log('pushing!');
+						ayaList.push(kk);
+					}
+				}
+			}else{
+				reference = part.split(':');
+				if(reference.length == 2){
+					surah = parseInt(reference[0]);
+					aya = parseInt(reference[1]);
+					//console.log('looking for: ' + surah + ' ' + aya);
+
+					//search to find aya index:
+					for(var kk = 0; kk<quran_json_string.length; kk++){
+						if((quran_json_string[kk].chapter == surah) && (quran_json_string[kk].verse == aya)){
+							//console.log('pushing!');
+							ayaList.push(kk);
+						}
+					}
+				}
+				else{
+					console.log('Warning! unable to parse 99 names reference string: ' + wikiReferenceString);
+				}
+			}
+		}
+
+		var entry = new Object();
+		entry.Number = i;
+		entry.Transliteration = names99_string[i].Transliteration;
+		entry.Arabic = names99_string[i].Arabic;
+		entry.Translation = names99_string[i].Translation;
+		entry.SearchTerm = names99_string[i].SearchTerm;
+		entry.AyaList = ayaList;
+
+		cache99[i] = entry;
+		//console.log('term: ' + names99_string[i].Arabic + ' ' + ayaList);
+	}
+	var cache99_string = JSON.stringify(cache99);
+	console.log(cache99_string);
+}
