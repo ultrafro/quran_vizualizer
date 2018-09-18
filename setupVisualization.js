@@ -163,39 +163,53 @@ function handleMouseDown(d,i){
 		return;
 	}
 
-
-	if(search_idx_list.includes(id_num)){
-		d3.select(this).attr({
-          fill: "orange"
-        });
-        //color other search_idx_list elements the select_color:
-        for(var i = 0; i<selected_idx_list.length; i++){
-        	box_list[selected_idx_list[i]].attr({
-        		fill: select_color
-        	});
-        }
-
-
-		//this.setAttributeNS(null,'fill','purple');
-	}else{
-		d3.select(this).attr({
-          fill: select_color
-        });
-		//this.setAttributeNS(null,'fill',select_color);
+	var alreadyClicked = 0;
+	for(var ss = 0; ss<selected_idx_list.length; ss++){
+		//console.log('searching selected for: ' + id_num);
+		if(id_num == selected_idx_list[ss]){
+			selected_idx_list = [];
+			//console.log('found and reclosing');
+			alreadyClicked = 1;
+			handleXOut();
+		}
 	}
-	highlighted_list.push(id_num);	
+	if(!alreadyClicked){
 
-	//selected_list=[];
-	selected_idx_list=[];
-	selected_idx_list.push(id_num);	
+		if(search_idx_list.includes(id_num)){
+			d3.select(this).attr({
+	          fill: "orange"
+	        });
+	        //color other search_idx_list elements the select_color:
+	        for(var i = 0; i<selected_idx_list.length; i++){
+	        	box_list[selected_idx_list[i]].attr({
+	        		fill: select_color
+	        	});
+	        }
 
-	document.getElementById('permanentbox').classList.remove("permanentBoxClassInvisible");
-	document.getElementById('permanentbox').classList.add("permanentBoxClassVisible");
-	document.getElementById('permanent_arabic_text_p').innerHTML= quran_json_string[id_num].arabic;
-	document.getElementById('permanent_english_text_p').innerHTML = quran_json_string[id_num].english;
-	document.getElementById('permanent_juz_text_p').innerHTML ="juz: " + quran_json_string[id_num].juz_number;
-	document.getElementById('permanent_sura_text_p').innerHTML ="surah: " + quran_json_string[id_num].chapter;
-	document.getElementById('permanent_aya_text_p').innerHTML ="aya: " + quran_json_string[id_num].verse;				
+
+			//this.setAttributeNS(null,'fill','purple');
+		}else{
+			d3.select(this).attr({
+	          fill: select_color
+	        });
+			//this.setAttributeNS(null,'fill',select_color);
+		}
+		highlighted_list.push(id_num);	
+
+		//selected_list=[];
+		selected_idx_list=[];
+		selected_idx_list.push(id_num);	
+
+
+		document.getElementById('permanentbox').classList.remove("permanentBoxClassInvisible");
+		document.getElementById('permanentbox').classList.add("permanentBoxClassVisible");
+		document.getElementById('permanent_arabic_text_p').innerHTML= quran_json_string[id_num].arabic;
+		document.getElementById('permanent_english_text_p').innerHTML = quran_json_string[id_num].english;
+		document.getElementById('permanent_juz_text_p').innerHTML ="juz: " + quran_json_string[id_num].juz_number;
+		document.getElementById('permanent_sura_text_p').innerHTML ="surah: " + quran_json_string[id_num].chapter;
+		document.getElementById('permanent_aya_text_p').innerHTML ="aya: " + quran_json_string[id_num].verse;						
+	}
+
 }
 
 

@@ -153,6 +153,7 @@ function previous(){
 
 function handleXOut(){
 	if(document.getElementById('permanentbox').classList.contains("permanentBoxClassVisible")){
+		//console.log('eliminating');
 		document.getElementById('permanentbox').classList.remove("permanentBoxClassVisible");
 		document.getElementById('permanentbox').classList.add("permanentBoxClassInvisible");
 	}
