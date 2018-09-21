@@ -42,15 +42,17 @@
 		</div>
 
 		<div id="logo" class="logoClass">
-			<img src="logo.png" height="10%">
+			<a href="#IntroductionAnchor">
+				<img src="logo.png" height="10%">
+			</a>
 		</div>
 
 <!--     <div class="row"> -->
     	<div class="column" style="position: fixed; top: 10%">
-    		<div class="topnav" align="center" style="text-align: center;">
+    		<div class="topnav" align="center" style="position: relative; left: 20%">
 				<input id="search_text_bar" type="text" size="45" placeholder="Search for a term in the English translation"> <button id="search_button" > Search! </button>
-				<div class="pagerButton previous round" onclick="previous()">&#8249;</div>
-				<div href="#" class="pagerButton previous round" onclick="next()">&#8250;</div>
+				<div class="pagerButton previous round textUnselectable" onclick="previous()">&#8249;</div>
+				<div href="#" class="pagerButton previous round textUnselectable" onclick="next()">&#8250;</div>
 			</div>
 
 <!-- 

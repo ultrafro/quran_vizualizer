@@ -219,6 +219,7 @@ function setupProphetTable(){
 		//add new column element
 		var newColDiv = document.createElement("div");
 		newColDiv.classList.add("prophetColumn");
+		newColDiv.classList.add("textUnselectable");
 		newColDiv.index = i;
 		prophetDivList.push(newColDiv);
 
@@ -283,6 +284,7 @@ function setupNamesTable(){
 		//add new column element
 		var newColDiv = document.createElement("div");
 		newColDiv.classList.add("names99Column");
+		newColDiv.classList.add("textUnselectable");
 		newColDiv.index = i;
 		prophetDivList.push(newColDiv);
 

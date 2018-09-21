@@ -21,6 +21,10 @@
 	text-align:center;
 }
 
+a[href], input[type='submit'], input[type='image'], label[for], select, button, .pointer, .textUnselectable {
+       cursor: pointer;
+}
+
 .navbarClass{
 	position: fixed; 
 	width: 10%; 
@@ -32,16 +36,26 @@
     text-decoration: none;
     display: inline-block;
     padding: 8px 16px;
+    cursor: pointer;
 }
 
 .pagerButton:hover {
     background-color: #ddd;
     color: black;
+    cursor: pointer;
 }
 
 .pagerButton:active {
     background-color: #aaa;
     color: black;
+    cursor: pointer;
+}
+
+.textUnselectable{
+	-webkit-user-select: none; /* Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
 }
 
 .previous {
