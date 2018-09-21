@@ -30,6 +30,7 @@ function addBox(text, width, start_x, start_y, id_num){
 	// 		                            .attr("width", width)
 	// 		                            .attr("height", factor*text.length)										
 	box.id = "id_" + id_num;
+	box.node().classList.add("pointable");
 	box_list.push(box);
 
 	return factor* text.length;

@@ -78,6 +78,8 @@ function search(){
 			search_idx_list.push(i);
 			addToActiveList(i);
 			box_list[i].attr('fill',highlight_color);
+		}else{
+			//box_list[i].attr('fill',disabled_color);
 		}
 	}
 }
@@ -97,6 +99,8 @@ function searchTerm(term){
 			search_idx_list.push(i);
 			addToActiveList(i);
 			box_list[i].attr('fill',highlight_color);
+		}else{
+			//box_list[i].attr('fill',disabled_color);
 		}
 	}
 }
@@ -109,7 +113,7 @@ function highlightAyas(ayaList){
 
 	//clear previous search index list:
 	for(i = 0; i<search_idx_list.length; i++){
-		box_list[search_idx_list[i]].attr('fill',base_color);
+		//box_list[search_idx_list[i]].attr('fill',disabled_color);
 	}
 	search_idx_list=[];
 	

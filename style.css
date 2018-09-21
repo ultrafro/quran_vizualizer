@@ -21,6 +21,10 @@
 	text-align:center;
 }
 
+.pointable{
+	cursor: pointer;
+}
+
 a[href], input[type='submit'], input[type='image'], label[for], select, button, .pointer, .textUnselectable {
        cursor: pointer;
 }

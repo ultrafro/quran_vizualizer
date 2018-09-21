@@ -53,6 +53,7 @@ highlight_color = 'rgb(0,100,0)'
 highlight_color = '#FCF0D2'
 select_color = 'rgb(0,0,100)'
 select_color = '#A9A79B'
+disabled_color = '#F2EFC7';
 
 bg_color = '#92794D'
 bg_color = '#DDBF8B'
