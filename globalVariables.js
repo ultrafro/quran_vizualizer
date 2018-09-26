@@ -49,12 +49,15 @@ console.log('factor: ' + factor);
 
 base_color = 'rgb(255,0,0)'
 base_color = '#112E44'
+base_color = '#43524D'
 highlight_color = 'rgb(0,100,0)'
 highlight_color = '#FCF0D2'
 select_color = 'rgb(0,0,100)'
 select_color = '#A9A79B'
-disabled_color = '#F2EFC7';
+disabled_color = '#639EA8';
+disabled_color = '#63A881'
 
 bg_color = '#92794D'
 bg_color = '#DDBF8B'
+bg_color = '#FAEDDD' //light beige?
 

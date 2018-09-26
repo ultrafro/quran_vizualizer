@@ -177,15 +177,19 @@ function handleMouseDown(d,i){
 	if(!alreadyClicked){
 
 		if(search_idx_list.includes(id_num)){
+			console.log('orange!: ' + d3.select(this));
+			console.dir('orange!: ' + d3.select(this));
 			d3.select(this).attr({
 	          fill: "orange"
 	        });
+	        /*
 	        //color other search_idx_list elements the select_color:
 	        for(var i = 0; i<selected_idx_list.length; i++){
 	        	box_list[selected_idx_list[i]].attr({
 	        		fill: select_color
 	        	});
 	        }
+	        */
 
 
 			//this.setAttributeNS(null,'fill','purple');

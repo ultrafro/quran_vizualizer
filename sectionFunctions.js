@@ -116,7 +116,7 @@ function alaq(){
 			
 			box_list[i].transition()
 					.duration(800)
-					.attr('fill', 'rgba(255,255,255,.5)')
+					.attr('fill', disabled_color)
 			
 
 			/*
@@ -234,7 +234,7 @@ function fatiha(){
 			
 			box_list[i].transition()
 					.duration(800)
-					.attr('fill', 'rgba(255,255,255,.5)')
+					.attr('fill', disabled_color)
 			
 		}
 	}
