@@ -237,7 +237,6 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 
 .aya{
 	text-align:center;
-	border:1px solid green
 }
 
 .aya{
@@ -265,7 +264,6 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 
 .ayaEnglish{
 	text-align:center;
-	border:1px solid green;
 	color: #7c795d; 
 	font-family: 'Trocchi', serif; 
 	font-size: 18px; 
@@ -276,6 +274,10 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 
 .ayaEnglish{
 	color: #333399;
+}
+
+.box{
+	border:1px solid green;
 }
 
 .step {
