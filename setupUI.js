@@ -200,7 +200,7 @@ function setupProphetTable(){
 	var table = document.getElementById('prophetTable');
 
 	var numRows = 5;
-	var numCols = 4;
+	var numCols = 5;
 
 	var rowDiv = null;
 	for(var i = 0; i<prophet_json_string.length; i++){
@@ -227,20 +227,23 @@ function setupProphetTable(){
 			newColDiv.classList.add("prophetOffColor");
 		}
 
-		var englishDiv = document.createElement("div");
-		englishDiv.classList.add("prophetEnglish");
-		englishDiv.innerHTML = prophet_json_string[i].EnglishName;
-		newColDiv.appendChild(englishDiv);
+		//shape inspired by: https://www.istockphoto.com/vector/set-of-monochrome-icons-with-99-names-of-god-in-islam-gm672015226-123155375
+		var arabicDiv = document.createElement("div");
+		arabicDiv.classList.add("prophetArabic");
+		arabicDiv.innerHTML = prophet_json_string[i].ArabicName;
+		newColDiv.appendChild(arabicDiv);
 
 		var transliteratedDiv = document.createElement("div");
 		transliteratedDiv.classList.add("prophetTransliterated");
 		transliteratedDiv.innerHTML = prophet_json_string[i].TransliteratedName;
 		newColDiv.appendChild(transliteratedDiv);
 
-		var arabicDiv = document.createElement("div");
-		arabicDiv.classList.add("prophetArabic");
-		arabicDiv.innerHTML = prophet_json_string[i].ArabicName;
-		newColDiv.appendChild(arabicDiv);
+		var englishDiv = document.createElement("div");
+		englishDiv.classList.add("prophetEnglish");
+		englishDiv.innerHTML = prophet_json_string[i].EnglishName;
+		newColDiv.appendChild(englishDiv);
+
+
 
 		newColDiv.addEventListener('click', function (event) {
 			console.log('prophet selected: ' + prophet_json_string[this.index].TranslationName);

@@ -83,16 +83,25 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 }
 
 /* Create two equal columns that floats next to each other */
+
+.prophetTableClass{
+	width: 90%; /*this will center it isA*/
+  	margin: 0 auto;
+
+}
+
 .prophetColumn {
-	border-radius: 20px;
+	border-radius: 5px;
     float: left;
-    width: 18%;
-    min-height: 16vh;
+    width: 15%;
+    min-height: 13vh;
     padding: 10px 10px;
     color: #7c795d;
-    background-color:#4CAF50; 
+    background-color:#4CAF50;
+    margin-right: 10px;
+    margin-bottom: 10px; 
     /*border: 1px solid #999999;*/
-    border: 1px;
+    border: 10px;
 }
 
 
@@ -119,10 +128,12 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
     clear: both;
 }
 
-.prophetEnglish{
-	 color: #111; 
+.prophetArabic{
+	 position: relative;
+	 top: 0vh;
+	 color: #313; 
 	 font-family: 'Helvetica Neue', sans-serif; 
-	 font-size: 15px; 
+	 font-size: 20px; 
 	 font-weight: bold; 
 	 letter-spacing: -1px; 
 	 line-height: 1; 
@@ -141,17 +152,21 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	 text-align: center;
 }
 
-.prophetArabic{
+.prophetEnglish{
 	 position: relative;
-	 top: 5vh;
-	 color: #313; 
+	 color: #111; 
 	 font-family: 'Helvetica Neue', sans-serif; 
 	 font-size: 15px; 
+	 top: 5vh;
 	 font-weight: bold; 
 	 letter-spacing: -1px; 
 	 line-height: 1; 
 	 text-align: center;
 }
+
+
+
+
 
 
 /* Create two equal columns that floats next to each other */
