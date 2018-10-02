@@ -268,7 +268,7 @@ function setupNamesTable(){
 	var table = document.getElementById('names99Table');
 
 	var numRows = 10;
-	var numCols = 4;
+	var numCols = 10;
 
 	var rowDiv = null;
 	for(var i = 0; i<names99_string.length; i++){

@@ -172,12 +172,14 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 /* Create two equal columns that floats next to each other */
 .names99Column {
     float: left;
-    border-radius: 25px;
-    width: 19%;
-    min-height: 20vh;
+    border-radius: 5px;
+    width: 6%;
+    min-height: 6vh;
     padding: 10px 10px;
     color: #7c795d;
     background-color:#4CAF50; 
+    margin-right: 10px;
+    margin-bottom: 10px; 
     /*border: 1px solid #999999;*/
     border: 1px;
 }
@@ -212,7 +214,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	 top: 0vh;
 	 color: #313; 
 	 font-family: 'Helvetica Neue', sans-serif; 
-	 font-size: 25px; 
+	 font-size: 15px; 
 	 font-weight: bold; 
 	 letter-spacing: -1px; 
 	 line-height: 1; 
@@ -221,10 +223,10 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 
 .names99Transliterated{
 	 position: relative;
-	 top: 4vh;
+	 top: 1vh;
 	 color: #221; 
 	 font-family: 'Helvetica Neue', sans-serif; 
-	 font-size: 15px; 
+	 font-size: 6px; 
 	 font-weight: bold; 
 	 letter-spacing: -1px; 
 	 line-height: 1; 
@@ -234,9 +236,9 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 .names99English{
 	position: relative;
 	 color: #111;
-	 top: 7vh; 
+	 top: 2vh; 
 	 font-family: 'Helvetica Neue', sans-serif; 
-	 font-size: 12px; 
+	 font-size: 5px; 
 	 font-weight: bold; 
 	 letter-spacing: -1px; 
 	 line-height: 1; 
