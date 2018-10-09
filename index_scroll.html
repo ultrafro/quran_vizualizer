@@ -913,10 +913,14 @@
 			}
 			search_idx_list=[];
 			
-			for(i = 0; i<ayaList.length; i++){
-				search_idx_list.push(ayaList[i]);
-				box_list[ayaList[i]].attr('fill',highlight_color);
-			}	
+			if(ayaList != null){
+				for(i = 0; i<ayaList.length; i++){
+					search_idx_list.push(ayaList[i]);
+					box_list[ayaList[i]].attr('fill',highlight_color);
+				}				
+			}
+
+	
 		}
 
 		function getAyaIndiciesArabic(term){

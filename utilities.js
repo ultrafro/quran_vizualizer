@@ -113,15 +113,18 @@ function highlightAyas(ayaList){
 
 	//clear previous search index list:
 	for(i = 0; i<search_idx_list.length; i++){
-		//box_list[search_idx_list[i]].attr('fill',disabled_color);
+		box_list[search_idx_list[i]].attr('fill',base_color);
 	}
 	search_idx_list=[];
 	
-	for(i = 0; i<ayaList.length; i++){
-		search_idx_list.push(ayaList[i]);
-		addToActiveList(ayaList[i]);
-		box_list[ayaList[i]].attr('fill',highlight_color);
-	}	
+	if(ayaList != null){
+		for(i = 0; i<ayaList.length; i++){
+			search_idx_list.push(ayaList[i]);
+			addToActiveList(ayaList[i]);
+			box_list[ayaList[i]].attr('fill',highlight_color);
+		}			
+	}
+
 }
 
 

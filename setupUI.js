@@ -223,7 +223,7 @@ function setupProphetTable(){
 		newColDiv.index = i;
 		prophetDivList.push(newColDiv);
 
-		if((i+row)%2==0){
+		if((i)%2==0){
 			newColDiv.classList.add("prophetOffColor");
 		}
 
@@ -328,6 +328,7 @@ function setupNamesTable(){
 			//precached search, done using function: preSearch99();
 			ayaList = cache99_string[this.index].AyaList;
 
+			highlightAyas(); //clear board?
 			highlightAyas(ayaList);
 			clearActiveList();
 			for(var jj = 0; jj<ayaList.length; jj++){
@@ -341,6 +342,29 @@ function setupNamesTable(){
 			}
 			this.classList.add('names99Selected');
         });
+
+        newColDiv.addEventListener('mouseover', function(event){
+        	document.getElementById('highlightNamesBox').classList.remove("highlightNamesBoxClassInvisible");
+			document.getElementById('highlightNamesBox').classList.add("highlightNamesBoxClassVisible");
+
+			document.getElementById('highlightNamesBoxArabic').innerHTML = names99_string[this.index].Arabic;
+			document.getElementById('highlightNamesBoxTransliterated').innerHTML = names99_string[this.index].Transliteration;
+			document.getElementById('highlightNamesBoxEnglish').innerHTML = names99_string[this.index].Translation;
+
+			document.getElementById('highlightNamesBox').style.left = this.getBoundingClientRect().right + 20;
+			document.getElementById('highlightNamesBox').style.top = this.getBoundingClientRect().top - 20;	
+
+        });
+
+        newColDiv.addEventListener('mouseout', function(event){
+        	document.getElementById('highlightNamesBox').classList.remove("highlightNamesBoxClassVisible");
+			document.getElementById('highlightNamesBox').classList.add("highlightNamesBoxClassInvisible");
+        });
+
+
+
+
+
         names99DivList.push(newColDiv);
 
 		rowDiv.appendChild(newColDiv);

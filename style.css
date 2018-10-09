@@ -98,10 +98,14 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
     padding: 10px 10px;
     color: #7c795d;
     background-color:#4CAF50;
+    background-color:#DDDDDE;
     margin-right: 10px;
     margin-bottom: 10px; 
     /*border: 1px solid #999999;*/
-    border: 10px;
+    border: 1px;
+     border-width: 1px 1px 1px 1px;
+     border-style: solid;
+     border-color: #DDDDDD;
 }
 
 
@@ -110,15 +114,18 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 }
 
 .prophetSelected.prophetColumn:hover{
-	background-color:#EE99EE;
+	background-color:#BBBBBB;
 }
 
 .prophetOffColor{
 	background-color:#ADD8E6; 
+	background-color:#DDEEDD;
+	border-color:#ADD8FF;
+	border-color:#DDDDDD;
 }
 
 .prophetSelected{
-	background-color:#ff99ff;
+	background-color:#CCCCCC;
 }
 
 /* Clear floats after the columns */
@@ -133,7 +140,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	 top: 0vh;
 	 color: #313; 
 	 font-family: 'Helvetica Neue', sans-serif; 
-	 font-size: 20px; 
+	 font-size: 25px; 
 	 font-weight: bold; 
 	 letter-spacing: -1px; 
 	 line-height: 1; 
@@ -157,8 +164,9 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	 color: #111; 
 	 font-family: 'Helvetica Neue', sans-serif; 
 	 font-size: 15px; 
+	 font-style: italic;
 	 top: 5vh;
-	 font-weight: bold; 
+	 /*font-weight: bold;*/ 
 	 letter-spacing: -1px; 
 	 line-height: 1; 
 	 text-align: center;
@@ -173,32 +181,42 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 .names99Column {
     float: left;
     border-radius: 5px;
-    width: 6%;
+    width: 5%;
     min-height: 6vh;
     padding: 10px 10px;
     color: #7c795d;
     background-color:#4CAF50; 
+    background-color:#DDDDDE;
     margin-right: 10px;
     margin-bottom: 10px; 
     /*border: 1px solid #999999;*/
     border: 1px;
+     border-width: 1px 1px 1px 1px;
+     border-style: solid;
+     border-color: #DDDDDD;
 }
 
 
 .names99Column:hover{
    background-color:#EEEEEE;
+   background-color:#EEEEEE;
 }
 
 .names99Selected.names99Column:hover{
 	background-color:#EE99EE;
+	background-color:#BBBBBB;
 }
 
 .names99OffColor{
 	background-color:#ADD8E6; 
+	background-color:#DDEEDD;
+	border-color:#ADD8FF;
+	border-color:#DDDDDD;
 }
 
 .names99Selected{
 	background-color:#ff99ff;
+	background-color:#CCCCCC;
 }
 
 /* Clear floats after the columns */
@@ -214,7 +232,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	 top: 0vh;
 	 color: #313; 
 	 font-family: 'Helvetica Neue', sans-serif; 
-	 font-size: 15px; 
+	 font-size: 13px; 
 	 font-weight: bold; 
 	 letter-spacing: -1px; 
 	 line-height: 1; 
@@ -245,6 +263,61 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	 text-align: center;
 }
 
+.highlightNamesBoxClass{
+	border-radius: 6px;
+	position: fixed; 
+	width: 20%;
+	/*height: 20%;*/
+	top:0%;
+	left: 40%; 
+	z-index: 98; 
+	background:#63A881EF; 
+	padding:5px;
+}
+
+
+.highlightNamesBoxClassVisible{
+	display: block;
+}
+
+.highlightNamesBoxClassInvisible{
+	display: none;
+}
+
+.highlightNamesBoxArabicClass{
+	 position: relative;
+	 /*top: 0vh;*/
+	 color: #313; 
+	 font-family: 'Helvetica Neue', sans-serif; 
+	 font-size: 35px; 
+	 font-weight: bold; 
+	 letter-spacing: -1px; 
+	 line-height: 1; 
+	 text-align: center;
+}
+.highlightNamesBoxTransliteratedClass{
+	 position: relative;
+	 /*top: 1vh;*/
+	 color: #221; 
+	 font-family: 'Helvetica Neue', sans-serif; 
+	 font-size: 20px; 
+	 font-weight: bold; 
+	 letter-spacing: -1px; 
+	 line-height: 1; 
+	 text-align: center;
+}
+.highlightNamesBoxEnglishClass{
+	position: relative;
+	 color: #111;
+	 /*top: 2vh;*/ 
+	 font-family: 'Helvetica Neue', sans-serif; 
+	 font-size: 20px; 
+	 /*font-weight: bold;*/ 
+	 font-style: italic;
+	 letter-spacing: -1px; 
+	 line-height: 1; 
+	 text-align: center;
+}
 
 
 
