@@ -19,6 +19,7 @@ function addBox(text, width, start_x, start_y, id_num){
 			                            .attr("id", "id_" + id_num)
 			                            .attr("fill",base_color)
 			                            .attr("visibility","hidden")
+			                            .attr("state","default")
 			                            .on("mouseover", handleMouseOver)
   										.on("mouseout", handleMouseOut)
   										.on("click",handleMouseDown);
@@ -157,6 +158,8 @@ function redraw()
 
 
 function handleMouseDown(d,i){
+	console.log("handle mousedown for: ");
+	console.dir(d);
 	id_num = this.id.substring(3,this.id.length);
 	id_num = parseInt(id_num);
 
@@ -172,6 +175,10 @@ function handleMouseDown(d,i){
 			//console.log('found and reclosing');
 			alreadyClicked = 1;
 			handleXOut();
+
+			//return to state before selected -> 
+			box_list[id_num].transition()
+				.attr('fill', base_color)
 		}
 	}
 	if(!alreadyClicked){
@@ -179,9 +186,13 @@ function handleMouseDown(d,i){
 		if(search_idx_list.includes(id_num)){
 			console.log('orange!: ' + d3.select(this));
 			console.dir('orange!: ' + d3.select(this));
+			box_list[id_num].transition()
+				.attr('fill', select_color)
+			/*
 			d3.select(this).attr({
 	          fill: "orange"
 	        });
+	        */
 	        /*
 	        //color other search_idx_list elements the select_color:
 	        for(var i = 0; i<selected_idx_list.length; i++){
@@ -194,9 +205,20 @@ function handleMouseDown(d,i){
 
 			//this.setAttributeNS(null,'fill','purple');
 		}else{
+			console.log('clicking something not on thte search idx list');
+			console.dir(d3.select(this));
+			box_list[id_num].transition()
+				.attr('fill', select_color)
+			/*
 			d3.select(this).attr({
 	          fill: select_color
 	        });
+	        */
+	        /*
+	        d3.select(this).attr({
+	          fill: "orange"
+	        });
+	        */
 			//this.setAttributeNS(null,'fill',select_color);
 		}
 		highlighted_list.push(id_num);	
@@ -233,14 +255,22 @@ function handleMouseOver(d,i){
 	}
 
 	if(search_idx_list.includes(id_num)){
+		box_list[id_num].transition()
+				.attr('fill', hover_color)
+		/*
 		d3.select(this).attr({
           fill: "orange"
-        });			
+        });
+        */			
 		//this.setAttributeNS(null,'fill','purple');
 	}else{
+		/*
 		d3.select(this).attr({
           fill: select_color
         });
+        */
+        box_list[id_num].transition()
+				.attr('fill', hover_color)
 		//this.setAttributeNS(null,'fill',select_color);
 	}
 
@@ -278,13 +308,27 @@ function handleMouseOut(d,i){
 	}
 
 	if(search_idx_list.includes(id_num)){
+		box_list[id_num].transition()
+				.attr('fill', highlight_color)
+		/*
 		d3.select(this).attr({
           fill: highlight_color
         });
+        */
 	}else{
+		if(selected_idx_list.includes(id_num)){
+			box_list[id_num].transition()
+					.attr('fill', select_color)
+		}else{
+			box_list[id_num].transition()
+					.attr('fill', base_color)			
+		}
+
+		/*
 		d3.select(this).attr({
           fill: base_color
         });
+        */
 	}
 
 

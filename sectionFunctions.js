@@ -200,7 +200,7 @@ function jesus(){
 		if(!found){
 			box_list[i].transition()
 						.duration(800)
-						.attr('fill','rgba(0,0,0,.5)');
+						.attr('fill',disabled_color);
 		}
 			
 	}

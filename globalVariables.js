@@ -52,6 +52,7 @@ base_color = '#112E44'
 base_color = '#43524D'
 highlight_color = 'rgb(0,100,0)'
 highlight_color = '#FCF0D2'
+hover_color = '#4352FF'
 select_color = 'rgb(0,0,100)'
 select_color = '#A9A79B'
 disabled_color = '#639EA8';
