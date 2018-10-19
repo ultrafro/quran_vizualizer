@@ -7,6 +7,7 @@ var activeList = [];
 var highlighted_list = [];
 
 var interval = null;
+var selected_interval = null;
 
 var freeformCleared = 0;
 
@@ -34,6 +35,12 @@ var search_idx_list = [];
 var selected_idx_list = [];
 
 
+
+var blink_prophet_list = [];
+
+var blink_name_list = [];
+
+
 //some settings:
 padding_x = 10;
 padding_y = 0.5;
@@ -54,7 +61,8 @@ highlight_color = 'rgb(0,100,0)'
 highlight_color = '#FCF0D2'
 hover_color = '#4352FF'
 select_color = 'rgb(0,0,100)'
-select_color = '#A9A79B'
+select_color = '#F9A79B'
+select_off_color = '#FF479B'
 disabled_color = '#639EA8';
 disabled_color = '#63A881'
 

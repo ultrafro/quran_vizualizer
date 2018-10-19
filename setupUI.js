@@ -18,6 +18,8 @@ function setupUI(){
 	//setup arabic text in the section content (ayas, etc...):
 	setupArabicText();
 
+	setup_selected_blink();
+
 }
 
 
@@ -248,6 +250,12 @@ function setupProphetTable(){
 		newColDiv.addEventListener('click', function (event) {
 			console.log('prophet selected: ' + prophet_json_string[this.index].TranslationName);
 			searchTerm(prophet_json_string[this.index].TranslationName);
+
+
+			ayaList = search_idx_list; //gross, but it works
+			blink_prophet_list = [];
+			blink_prophet_list = blink_prophet_list.concat(ayaList);
+
 			//todo: get index and remove/add to active list.
 			//clearActiveList();
 			for(var jj = 0; jj<prophetDivList.length; jj++){
@@ -255,6 +263,7 @@ function setupProphetTable(){
 			}
 			this.classList.add('prophetSelected');
 			//addToActiveList();
+			prophets(); //call to clear the board.
         });
 
 		rowDiv.appendChild(newColDiv);
@@ -328,6 +337,9 @@ function setupNamesTable(){
 			//precached search, done using function: preSearch99();
 			ayaList = cache99_string[this.index].AyaList;
 
+			blink_name_list = [];
+			blink_name_list = blink_name_list.concat(ayaList);
+
 			highlightAyas(); //clear board?
 			highlightAyas(ayaList);
 			clearActiveList();
@@ -341,6 +353,7 @@ function setupNamesTable(){
 				names99DivList[jj].classList.remove('names99Selected');
 			}
 			this.classList.add('names99Selected');
+			names(); // call function to basically clear board
         });
 
         newColDiv.addEventListener('mouseover', function(event){

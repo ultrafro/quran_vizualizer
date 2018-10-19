@@ -26,6 +26,31 @@ function setupSectionPositions(){
 	});
 }
 
+function setup_selected_blink(){
+	selected_interval = setInterval(function(){handle_selected_blink()},1600);
+}
+
+function handle_selected_blink(){
+	//console.log('handle selected blink');
+	for(i=0; i<selected_idx_list.length; i++){
+		//console.log('length of selected idx list: ' + selected_idx_list.length);
+		//console.log('transitioning: ' + i + '-' +  selected_idx_list[i]);
+		box_list[selected_idx_list[i]].transition()
+					.duration(200)
+					.attr('fill',select_color)
+					.transition()
+					.duration(200)
+					.attr('fill',select_off_color)
+					.transition()
+					.duration(200)
+					.attr('fill',select_color)
+					.transition()
+					.duration(200)
+					.attr('fill',select_off_color)
+
+	}
+}
+
 function setupSectionScroll(){
 	window.addEventListener('scroll',function(e) {
 		var pos = window.pageYOffset+10;
@@ -58,7 +83,7 @@ function setupSectionScroll(){
 		    //highlight correct nav bar item:
 		    highlightNavBar(sectionNames[currentIndex]);
 
-		    if(sectionIndex != 5 && sectionIndex != 6){
+		    if(sectionIndex != 8 && sectionIndex != 9){
 			    activateFunctions[sectionIndex]();
 			    interval = setInterval(function(){activateFunctions[sectionIndex]()},1600);
 			    freeformCleared = 0;
@@ -241,20 +266,58 @@ function fatiha(){
 }
 
 function prophets(){
-	fillActiveList();
+	console.log('handle prophets');
+	//fillActiveList();
+	clearActiveList();
 	for(i=0; i<box_list.length; i++){
-		box_list[i].transition()
-					.duration(800)
-					.attr('fill', base_color)
+		if(blink_prophet_list.includes(i)){
+			addToActiveList(i);
+			if(!selected_idx_list.includes(i) && !highlighted_list.includes(i)){
+				box_list[i].transition()
+						.duration(200)
+						.attr('fill','white')
+						.transition()
+						.duration(200)
+						.attr('fill','black')
+						.transition()
+						.duration(200)
+						.attr('fill','white')
+						.transition()
+						.duration(200)
+						.attr('fill','black');				
+			}
+
+		}else{
+			if(!selected_idx_list.includes(i) && !highlighted_list.includes(i)){
+				box_list[i].transition()
+							.duration(200)
+							.attr('fill', disabled_color);			
+			}
+		}
 	}
 }
 
 function names(){
 	fillActiveList();
 	console.log('clearing for names!');
-		for(i=0; i<box_list.length; i++){
+	for(i=0; i<box_list.length; i++){
+		if(blink_name_list.includes(i)){
 			box_list[i].transition()
-						.duration(800)
-						.attr('fill', base_color)
+					.duration(200)
+					.attr('fill','white')
+					.transition()
+					.duration(200)
+					.attr('fill','black')
+					.transition()
+					.duration(200)
+					.attr('fill','white')
+					.transition()
+					.duration(200)
+					.attr('fill','black')
+		}else{
+			box_list[i].transition()
+						.duration(200)
+						.attr('fill', disabled_color)			
 		}
+	}
 }

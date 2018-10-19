@@ -184,8 +184,8 @@ function handleMouseDown(d,i){
 	if(!alreadyClicked){
 
 		if(search_idx_list.includes(id_num)){
-			console.log('orange!: ' + d3.select(this));
-			console.dir('orange!: ' + d3.select(this));
+			//console.log('orange!: ' + d3.select(this));
+			//console.dir('orange!: ' + d3.select(this));
 			box_list[id_num].transition()
 				.attr('fill', select_color)
 			/*
@@ -205,10 +205,11 @@ function handleMouseDown(d,i){
 
 			//this.setAttributeNS(null,'fill','purple');
 		}else{
-			console.log('clicking something not on thte search idx list');
-			console.dir(d3.select(this));
+			//console.log('clicking something not on thte search idx list');
+			//console.dir(d3.select(this));
 			box_list[id_num].transition()
 				.attr('fill', select_color)
+
 			/*
 			d3.select(this).attr({
 	          fill: select_color
@@ -224,9 +225,15 @@ function handleMouseDown(d,i){
 		highlighted_list.push(id_num);	
 
 		//selected_list=[];
+		//turn off all those that are on the selected idx list:
+		//console.log("selected idx length: " + selected_idx_list.length);
+		for(var i = 0; i<selected_idx_list.length; i++){
+			box_list[selected_idx_list[i]].transition()
+				.attr('fill', base_color);
+		}
 		selected_idx_list=[];
 		selected_idx_list.push(id_num);	
-
+		handle_selected_blink();
 
 		document.getElementById('permanentbox').classList.remove("permanentBoxClassInvisible");
 		document.getElementById('permanentbox').classList.add("permanentBoxClassVisible");
