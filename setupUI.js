@@ -20,6 +20,90 @@ function setupUI(){
 
 	setup_selected_blink();
 
+	//setupBoxClick();
+	setupBoxHover();
+
+}
+
+//gets called when someone clicks on a box on the right side
+function highlightAya(chapter, verse){
+	//console.log('highlighting: ' + chapter + ' ' + verse);
+
+	var id_num = -1;
+	for(var i = 0; i<quran_json_string.length; i++){
+		if((quran_json_string[i].chapter == chapter) && (quran_json_string[i].verse == verse)){
+			id_num = i;
+		}
+	}
+	if(id_num==-1){
+		return;
+	}
+
+	if(search_idx_list.includes(id_num)){
+		box_list[id_num].transition()
+				.attr('fill', hover_color)
+	}else{
+        box_list[id_num].transition()
+				.attr('fill', hover_color)
+	}
+
+	highlighted_list.push(id_num);
+	document.getElementById('infobox').classList.remove("infoBoxClassInvisible");
+	document.getElementById('infobox').classList.add("infoBoxClassVisible");
+	document.getElementById('arabic_text_p').innerHTML= quran_json_string[id_num].arabic;
+	document.getElementById('english_text_p').innerHTML = quran_json_string[id_num].english;
+	document.getElementById('juz_text_p').innerHTML ="juz: " + quran_json_string[id_num].juz_number;
+	document.getElementById('sura_text_p').innerHTML ="surah: " + quran_json_string[id_num].chapter;
+	document.getElementById('aya_text_p').innerHTML ="aya: " + quran_json_string[id_num].verse;
+
+	//put id box in right spot
+	document.getElementById('infobox').style.left = box_list[id_num].node().getBoundingClientRect().left + 50;
+	document.getElementById('infobox').style.top = box_list[id_num].node().getBoundingClientRect().top + 0;		
+}
+
+function dehighlightAya(chapter, verse){
+	//console.log('dehighlighting: ' + chapter + ' ' + verse);
+
+	var id_num = -1;
+	for(var i = 0; i<quran_json_string.length; i++){
+		if((quran_json_string[i].chapter == chapter) && (quran_json_string[i].verse == verse)){
+			id_num = i;
+		}
+	}
+	if(id_num==-1){
+		return;
+	}
+
+	if(search_idx_list.includes(id_num)){
+		box_list[id_num].transition()
+				.attr('fill', highlight_color)
+	}else{
+		if(selected_idx_list.includes(id_num)){
+			box_list[id_num].transition()
+					.attr('fill', select_color)
+		}else{
+			box_list[id_num].transition()
+					.attr('fill', base_color)			
+		}
+	}
+
+	for(var i = highlighted_list.length - 1; i >= 0; i--) {
+	    if(highlighted_list[i] === id_num) {
+
+	       highlighted_list.splice(i, 1);
+	     	//console.log('removing: ' + id_num + ' now its: ' + highlighted_list)
+	    }
+	}
+
+	document.getElementById('infobox').classList.add("infoBoxClassInvisible");
+	document.getElementById('infobox').classList.remove("infoBoxClassVisible");
+
+	document.getElementById('arabic_text_p').innerHTML = 'arabic text:';
+	document.getElementById('english_text_p').innerHTML = 'english translation:';
+	document.getElementById('juz_text_p').innerHTML ='juz number';
+	document.getElementById('sura_text_p').innerHTML ='sura number';
+	document.getElementById('aya_text_p').innerHTML ='aya number';
+
 }
 
 
@@ -382,6 +466,39 @@ function setupNamesTable(){
 
 		rowDiv.appendChild(newColDiv);
 
+	}
+}
+
+function setupBoxHover(){
+	var boxes = document.getElementsByClassName("box");
+	//console.log('setting up boxes, length: ' + boxes.length);
+	for(var i = 0; i<boxes.length; i++){
+
+		var chapter = parseInt(boxes[i].getAttribute("chapter"));
+		var verse = parseInt(boxes[i].getAttribute("verse"));
+		//console.log('box: ' + i + ' ' + boxes[i] + ' chapter: ' + chapter + ' verse: ' + verse);
+		boxes[i].onmouseover = function(){
+			//console.log('for box: ' + i + ' chapter: ' + this.getAttribute("chapter") + ' verse ' + this.getAttribute("verse"));
+			highlightAya(this.getAttribute("chapter"),this.getAttribute("verse"));
+			this.classList.remove("boxDeselectedClass");
+			this.classList.add("boxSelectedClass");
+		};
+		boxes[i].onmouseout = function(){
+			dehighlightAya(this.getAttribute("chapter"),this.getAttribute("verse"));
+			this.classList.remove("boxSelectedClass");
+			this.classList.add("boxDeselectedClass");
+		};
+	}
+}
+
+function setupBoxClick(){
+	var boxes = document.getElementsByClassName("box");
+	for(var i = 0; i<boxes.length; i++){
+
+		var chapter = parseInt(boxes[i].getAttribute("chapter"));
+		var verse = parseInt(boxes[i].getAttribute("verse"));
+		console.log('box: ' + i + ' ' + boxes[i] + ' chapter: ' + chapter + ' verse: ' + verse);
+		boxes[i].onclick = highlightAya(chapter,verse);
 	}
 }
 

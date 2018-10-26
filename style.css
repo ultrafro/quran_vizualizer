@@ -367,7 +367,19 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 }
 
 .box{
-	border:1px solid green;
+	border:5px
+	border-color: #63A881EF;
+	border-style: solid;
+	border-color: #63A881EF;
+	border-radius: 4px;
+	/*border-color: green;
+	border-color: #63A881EF;*/
+}
+.boxSelectedClass{
+	border-style: inset;
+}
+.boxDeselectedClass{
+	border-style: solid;
 }
 
 .step {
