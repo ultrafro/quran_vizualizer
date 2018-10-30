@@ -26,7 +26,7 @@ function setupUI(){
 }
 
 //gets called when someone clicks on a box on the right side
-function highlightAya(chapter, verse){
+function highlightAya(elem, chapter, verse){
 	//console.log('highlighting: ' + chapter + ' ' + verse);
 
 	var id_num = -1;
@@ -48,6 +48,8 @@ function highlightAya(chapter, verse){
 	}
 
 	highlighted_list.push(id_num);
+
+	/*
 	document.getElementById('infobox').classList.remove("infoBoxClassInvisible");
 	document.getElementById('infobox').classList.add("infoBoxClassVisible");
 	document.getElementById('arabic_text_p').innerHTML= quran_json_string[id_num].arabic;
@@ -58,11 +60,26 @@ function highlightAya(chapter, verse){
 
 	//put id box in right spot
 	document.getElementById('infobox').style.left = box_list[id_num].node().getBoundingClientRect().left + 50;
-	document.getElementById('infobox').style.top = box_list[id_num].node().getBoundingClientRect().top + 0;		
+	document.getElementById('infobox').style.top = box_list[id_num].node().getBoundingClientRect().top + 0;	
+	*/
+
+	//add a leader line?
+	for(var i = 0; i<line_list.length; i++){
+		line_list[i].remove();
+	}
+	line_list = [];
+	//the original aya, hmmmm.
+	var myLine = new LeaderLine( elem, box_list[id_num].node());		
+	line_list.push(myLine);	
 }
 
-function dehighlightAya(chapter, verse){
+function dehighlightAya(elem, chapter, verse){
 	//console.log('dehighlighting: ' + chapter + ' ' + verse);
+
+	for(var i = 0; i<line_list.length; i++){
+		line_list[i].remove();
+	}
+	line_list = [];
 
 	var id_num = -1;
 	for(var i = 0; i<quran_json_string.length; i++){
@@ -340,6 +357,14 @@ function setupProphetTable(){
 			blink_prophet_list = [];
 			blink_prophet_list = blink_prophet_list.concat(ayaList);
 
+			highlightAyas(); //clear board?
+			highlightAyas(ayaList);
+			clearActiveList();
+			for(var jj = 0; jj<ayaList.length; jj++){
+				addToActiveList(ayaList[jj]);
+			}
+
+
 			//todo: get index and remove/add to active list.
 			//clearActiveList();
 			for(var jj = 0; jj<prophetDivList.length; jj++){
@@ -479,12 +504,12 @@ function setupBoxHover(){
 		//console.log('box: ' + i + ' ' + boxes[i] + ' chapter: ' + chapter + ' verse: ' + verse);
 		boxes[i].onmouseover = function(){
 			//console.log('for box: ' + i + ' chapter: ' + this.getAttribute("chapter") + ' verse ' + this.getAttribute("verse"));
-			highlightAya(this.getAttribute("chapter"),this.getAttribute("verse"));
+			highlightAya(this, this.getAttribute("chapter"),this.getAttribute("verse"));
 			this.classList.remove("boxDeselectedClass");
 			this.classList.add("boxSelectedClass");
 		};
 		boxes[i].onmouseout = function(){
-			dehighlightAya(this.getAttribute("chapter"),this.getAttribute("verse"));
+			dehighlightAya(this, this.getAttribute("chapter"),this.getAttribute("verse"));
 			this.classList.remove("boxSelectedClass");
 			this.classList.add("boxDeselectedClass");
 		};

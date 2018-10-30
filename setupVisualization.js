@@ -297,13 +297,25 @@ function handleMouseOver(d,i){
 
 	//put id box in right spot
 	document.getElementById('infobox').style.left = this.getBoundingClientRect().left + 50;
-	document.getElementById('infobox').style.top = this.getBoundingClientRect().top + 0;			
+	document.getElementById('infobox').style.top = this.getBoundingClientRect().top + 0;	
 
+	//add a leader line?
+	for(var i = 0; i<line_list.length; i++){
+		line_list[i].remove();
+	}
+	line_list = [];
+	var myLine = new LeaderLine( document.getElementById('infobox'), box_list[id_num].node());		
+	line_list.push(myLine);
 }
 
 
 function handleMouseOut(d,i){
 	//console.log('mouse out: ' + this);
+
+	for(var i = 0; i<line_list.length; i++){
+		line_list[i].remove();
+	}
+	line_list = [];
 
 	id_num = this.id.substring(3,this.id.length);
 	id_num = parseInt(id_num);

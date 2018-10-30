@@ -40,6 +40,8 @@ var blink_prophet_list = [];
 
 var blink_name_list = [];
 
+var line_list = [];
+
 
 //some settings:
 padding_x = 10;

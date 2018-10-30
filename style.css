@@ -425,6 +425,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	z-index: 100; 
 	background: #63A881EF; 
 	padding:5px;
+	pointer-events: none
 }
 
 .infoBoxClassVisible{
