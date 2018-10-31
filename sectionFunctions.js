@@ -125,22 +125,22 @@ function alaq(){
 			addToActiveList(i);	
 			//console.log('setting: ' + i + ' red');
 			box_list[i].transition()
-					.duration(400)
-					.attr('fill', 'red')
+					.duration(200)
+					.attr('fill', 'black')
 					.transition()
-					.duration(400)
+					.duration(200)
+					.attr('fill',sura_blink_color)
+					.transition()
+					.duration(200)
 					.attr('fill','black')
 					.transition()
-					.duration(400)
-					.attr('fill','red')
-					.transition()
-					.duration(400)
-					.attr('fill','black')
+					.duration(200)
+					.attr('fill',sura_blink_color)
 		}else{
 			
 			
 			box_list[i].transition()
-					.duration(800)
+					.duration(200)
 					.attr('fill', disabled_color)
 			
 
@@ -244,21 +244,21 @@ function fatiha(){
 			addToActiveList(i);
 			//console.log('setting: ' + i + ' red');
 			box_list[i].transition()
-					.duration(400)
-					.attr('fill', 'red')
+					.duration(200)
+					.attr('fill', 'black')
 					.transition()
-					.duration(400)
+					.duration(200)
+					.attr('fill',sura_blink_color)
+					.transition()
+					.duration(200)
 					.attr('fill','black')
 					.transition()
-					.duration(400)
-					.attr('fill','red')
-					.transition()
-					.duration(400)
-					.attr('fill','black')
+					.duration(200)
+					.attr('fill',sura_blink_color)
 		}else{
 			
 			box_list[i].transition()
-					.duration(800)
+					.duration(200)
 					.attr('fill', disabled_color)
 			
 		}

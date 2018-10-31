@@ -72,3 +72,5 @@ bg_color = '#92794D'
 bg_color = '#DDBF8B'
 bg_color = '#FAEDDD' //light beige?
 
+sura_blink_color = 'rgb(200,150,150)'
+
