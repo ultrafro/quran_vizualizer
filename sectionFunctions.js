@@ -298,7 +298,8 @@ function prophets(){
 }
 
 function names(){
-	fillActiveList();
+	//fillActiveList();
+	//clearActiveList();
 	console.log('clearing for names!');
 	for(i=0; i<box_list.length; i++){
 		if(blink_name_list.includes(i)){

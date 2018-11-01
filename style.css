@@ -384,6 +384,10 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 
 .step {
   margin-bottom: 100%;
+  font-family: Verdana;
+  font-style: normal;
+  color:#111111FF; /*black*/
+  color: #0d2b1a; /*darkgreen*/
 }
 
 
@@ -530,8 +534,8 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 
 .xbuttonClass{
 	position: relative;
-	top:0%;
-	left:97%;
+	bottom: 1.5%;
+	left:1.5%;
 }
 
 
