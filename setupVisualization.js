@@ -105,7 +105,7 @@ function redraw()
 
 	debug_n_aya_count = 0;
 	debug_l_arabic_count = 0;
-
+	var lastJuz = -1;
 	for(i = 0; i<6235; i++)
 	//for(i = 0; i<1000; i++)
 	{
@@ -113,6 +113,8 @@ function redraw()
 		aya = quran_json_string[i];
 		juz = aya.juz_number-1;
 		arabic = aya.arabic;
+
+
 
 		clientWidth = svgContainer.attr("width");
 		clientHeight = svgContainer.attr("height");
@@ -125,12 +127,30 @@ function redraw()
 		c_start_y = juz_height[juz];
 
 
+
 		//for debugging purposes:
 		//console.log("number: " + i + " chapter: " + aya.chapter + " verse: " + aya.verse + " juz: " + juz + " " + box_width + " " + c_start_x + " " + c_start_y);
 
 
 
 		addBox(arabic,box_width,c_start_x,c_start_y,i);
+
+		/*
+		//add circles on top.
+		if(juz != lastJuz){
+			console.log("new juz at: " + c_start_x + " " + c_start_y);
+			lastJuz = juz;
+			//put a circle with number on top.
+			svgContainer.append("circle")
+										.attr("cx", c_start_x+box_width/2)
+			                            .attr("cy", c_start_y)
+			                            .attr("r", 5)
+			                            .attr("stroke","black")
+	    								.attr("fill", "black")
+			                            .attr("visibility","visible");
+		}
+		*/
+
 		//console.log('thisDela: ' + thisDelay);
 		//setTimeout(addBox,thisDelay,arabic,box_width,c_start_x,c_start_y,i);
 		//setTimeout(revealBox,thisDelay,i);

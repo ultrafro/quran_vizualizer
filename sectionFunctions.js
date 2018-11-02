@@ -53,7 +53,8 @@ function handle_selected_blink(){
 
 function setupSectionScroll(){
 	window.addEventListener('scroll',function(e) {
-		var pos = window.pageYOffset+10;
+		//var pos = window.pageYOffset+10;
+		var pos = window.pageYOffset;
 
 		//find first element > pos, select oen right before it:
 		greaterSection = -1;
@@ -83,7 +84,7 @@ function setupSectionScroll(){
 		    //highlight correct nav bar item:
 		    highlightNavBar(sectionNames[currentIndex]);
 
-		    if(sectionIndex != 8 && sectionIndex != 9){
+		    if(sectionIndex != 10 && sectionIndex != 9){
 			    activateFunctions[sectionIndex]();
 			    interval = setInterval(function(){activateFunctions[sectionIndex]()},1600);
 			    freeformCleared = 0;

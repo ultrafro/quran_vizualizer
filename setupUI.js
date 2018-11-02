@@ -273,6 +273,8 @@ function setupNavBar(){
 	// Loop through the buttons and add the active class to the current/clicked button
 	for (var i = 0; i < btns.length; i++) {
 	  btns[i].addEventListener("click", function() {
+	  	console.log('clicked: ' + this);
+	  	console.dir(this);
 	    var current = document.getElementsByClassName("active");
 	    current[0].className = current[0].className.replace(" active", "");
 	    this.className += " active";
@@ -513,6 +515,22 @@ function setupBoxHover(){
 			this.classList.remove("boxSelectedClass");
 			this.classList.add("boxDeselectedClass");
 		};
+
+		boxes[i].onmousedown=function(){
+			//clear all the others.
+
+			if(this.classList.contains("boxClickedClass")){
+				this.classList.remove("boxClickedClass");
+			}else{
+				var boxes2 = document.getElementsByClassName("box");
+				for(var j = 0; j<boxes2.length; j++){
+					boxes2[j].classList.remove("boxClickedClass");
+				}
+				this.classList.add("boxClickedClass");
+			}
+		};
+
+
 	}
 }
 
