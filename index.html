@@ -86,6 +86,8 @@
 		  <a href="#JesusAnchor" sectionName="Jesus" class="btn">Jesus</a>
 		  <a href="#ProphetsAnchor" sectionName="Prophets" class="btn">Prophets</a>
 		  <a href="#99NamesAnchor" sectionName="99Names" class="btn">99 Names of God</a>
+		  <a href="#ExploreAnchor" sectionName="Explore" class="btn">Explore</a>
+		  <a href="#AboutAnchor" sectionName="About" class="btn">About</a>
 		</div>
 
 
@@ -280,10 +282,36 @@
 				<p>
 				<div id="names99Table">
 		    	</div>
+		    </section>
 
+			<span class="anchor" id="ExploreAnchor"></span>
+		    <section class="step" id="Explore">
+		    	Feel free to explore the Quran by searching for terms in the English translation, highlighting your mouse over verses, or clicking one of the suggested search terms below!
+
+		    	<p>
+		    	<div id="exploreTable">
+		    	</div>
+
+		    	<p>
+
+
+		    </section>
+
+		    <span class="anchor" id="AboutAnchor"></span>
+		    <section class="step" id="About">
+		    	This is an open source project with the intention of making the Quran more approachable to those who are more visually minded. You can contribute on this <a href="https://github.com/ultrafro/quran_vizualizer"> github</a>.
+
+		    	<p>
+		    	The English translation used for this is ****. The search functions will look through the English translations to find a match. In the case of the 99 names, the Ayas which are referenced are hard-coded and taken from <a href="https://en.wikipedia.org/wiki/Names_of_God_in_Islam"> this wikipedia page </a> which compiles the information from various sources.
+
+		    	<p>
+		    	A number of free icons were used in this webpage, their licenses are shown below.
+
+		    	<p>
 		    	<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 		    	<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 		    </section>
+
     	</div>
 
         <script src = "quran_json_string.js"></script>
@@ -291,6 +319,7 @@
         <script src = "names99_string.js"></script>
         <script src = "diacritics.js"></script>
         <script src = "cache99_string.js"></script>
+        <script src = "explore_string.js"></script>
         
 	<script src = "globalVariables.js"></script>
 	<script src = "utilities.js"></script>
@@ -311,6 +340,7 @@
 			setupSectionScroll();
 			setupVisualization();
 			setupUI(); //first function in setupUI.js
+			//getTopWords();
 		}
 
 

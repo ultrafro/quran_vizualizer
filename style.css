@@ -84,6 +84,69 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 
 /* Create two equal columns that floats next to each other */
 
+
+
+/* Clear floats after the columns */
+.exploreRow:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+.exploreColumn {
+	border-radius: 5px;
+    float: left;
+    width: 15%;
+    min-height: 13vh;
+    padding: 10px 10px;
+    color: #7c795d;
+    background-color:#4CAF50;
+    background-color:#DDDDDE;
+    margin-right: 10px;
+    margin-bottom: 10px; 
+    /*border: 1px solid #999999;*/
+    border: 1px;
+     border-width: 1px 1px 1px 1px;
+     border-style: solid;
+     border-color: #DDDDDD;
+}
+.exploreOffColor{
+	background-color:#ADD8E6; 
+	background-color:#DDEEDD;
+	border-color:#ADD8FF;
+	border-color:#DDDDDD;
+}
+.exploreEnglish{
+	 position: relative;
+	 color: #111; 
+	 font-family: 'Helvetica Neue', sans-serif; 
+	 font-size: 15px; 
+	 font-style: italic;
+	 top: 5vh;
+	 /*font-weight: bold;*/ 
+	 letter-spacing: -1px; 
+	 line-height: 1; 
+	 text-align: center;
+}
+.exploreCount{
+	 position: relative;
+	 color: #111; 
+	 font-family: 'Helvetica Neue', sans-serif; 
+	 font-size: 15px; 
+	 font-style: italic;
+	 top: 8vh;
+	 /*font-weight: bold;*/ 
+	 letter-spacing: -1px; 
+	 line-height: 1; 
+	 text-align: center;
+}
+.exploreSelected{
+	background-color:#CCCCCC;
+}
+
+
+
+
+
 .prophetTableClass{
 	width: 90%; /*this will center it isA*/
   	margin: 0 auto;

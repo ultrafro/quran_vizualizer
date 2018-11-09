@@ -8,7 +8,9 @@ function setupActivateFunctions(){
 	activateFunctions[3] = fatiha;
 	activateFunctions[4] = jesus;
 	activateFunctions[5] = prophets;
-	activateFunctions[6] = names;			
+	activateFunctions[6] = names;
+	activateFunctions[7] = explore;
+	activateFunctions[8] = freeform;		
 }
 
 function setupSectionPositions(){
@@ -84,7 +86,7 @@ function setupSectionScroll(){
 		    //highlight correct nav bar item:
 		    highlightNavBar(sectionNames[currentIndex]);
 
-		    if(sectionIndex != 10 && sectionIndex != 9){
+		    if(sectionIndex != 11 && sectionIndex != 12){
 			    activateFunctions[sectionIndex]();
 			    interval = setInterval(function(){activateFunctions[sectionIndex]()},1600);
 			    freeformCleared = 0;
@@ -262,6 +264,39 @@ function fatiha(){
 					.duration(200)
 					.attr('fill', disabled_color)
 			
+		}
+	}
+}
+
+
+function explore(){
+	console.log('handle explore');
+	//fillActiveList();
+	clearActiveList();
+	for(i=0; i<box_list.length; i++){
+		if(blink_explore_list.includes(i)){
+			addToActiveList(i);
+			if(!selected_idx_list.includes(i) && !highlighted_list.includes(i)){
+				box_list[i].transition()
+						.duration(200)
+						.attr('fill','white')
+						.transition()
+						.duration(200)
+						.attr('fill','black')
+						.transition()
+						.duration(200)
+						.attr('fill','white')
+						.transition()
+						.duration(200)
+						.attr('fill','black');				
+			}
+
+		}else{
+			if(!selected_idx_list.includes(i) && !highlighted_list.includes(i)){
+				box_list[i].transition()
+							.duration(200)
+							.attr('fill', disabled_color);			
+			}
 		}
 	}
 }

@@ -205,6 +205,62 @@ function preSearch99(){
 
 
 //todo: document this function
+function getTopWords(){
+	word_list = [];
+	word_count = [];
+	for(var i = 0; i<quran_json_string.length; i++){
+		words = quran_json_string[i].english.toUpperCase().split(' ');
+		for(var ww = 0; ww<words.length; ww++){
+			var idx = word_list.indexOf(words[ww]);
+			if(idx==-1){
+				word_list.push(words[ww]);
+				word_count.push(1);
+				/*
+				var o = new Object();
+				o.word = words[ww];
+				o.count = 1;
+				word_list.push(o);
+				*/
+			}else{
+				//word_list[idx].count = word_list[idx].count + 1;
+				word_count[idx] = word_count[idx]+1;
+			}
+		}
+	}
+
+
+
+	//sort by word_count
+	word_objects=[];
+	for(var i = 0; i<word_list.length; i++){
+		var o = new Object();
+		o.word = word_list[i];
+		o.count = word_count[i];
+		o.idx = i;
+		word_objects.push(o);
+	}
+
+	word_objects.sort(function(obj1,obj2){
+		if(obj1.count < obj2.count){
+			return 1;
+		}else{
+			return -1;
+		}
+	});
+
+	for(var i = 0; i<word_list.length; i++){
+		word_list[i] = word_objects[i].word;
+		word_count[i] = word_objects[i].count;
+	}
+
+	console.dir(word_list);
+
+
+}
+
+
+
+//todo: document this function
 function preSearch99wikipedia(){
 	var cache99 = [];
 

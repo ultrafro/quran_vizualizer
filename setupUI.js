@@ -15,6 +15,9 @@ function setupUI(){
 	//setup 99 names table:
 	setupNamesTable();
 
+	//setup explore table:
+	setupExploreTable();
+
 	//setup arabic text in the section content (ayas, etc...):
 	setupArabicText();
 
@@ -22,6 +25,8 @@ function setupUI(){
 
 	//setupBoxClick();
 	setupBoxHover();
+
+
 
 }
 
@@ -383,6 +388,77 @@ function setupProphetTable(){
 
 }
 
+function setupExploreTable(){
+	var table = document.getElementById('exploreTable');
+
+	var numRows = 10;
+	var numCols = 10;
+
+	var rowDiv = null;
+	for(var i = 0; i<explore_string.length; i++){
+		var row = Math.floor(i/numCols);
+		var col = i%numCols;
+
+		if(col==0){
+			//add new row!
+			var newRowDiv = document.createElement("div");
+			newRowDiv.classList.add("exploreRow");
+			table.appendChild(newRowDiv);
+			rowDiv = newRowDiv;
+		}
+
+		//add new column element
+		var newColDiv = document.createElement("div");
+		newColDiv.classList.add("exploreColumn");
+		newColDiv.classList.add("textUnselectable");
+		newColDiv.index = i;
+		exploreDivList.push(newColDiv);
+
+		if((i+row)%2==0){
+			newColDiv.classList.add("exploreOffColor");
+		}
+
+		var englishDiv = document.createElement("div");
+		englishDiv.classList.add("exploreEnglish");
+		englishDiv.innerHTML = explore_string[i].term;
+		newColDiv.appendChild(englishDiv);
+
+		var countDiv = document.createElement("div");
+		countDiv.classList.add("exploreCount");
+		countDiv.innerHTML = "(" + explore_string[i].count + " mentions)";
+		newColDiv.appendChild(countDiv);
+
+
+		newColDiv.addEventListener('click', function (event) {
+			console.log('explore selected: ' + explore_string[this.index].term);
+
+			searchTerm(explore_string[this.index].term);
+
+
+			ayaList = search_idx_list; //gross, but it works
+			blink_explore_list = [];
+			blink_explore_list = blink_explore_list.concat(ayaList);
+
+			highlightAyas(); //clear board?
+			highlightAyas(ayaList);
+			clearActiveList();
+			for(var jj = 0; jj<ayaList.length; jj++){
+				addToActiveList(ayaList[jj]);
+			}
+
+
+			//todo: get index and remove/add to active list.
+			//clearActiveList();
+			for(var jj = 0; jj<exploreDivList.length; jj++){
+				exploreDivList[jj].classList.remove('exploreSelected');
+			}
+			this.classList.add('exploreSelected');
+			explore(); //call to clear the board.
+		});
+
+		rowDiv.appendChild(newColDiv);
+	}
+}
 
 function setupNamesTable(){
 	var table = document.getElementById('names99Table');

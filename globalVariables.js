@@ -1,5 +1,6 @@
 var prophetDivList = [];
 var names99DivList = [];
+var exploreDivList = [];
 
 //active list:
 var activeList = [];
@@ -35,6 +36,7 @@ var search_idx_list = [];
 var selected_idx_list = [];
 
 
+var blink_explore_list = [];
 
 var blink_prophet_list = [];
 
