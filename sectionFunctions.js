@@ -10,7 +10,7 @@ function setupActivateFunctions(){
 	activateFunctions[5] = prophets;
 	activateFunctions[6] = names;
 	activateFunctions[7] = explore;
-	activateFunctions[8] = freeform;		
+	activateFunctions[8] = about;		
 }
 
 function setupSectionPositions(){
@@ -86,9 +86,13 @@ function setupSectionScroll(){
 		    //highlight correct nav bar item:
 		    highlightNavBar(sectionNames[currentIndex]);
 
-		    if(sectionIndex != 11 && sectionIndex != 12){
+		    //if(sectionIndex != 11 && sectionIndex != 12){
+		    if(true){	
 			    activateFunctions[sectionIndex]();
-			    interval = setInterval(function(){activateFunctions[sectionIndex]()},1600);
+			    interval = setInterval(function(){
+			    	console.log('interval function');
+			    	activateFunctions[sectionIndex]()
+			    },1600);
 			    freeformCleared = 0;
 		    }else{
 		    	activateFunctions[sectionIndex]();
@@ -114,6 +118,57 @@ function freeform(){
 
 		fillActiveList();							
 	}
+
+}
+
+
+function about(){
+	console.log('about');
+	if(!freeformCleared){
+		for(i=0; i<box_list.length; i++){
+			box_list[i].transition()
+						.duration(800)
+						.attr('fill', base_color)
+		}
+		console.log('freeform cleaned');
+		freeformCleared = 1;
+
+		fillActiveList();							
+	}
+
+	//switch out the aya.
+	var marquee = document.getElementById('marquee').querySelector('.aya');
+
+	var surah = parseInt(marquee.getAttribute("surah"));
+	var aya = parseInt(marquee.getAttribute("aya"));
+
+	dehighlightAya(document.getElementById('marquee'),surah, aya);
+
+	//console.log('surah: ' + surah + ' aya: ' + aya);
+	//find next available aya
+	var higher = -1;
+	for(var i = 0; i<quran_json_string.length; i++){
+
+		if((higher==-1) && (quran_json_string[i].verse > aya) && (quran_json_string[i].chapter==surah)){
+			higher = i;
+		}
+		if((higher==-1) && (quran_json_string[i].chapter > surah)){
+			higher = i;
+		}
+	}
+	//console.log('higher: ' + higher);
+
+	if(higher!=-1){
+
+		highlightAya(document.getElementById('marquee'),quran_json_string[higher].chapter, quran_json_string[higher].verse);
+
+		marquee.innerHTML = quran_json_string[higher].chapter + ":" + quran_json_string[higher].verse + " " + quran_json_string[higher].arabic;
+		marquee.setAttribute("surah", quran_json_string[higher].chapter);
+		marquee.setAttribute("aya",quran_json_string[higher].verse);
+		marquee.parentElement.querySelector('.ayaEnglish').innerHTML = quran_json_string[higher].english;		
+	}
+
+
 
 }
 
