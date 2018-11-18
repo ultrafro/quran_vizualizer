@@ -128,6 +128,29 @@ function dehighlightAya(elem, chapter, verse){
 
 }
 
+function clearSearchIfEmpty(){
+	//console.log("test search!");
+	var term =  document.getElementById("search_text_bar").value;
+	if(term == ""){
+		//clear search and go back to normal.
+		fillActiveList();
+		search_idx_list = [];
+		//set everything to original color:
+		//console.log('highlighted list: ' + highlighted_list);
+		for(var i = 0; i<6235; i++){
+
+			if(highlighted_list.includes(i)){
+				//console.log('aya: ' + i + ' was on the highlighted list');
+				box_list[i].transition()
+					.attr('fill', highlight_color);				
+			}else{
+				box_list[i].transition()
+					.attr('fill', base_color);				
+			}
+
+		}
+	}
+}
 
 //sets up the search bar above the Quran Sections
 function setupSearchBar(){

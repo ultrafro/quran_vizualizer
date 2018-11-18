@@ -66,7 +66,14 @@ function shuffleArray(array) {
 function search(){
 	term = document.getElementById("search_text_bar").value;
 	console.log('searching for: ' + term.toUpperCase());
+
+	if(term==""){
+		return;
+	}
+
 	clearActiveList();
+
+
 	//clear previous search index list:
 	for(i = 0; i<search_idx_list.length; i++){
 		box_list[search_idx_list[i]].attr('fill',base_color);
@@ -79,14 +86,19 @@ function search(){
 			addToActiveList(i);
 			box_list[i].attr('fill',highlight_color);
 		}else{
-			//box_list[i].attr('fill',disabled_color);
+			box_list[i].attr('fill',disabled_color);
 		}
 	}
 }
 
 
 function searchTerm(term){
-	console.log('searching for: ' + term.toUpperCase());
+	console.log('searching for term: ' + term.toUpperCase());
+
+	if(term==""){
+		return;
+	}
+	
 	clearActiveList();
 	//clear previous search index list:
 	for(i = 0; i<search_idx_list.length; i++){
@@ -100,7 +112,7 @@ function searchTerm(term){
 			addToActiveList(i);
 			box_list[i].attr('fill',highlight_color);
 		}else{
-			//box_list[i].attr('fill',disabled_color);
+			box_list[i].attr('fill',disabled_color);
 		}
 	}
 }
