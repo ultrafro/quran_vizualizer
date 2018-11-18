@@ -197,8 +197,13 @@ function handleMouseDown(d,i){
 			handleXOut();
 
 			//return to state before selected -> 
-			box_list[id_num].transition()
-				.attr('fill', base_color)
+			if(highlighted_list.includes(selected_idx_list[i])){
+				box_list[id_num].transition()
+					.attr('fill', highlight_color)
+			}else{
+				box_list[id_num].transition()
+					.attr('fill', base_color)				
+			}
 		}
 	}
 	if(!alreadyClicked){
@@ -248,8 +253,14 @@ function handleMouseDown(d,i){
 		//turn off all those that are on the selected idx list:
 		//console.log("selected idx length: " + selected_idx_list.length);
 		for(var i = 0; i<selected_idx_list.length; i++){
-			box_list[selected_idx_list[i]].transition()
-				.attr('fill', base_color);
+			if(highlighted_list.includes(selected_idx_list[i])){
+				box_list[selected_idx_list[i]].transition()
+					.attr('fill', highlight_color);				
+			}else{
+				box_list[selected_idx_list[i]].transition()
+					.attr('fill', base_color);				
+			}
+
 		}
 		selected_idx_list=[];
 		selected_idx_list.push(id_num);	

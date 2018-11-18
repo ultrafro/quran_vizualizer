@@ -198,6 +198,7 @@ function next(){
 	}
 
 	//click next active:
+
 	console.log('clicking on next Active: ' + nextActive);
 	var e = document.createEvent('UIEvents');
 	e.initUIEvent('click', true, true, /* ... */);
