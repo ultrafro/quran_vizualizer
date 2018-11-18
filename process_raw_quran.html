@@ -1,0 +1,44 @@
+<html>
+<body>
+<script src="quran_sahih.js"></script>
+<script>
+
+	//this code converts the raw json from: http://api.alquran.cloud/quran/en.sahih into the format i was using before
+	//this is necessary because i switched raw versions from tanzil.net to alquran.cloud.
+	//this gets popped into a google drive sheet which i then convert to a json. (that's where the arabic part is)
+
+	var output = [];
+	var surah_list = quran_sahih.surahs;
+	var chapter = -1;
+	var verse = -1;
+	var english = "";
+	var juz_number = -1;
+	var hizb_number = -1;
+	for(var i = 0; i<surah_list.length; i++){
+		chapter = i+1;
+		var aya_list = surah_list[i].ayahs;
+		for(var j = 0; j<aya_list.length; j++){
+			verse = j+1;
+
+			english = aya_list[j].text;
+
+			juz_number = aya_list[j].juz;
+			hizb_number = aya_list[j].hizbQuarter;
+
+			var aya = new Object();
+			aya.chapter = chapter;
+			aya.verse = verse;
+			aya.english = english;
+			aya.juz_number = juz_number;
+			aya.hizb_number = hizb_number;
+			output.push(aya);
+		}
+
+	}
+	console.log(JSON.stringify(output));
+
+
+
+</script>
+</body>
+</html>
