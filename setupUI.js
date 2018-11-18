@@ -144,7 +144,7 @@ function clearSearch(){
 	search_idx_list = [];
 	//set everything to original color:
 	//console.log('highlighted list: ' + highlighted_list);
-	for(var i = 0; i<6235; i++){
+	for(var i = 0; i<number_of_ayas; i++){
 		if(highlighted_list.includes(i)){
 			//console.log('aya: ' + i + ' was on the highlighted list');
 			box_list[i].transition()

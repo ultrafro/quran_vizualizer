@@ -45,6 +45,8 @@ var blink_name_list = [];
 var line_list = [];
 
 
+number_of_ayas = 6236;
+
 //some settings:
 padding_x = 10;
 padding_y = 0.5;

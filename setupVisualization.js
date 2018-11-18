@@ -95,7 +95,7 @@ function redraw()
 
 	//column length determiend using following code: 23170 characters.
 	// col_length = 0;
-	// for(i = 0; i<6235; i++){
+	// for(i = 0; i<number_of_ayas; i++){
 	// 	aya = quran_json_string[i];
 	// 	if(aya.juz_number==1){
 	// 		col_length = col_length + aya.arabic.length;
@@ -106,7 +106,7 @@ function redraw()
 	debug_n_aya_count = 0;
 	debug_l_arabic_count = 0;
 	var lastJuz = -1;
-	for(i = 0; i<6235; i++)
+	for(i = 0; i<number_of_ayas; i++)
 	//for(i = 0; i<1000; i++)
 	{
 		thisDelay = i*delay;//+ .0001;

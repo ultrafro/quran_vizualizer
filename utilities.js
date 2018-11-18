@@ -5,13 +5,13 @@ function addToActiveList(index){
 }
 
 function clearActiveList(){
-	for(var i = 0; i<6235; i++){
+	for(var i = 0; i<number_of_ayas; i++){
 		activeList[i] = 0;
 	}			
 }
 
 function fillActiveList(){
-	for(var i = 0; i<6235; i++){
+	for(var i = 0; i<number_of_ayas; i++){
 		activeList[i] = 1;
 	}				
 }
@@ -80,7 +80,7 @@ function search(){
 	}
 	search_idx_list=[];
 
-	for(i = 0; i<6235; i++){
+	for(i = 0; i<number_of_ayas; i++){
 		if(quran_json_string[i].english.toUpperCase().includes(term.toUpperCase())){
 			search_idx_list.push(i);
 			addToActiveList(i);
@@ -106,7 +106,7 @@ function searchTerm(term){
 	}
 	search_idx_list=[];
 
-	for(i = 0; i<6235; i++){
+	for(i = 0; i<number_of_ayas; i++){
 		if(quran_json_string[i].english.toUpperCase().includes(term.toUpperCase())){
 			search_idx_list.push(i);
 			addToActiveList(i);
@@ -144,7 +144,7 @@ function highlightAyas(ayaList){
 function getAyaIndiciesArabic(term){
 	var ayaList = [];
 
-	for(i = 0; i<6235; i++){
+	for(i = 0; i<number_of_ayas; i++){
 		var strippedAyaList = stripDiacritics(quran_json_string[i].arabic);
 		var strippedTermList = stripDiacritics(term);
 		var strippedTerm = strippedTermList[0];
@@ -168,7 +168,7 @@ function searchTermArabic(term){
 	}
 	search_idx_list=[];
 
-	for(i = 0; i<6235; i++){
+	for(i = 0; i<number_of_ayas; i++){
 		var strippedAyaList = stripDiacritics(quran_json_string[i].arabic);
 		var strippedTermList = stripDiacritics(term);
 		var strippedTerm = strippedTermList[0];
