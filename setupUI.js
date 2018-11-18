@@ -132,24 +132,29 @@ function clearSearchIfEmpty(){
 	//console.log("test search!");
 	var term =  document.getElementById("search_text_bar").value;
 	if(term == ""){
-		//clear search and go back to normal.
-		fillActiveList();
-		search_idx_list = [];
-		//set everything to original color:
-		//console.log('highlighted list: ' + highlighted_list);
-		for(var i = 0; i<6235; i++){
+		clearSearch();
 
-			if(highlighted_list.includes(i)){
-				//console.log('aya: ' + i + ' was on the highlighted list');
-				box_list[i].transition()
-					.attr('fill', highlight_color);				
-			}else{
-				box_list[i].transition()
-					.attr('fill', base_color);				
-			}
+	}
+}
 
+function clearSearch(){
+	//console.log('clear search!');
+	//clear search and go back to normal.
+	fillActiveList();
+	search_idx_list = [];
+	//set everything to original color:
+	//console.log('highlighted list: ' + highlighted_list);
+	for(var i = 0; i<6235; i++){
+		if(highlighted_list.includes(i)){
+			//console.log('aya: ' + i + ' was on the highlighted list');
+			box_list[i].transition()
+				.attr('fill', highlight_color);				
+		}else{
+			box_list[i].transition()
+				.attr('fill', base_color);				
 		}
 	}
+	document.getElementById('search_text_bar').value = "Search for a term in the English translation"
 }
 
 //sets up the search bar above the Quran Sections
@@ -157,6 +162,7 @@ function setupSearchBar(){
 	//set up search bar button
 	//search is declared within utilities.js
 	document.getElementById('search_button').onclick=search;
+	document.getElementById('clear_search_button').onclick=clearSearch;
 
 	//make it so when you hit the enter button after typing text, it will act as a click
 	document.getElementById("search_text_bar").addEventListener("keyup", function(event) {
