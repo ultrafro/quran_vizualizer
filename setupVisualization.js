@@ -182,6 +182,7 @@ function handleMouseDown(d,i){
 	console.dir(d);
 	id_num = this.id.substring(3,this.id.length);
 	id_num = parseInt(id_num);
+	console.log(id_num);
 
 	if(!activeList[id_num]){
 		return;
@@ -207,6 +208,7 @@ function handleMouseDown(d,i){
 		}
 	}
 	if(!alreadyClicked){
+		console.log('was not already clicked');
 
 		if(search_idx_list.includes(id_num)){
 			//console.log('orange!: ' + d3.select(this));
@@ -266,6 +268,7 @@ function handleMouseDown(d,i){
 		selected_idx_list.push(id_num);	
 		handle_selected_blink();
 
+		document.getElementById('permanentbox').classList.remove("permanentBoxClassVisible");
 		document.getElementById('permanentbox').classList.remove("permanentBoxClassInvisible");
 		document.getElementById('permanentbox').classList.add("permanentBoxClassVisible");
 		document.getElementById('permanent_arabic_text_p').innerHTML= quran_json_string[id_num].arabic;
