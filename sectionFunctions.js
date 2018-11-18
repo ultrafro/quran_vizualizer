@@ -249,7 +249,7 @@ function jesus(){
 	for(i = 0; i<box_list.length; i++){
 		english = quran_json_string[i].english;
 		found = 0;	
-		if(english.toUpperCase().includes(' ISA ')){
+		if(english.toUpperCase().includes(' JESUS') | english.toUpperCase().includes('JESUS ')){
 			addToActiveList(i);
 			box_list[i].transition()
 					.duration(400)
@@ -265,7 +265,7 @@ function jesus(){
 					.attr('fill','black')
 			found = 1;
 		}
-		if(english.toUpperCase().includes(' MARIUM ')){
+		if(english.toUpperCase().includes(' MARY') | english.toUpperCase().includes('MARY ') ){
 			addToActiveList(i);
 			box_list[i].transition()
 					.duration(400)

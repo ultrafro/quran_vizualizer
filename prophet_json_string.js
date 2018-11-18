@@ -2,7 +2,7 @@
   {
     "TransliteratedName": "Harun",
     "EnglishName": "Aaron",
-    "TranslationName": "Haroun",
+    "TranslationName": "Aaron",
     "ArabicName": "هارون",
     "Chronology": 15,
     "Link": "https://en.wikipedia.org/wiki/Aaron#Islam"
@@ -10,7 +10,7 @@
   {
     "TransliteratedName": "Ibrahim",
     "EnglishName": "Abraham",
-    "TranslationName": "Ibrahim",
+    "TranslationName": "Abraham",
     "ArabicName": "إِبْـرَاهِـيـم",
     "Chronology": 6,
     "Link": "https://en.wikipedia.org/wiki/Abraham_in_Islam"
@@ -26,7 +26,7 @@
   {
     "TransliteratedName": "Dawud",
     "EnglishName": "David",
-    "TranslationName": "Dawood",
+    "TranslationName": "David",
     "ArabicName": "دَاوود‎",
     "Chronology": 17,
     "Link": "https://en.wikipedia.org/wiki/David_in_Islam"
@@ -34,7 +34,7 @@
   {
     "TransliteratedName": "Ilyas",
     "EnglishName": "Elijah",
-    "TranslationName": "Ilyas",
+    "TranslationName": "Elias",
     "ArabicName": "إِلـيـاس‎",
     "Chronology": 19,
     "Link": "https://en.wikipedia.org/wiki/Elijah#Elijah_in_Islam"
@@ -42,7 +42,7 @@
   {
     "TransliteratedName": "Al-Yasa",
     "EnglishName": "Elisha",
-    "TranslationName": "Al-Yasha",
+    "TranslationName": "Elisha",
     "ArabicName": "الـیَـسَـع‎",
     "Chronology": 20,
     "Link": "https://en.wikipedia.org/wiki/Elisha#In_Islam"
@@ -50,7 +50,7 @@
   {
     "TransliteratedName": "Idris",
     "EnglishName": "Enoch",
-    "TranslationName": "Idris",
+    "TranslationName": "Idrees",
     "ArabicName": "إِدريـس",
     "Chronology": 2,
     "Link": "https://en.wikipedia.org/wiki/Idris_(prophet)"
@@ -58,7 +58,7 @@
   {
     "TransliteratedName": "Dhul-Kifl",
     "EnglishName": "Ezekiel",
-    "TranslationName": "Zulkifl",
+    "TranslationName": "Dhul-Kifl",
     "ArabicName": "ذُو الـکِـفـل",
     "Chronology": 16,
     "Link": "https://en.wikipedia.org/wiki/Dhul-Kifl"
@@ -74,7 +74,7 @@
   {
     "TransliteratedName": "Ishaq",
     "EnglishName": "Isaac",
-    "TranslationName": "Ishaq",
+    "TranslationName": "Isaac",
     "ArabicName": "إِسـحَـاق‎",
     "Chronology": 9,
     "Link": "https://en.wikipedia.org/wiki/Isaac_in_Islam"
@@ -82,7 +82,7 @@
   {
     "TransliteratedName": "Ismail",
     "EnglishName": "Ishmael",
-    "TranslationName": "Ismail",
+    "TranslationName": "Ishmael",
     "ArabicName": "إِسـمَـاعِـيـل‎",
     "Chronology": 8,
     "Link": "https://en.wikipedia.org/wiki/Ishmael_in_Islam"
@@ -90,7 +90,7 @@
   {
     "TransliteratedName": "Yaqub",
     "EnglishName": "Jacob",
-    "TranslationName": "Yaqoub",
+    "TranslationName": "Jacob",
     "ArabicName": "يَـعْـقُـوْب",
     "Chronology": 10,
     "Link": "https://en.wikipedia.org/wiki/Jacob_in_Islam"
@@ -98,7 +98,7 @@
   {
     "TransliteratedName": "Shuʿayb",
     "EnglishName": "Jethro",
-    "TranslationName": "Shu'aib",
+    "TranslationName": "Shu'ayb",
     "ArabicName": "شُـعـیـب‎",
     "Chronology": 13,
     "Link": "https://en.wikipedia.org/wiki/Shuaib"
@@ -106,7 +106,7 @@
   {
     "TransliteratedName": "Isa",
     "EnglishName": "Jesus",
-    "TranslationName": "Isa",
+    "TranslationName": "Jesus",
     "ArabicName": "عِـيـسَى",
     "Chronology": 24,
     "Link": "https://en.wikipedia.org/wiki/Jesus_in_Islam"
@@ -114,7 +114,7 @@
   {
     "TransliteratedName": "Ayub",
     "EnglishName": "Job",
-    "TranslationName": "Ayub",
+    "TranslationName": "Job",
     "ArabicName": "أَيّـوب‎",
     "Chronology": 12,
     "Link": "https://en.wikipedia.org/wiki/Job_in_Islam"
@@ -122,7 +122,7 @@
   {
     "TransliteratedName": "Yahya",
     "EnglishName": "John the Baptist",
-    "TranslationName": "Yahya",
+    "TranslationName": "John",
     "ArabicName": "يَـحْـيَى ابْـن زَكَـرِيَّـا",
     "Chronology": 23,
     "Link": "https://en.wikipedia.org/wiki/John_the_Baptist#Islam"
@@ -130,7 +130,7 @@
   {
     "TransliteratedName": "Yusuf",
     "EnglishName": "Joseph",
-    "TranslationName": "Yusuf",
+    "TranslationName": "Joseph",
     "ArabicName": "يُـوسُـف ابـن يَـعـقُـوب",
     "Chronology": 11,
     "Link": "https://en.wikipedia.org/wiki/Joseph_in_Islam"
@@ -138,7 +138,7 @@
   {
     "TransliteratedName": "Yunus",
     "EnglishName": "Jonah",
-    "TranslationName": "Yunus",
+    "TranslationName": "Jonah",
     "ArabicName": "يُـونُـس",
     "Chronology": 21,
     "Link": "https://en.wikipedia.org/wiki/Jonah#Jonah_in_Islam"
@@ -146,7 +146,7 @@
   {
     "TransliteratedName": "Lut",
     "EnglishName": "Lot",
-    "TranslationName": "Lut",
+    "TranslationName": "Lot",
     "ArabicName": "لُـوط",
     "Chronology": 7,
     "Link": "https://en.wikipedia.org/wiki/Lot_in_Islam"
@@ -154,7 +154,7 @@
   {
     "TransliteratedName": "Nuh",
     "EnglishName": "Noah",
-    "TranslationName": "Nuh",
+    "TranslationName": "Noah",
     "ArabicName": "نُـوح",
     "Chronology": 3,
     "Link": "https://en.wikipedia.org/wiki/Noah_in_Islam"
@@ -170,14 +170,14 @@
   {
     "TransliteratedName": "Musa",
     "EnglishName": "Moses",
-    "TranslationName": "Musa",
+    "TranslationName": "Moses",
     "ArabicName": "مُـوسَى",
     "Chronology": 14,
     "Link": "https://en.wikipedia.org/wiki/Moses_in_Islam"
   },
   {
     "TransliteratedName": "Saleh",
-    "EnglishName": "Salah",
+    "EnglishName": "Salih",
     "TranslationName": "Salih",
     "ArabicName": "صَـالِـح",
     "Chronology": 5,
@@ -186,7 +186,7 @@
   {
     "TransliteratedName": "Sulayman",
     "EnglishName": "Solomon",
-    "TranslationName": "Sulaiman",
+    "TranslationName": "Solomon",
     "ArabicName": "سُـلَـيـمَـان",
     "Chronology": 18,
     "Link": "https://en.wikipedia.org/wiki/Solomon_in_Islam"
@@ -194,7 +194,7 @@
   {
     "TransliteratedName": "Zakariya",
     "EnglishName": "Zechariah",
-    "TranslationName": "Zakariya",
+    "TranslationName": "Zechariah",
     "ArabicName": "زَكَـرِيَّـا",
     "Chronology": 22,
     "Link": "https://en.wikipedia.org/wiki/Zechariah_(priest)#In_Islam"
