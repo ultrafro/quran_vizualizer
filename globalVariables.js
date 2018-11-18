@@ -45,6 +45,8 @@ var blink_name_list = [];
 var line_list = [];
 
 
+var search_placeholder_string = "Search for a term in the English translation. Ex: Mercy, Jesus"
+
 number_of_ayas = 6236;
 
 //some settings:
