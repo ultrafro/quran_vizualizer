@@ -35,6 +35,7 @@ function setup_selected_blink(){
 function handle_selected_blink(){
 	//console.log('handle selected blink');
 	for(i=0; i<selected_idx_list.length; i++){
+		console.log('making selected blink: ' + selected_idx_list[i]);
 		//console.log('length of selected idx list: ' + selected_idx_list.length);
 		//console.log('transitioning: ' + i + '-' +  selected_idx_list[i]);
 		box_list[selected_idx_list[i]].transition()

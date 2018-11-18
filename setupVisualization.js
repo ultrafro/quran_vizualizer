@@ -249,19 +249,27 @@ function handleMouseDown(d,i){
 	        */
 			//this.setAttributeNS(null,'fill',select_color);
 		}
-		highlighted_list.push(id_num);	
+		//highlighted_list.push(id_num);	
 
 		//selected_list=[];
 		//turn off all those that are on the selected idx list:
 		//console.log("selected idx length: " + selected_idx_list.length);
 		for(var i = 0; i<selected_idx_list.length; i++){
-			if(highlighted_list.includes(selected_idx_list[i])){
+			if(search_idx_list.includes(selected_idx_list[i])){
 				box_list[selected_idx_list[i]].transition()
-					.attr('fill', highlight_color);				
+					.attr('fill', highlight_color);	
 			}else{
 				box_list[selected_idx_list[i]].transition()
-					.attr('fill', base_color);				
+					.attr('fill', base_color);	
 			}
+
+			// if(selected_idx_list.includes(selected_idx_list[i])){
+			// 	box_list[selected_idx_list[i]].transition()
+			// 		.attr('fill', highlight_color);				
+			// }else{
+			// 	box_list[selected_idx_list[i]].transition()
+			// 		.attr('fill', base_color);				
+			// }
 
 		}
 		selected_idx_list=[];
@@ -360,28 +368,18 @@ function handleMouseOut(d,i){
 		return;
 	}
 
-	if(search_idx_list.includes(id_num)){
+
+	if(selected_idx_list.includes(id_num)){
 		box_list[id_num].transition()
-				.attr('fill', highlight_color)
-		/*
-		d3.select(this).attr({
-          fill: highlight_color
-        });
-        */
+					.attr('fill', select_color);
 	}else{
-		if(selected_idx_list.includes(id_num)){
+		if(search_idx_list.includes(id_num)){
 			box_list[id_num].transition()
-					.attr('fill', select_color)
+							.attr('fill', highlight_color);
 		}else{
 			box_list[id_num].transition()
-					.attr('fill', base_color)			
+							.attr('fill', base_color);
 		}
-
-		/*
-		d3.select(this).attr({
-          fill: base_color
-        });
-        */
 	}
 
 

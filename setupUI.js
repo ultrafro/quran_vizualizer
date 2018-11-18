@@ -4,7 +4,7 @@ function setupUI(){
 	setupSearchBar();
 
 	//setup x button on permanent box div
-	document.getElementById("permanent_x_button").onclick=handleXOut;
+	//document.getElementById("permanent_x_button").onclick=handleXOut;
 
 	//setup the navigation bar on the right:
 	setupNavBar();
@@ -154,7 +154,7 @@ function clearSearch(){
 				.attr('fill', base_color);				
 		}
 	}
-	document.getElementById('search_text_bar').value = "Search for a term in the English translation"
+	document.getElementById('search_text_bar').placeholder = "Search for a term in the English translation"
 }
 
 //sets up the search bar above the Quran Sections
@@ -294,6 +294,18 @@ function handleXOut(){
 		//console.log('eliminating');
 		document.getElementById('permanentbox').classList.remove("permanentBoxClassVisible");
 		document.getElementById('permanentbox').classList.add("permanentBoxClassInvisible");
+
+		//reset things on selected idx list:
+		for(var i = 0; i<selected_idx_list.length; i++){
+			if(search_idx_list.includes(selected_idx_list[i])){
+				box_list[selected_idx_list[i]].transition()
+					.attr('fill', highlight_color);	
+			}else{
+				box_list[selected_idx_list[i]].transition()
+					.attr('fill', base_color);	
+			}
+		}
+		selected_idx_list = [];
 	}
 }
 
