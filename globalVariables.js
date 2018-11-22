@@ -52,7 +52,7 @@ number_of_ayas = 6236;
 //some settings:
 padding_x = 10;
 padding_y = 0.5;
-container_width = 0.4;
+container_width = 0.9;
 container_height = 0.80;
 box_width = container_width*(window.innerWidth/30 - padding_x);
 
@@ -79,6 +79,8 @@ disabled_color = '#63A881'
 bg_color = '#92794D'
 bg_color = '#DDBF8B'
 bg_color = '#FAEDDD' //light beige?
+bg_color = '#F4EEAF' //dina's light beige
+bg_color = 	'#F1ECCC' //dina's light beige 2
 
 sura_blink_color = 'rgb(200,150,150)'
 

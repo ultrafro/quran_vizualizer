@@ -17,10 +17,11 @@
 
 	background-color: #DDBF8B;
 	background-color: #63A881;
+	background-color: #527D4B; /*dina!*/ 
 
 	/*background: color url('images/islamic_pattern_transparent.png') others;*/
 	/*background-image: url("../images/islamic_pattern_transparent.png");*/
-	background-image: url("../images/ip_3mm.png");
+	background-image: url("../images/ip_3m.png");
 	/*background-image: url('images/islamic_pattern_transparent.png')*/
 
 	vertical-align:middle;
@@ -504,11 +505,12 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 .infoBoxClass{
 	border-radius: 6px;
 	position: fixed; 
-	width: 40%; 
+	width: 100%; 
 	top:0%;
 	left: 0%; 
 	z-index: 100; 
-	background: #63A881EF; 
+	/*background: #63A881EF;*/ 
+	background: #CCB38AEF;
 	padding:5px;
 	pointer-events: none
 }
@@ -524,7 +526,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 .arabic_text_p_class{
 	 color: #111; 
 	 font-family: 'Helvetica Neue', sans-serif; 
-	 font-size: 20px; 
+	 font-size: 40px; 
 	 font-weight: bold; 
 	 letter-spacing: -1px; 
 	 line-height: 1; 
@@ -536,7 +538,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	top: 0vh;
 		 color: #111; 
 	 font-family: 'Helvetica Neue', sans-serif; 
-	 font-size: 16px; 
+	 font-size: 32px; 
 	 font-weight: bold; 
 	 letter-spacing: -1px; 
 	 line-height: 1; 
@@ -547,10 +549,10 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	position: relative;
 	top: 0vh;
 	margin: auto;
-    width: 20%;
+    width: 100%;
 		 color: #111; 
 	 font-family: 'Helvetica Neue', sans-serif; 
-	 font-size: 16px; 
+	 font-size: 32px; 
 	 font-weight: bold; 
 	 letter-spacing: -1px; 
 	 line-height: 1; 

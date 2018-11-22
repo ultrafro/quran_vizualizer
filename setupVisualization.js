@@ -1,6 +1,13 @@
 function setupVisualization(){
+	console.log('setup visualization!!!!!!!!!!!!!!!!!!!!!!');
 	//Make an SVG Container
 	svgContainer = d3.select(document.getElementById("quran_container")).append("svg")
+
+		//do touch move test!
+	console.log('touch change!!!!');
+	d3.select("svg").on("touchstart", touchQuran);
+    d3.select("svg").on("touchmove", touchQuran);
+	console.log('finish touch change!!!!');
 	
 	window.addEventListener("resize",function(){
 		clearTimeout(resizeId);
@@ -8,6 +15,72 @@ function setupVisualization(){
 	});
 
 	redraw();
+	
+
+
+
+}
+
+function touchQuran(){
+	console.log('TOUCH QURAN!');
+	d3.event.preventDefault();
+    d3.event.stopPropagation();
+    d = d3.touches(this);
+
+    touch_x = d[0][0] + document.getElementById("quran_container").getBoundingClientRect().left;
+    touch_y = d[0][1] + document.getElementById("quran_container").getBoundingClientRect().top;
+
+    //find closest id num.
+    id_num = -1;
+    closest_dist = 1000000000;
+    for(var i = 0; i<box_list.length; i++){
+    	dist = Math.abs(box_list[i].node().getBoundingClientRect().left - touch_x) + Math.abs(box_list[i].node().getBoundingClientRect().top - touch_y);
+		//dist = Math.abs(box_list[i].node().offsetLeft - touch_x) + Math.abs(box_list[i].node().getBoundingClientRect().top - touch_y);
+
+    	if(dist<closest_dist){
+    		closest_dist = dist;
+    		id_num = i;
+    	}
+    	box_list[i].transition()
+				.attr('fill', base_color)
+    }
+
+    if(id_num != -1){
+    	   box_list[id_num].transition()
+				.attr('fill', hover_color)
+
+
+
+
+		document.getElementById('infobox').classList.remove("infoBoxClassInvisible");
+		document.getElementById('infobox').classList.add("infoBoxClassVisible");
+		document.getElementById('arabic_text_p').innerHTML= quran_json_string[id_num].arabic;
+		document.getElementById('english_text_p').innerHTML = quran_json_string[id_num].english;
+		document.getElementById('juz_text_p').innerHTML ="juz: " + quran_json_string[id_num].juz_number;
+		document.getElementById('sura_text_p').innerHTML ="surah: " + quran_json_string[id_num].chapter;
+		document.getElementById('aya_text_p').innerHTML ="aya: " + quran_json_string[id_num].verse;
+
+		/*
+		//put id box in right spot
+		var newX = box_list[id_num].node().getBoundingClientRect().left;
+		var newY = box_list[id_num].node().getBoundingClientRect().top - 500;
+
+		newX = Math.min( (window.innerWidth - 200), newX);
+		
+
+		document.getElementById('infobox').style.left = newX;
+		document.getElementById('infobox').style.top = newY;	
+		*/
+
+		//add a leader line?*
+		for(var i = 0; i<line_list.length; i++){
+			line_list[i].remove();
+		}
+		line_list = [];
+		var myLine = new LeaderLine( document.getElementById('infobox'), box_list[id_num].node());		
+		line_list.push(myLine);
+    }
+
 }
 
 function addBox(text, width, start_x, start_y, id_num){
@@ -20,9 +93,10 @@ function addBox(text, width, start_x, start_y, id_num){
 			                            .attr("fill",base_color)
 			                            .attr("visibility","hidden")
 			                            .attr("state","default")
-			                            .on("mouseover", handleMouseOver)
-  										.on("mouseout", handleMouseOut)
-  										.on("click",handleMouseDown);
+			                            //.on("mouseover", handleMouseOver)
+  										//.on("mouseout", handleMouseOut)
+  										//.on("click",handleMouseDown)
+  										//.on("touchmove",handleMouseOver);
 
 
 	// var box = svgContainer.append("rect")
