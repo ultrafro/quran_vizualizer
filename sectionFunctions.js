@@ -58,6 +58,7 @@ function setupSectionScroll(){
 	window.addEventListener('scroll',function(e) {
 		//var pos = window.pageYOffset+10;
 		var pos = window.pageYOffset;
+		console.log(pos);
 
 		//find first element > pos, select oen right before it:
 		greaterSection = -1;
@@ -78,6 +79,14 @@ function setupSectionScroll(){
 		sectionIndex = Math.min(sectionPositions.length - 1, sectionIndex);
 
 		if (currentIndex !== sectionIndex) {
+			console.log('change in scroll, going from: ' + currentIndex + ' to: ' + sectionIndex );
+
+			if(currentIndex == 8){
+				//exiting about section:
+				exitAbout();
+			}
+
+
 			//dispatch.active(sectionIndex);
 			console.log('setting current index to: ' + sectionIndex);
 			clearInterval(interval);
@@ -91,7 +100,7 @@ function setupSectionScroll(){
 		    if(true){	
 			    activateFunctions[sectionIndex]();
 			    interval = setInterval(function(){
-			    	console.log('interval function');
+			    	//console.log('interval function');
 			    	activateFunctions[sectionIndex]()
 			    },1600);
 			    freeformCleared = 0;
@@ -124,14 +133,14 @@ function freeform(){
 
 
 function about(){
-	console.log('about');
+	//console.log('about');
 	if(!freeformCleared){
 		for(i=0; i<box_list.length; i++){
 			box_list[i].transition()
 						.duration(800)
 						.attr('fill', base_color)
 		}
-		console.log('freeform cleaned');
+		//console.log('freeform cleaned');
 		freeformCleared = 1;
 
 		fillActiveList();							
@@ -173,8 +182,21 @@ function about(){
 
 }
 
+
+function exitAbout(){
+	console.log('*************exit about!!!');
+
+	var marquee = document.getElementById('marquee').querySelector('.aya');
+
+	var surah = parseInt(marquee.getAttribute("surah"));
+	var aya = parseInt(marquee.getAttribute("aya"));
+
+	dehighlightAya(document.getElementById('marquee'),surah, aya);
+	//dehighlightAya(document.getElementById('marquee'),surah, aya);
+}
+
 function alaq(){
-	console.log('alaq called');
+	//console.log('alaq called');
 	clearActiveList();
 	//surah 96
 	for(i=0; i<box_list.length; i++){
@@ -243,7 +265,7 @@ function surah(){
 
 //todo: handle case where term ends with a period.
 function jesus(){
-	console.log('calling jesus');
+	//console.log('calling jesus');
 
 	clearActiveList();
 	for(i = 0; i<box_list.length; i++){
@@ -293,7 +315,7 @@ function jesus(){
 
 
 function fatiha(){
-	console.log('fatiha called');
+	//console.log('fatiha called');
 	clearActiveList();
 	//surah 96
 	for(i=0; i<box_list.length; i++){
@@ -326,7 +348,7 @@ function fatiha(){
 
 
 function explore(){
-	console.log('handle explore');
+	//console.log('handle explore');
 	//fillActiveList();
 	clearActiveList();
 	for(i=0; i<box_list.length; i++){
@@ -358,7 +380,7 @@ function explore(){
 }
 
 function prophets(){
-	console.log('handle prophets');
+	//console.log('handle prophets');
 	//fillActiveList();
 	clearActiveList();
 	for(i=0; i<box_list.length; i++){
@@ -392,7 +414,7 @@ function prophets(){
 function names(){
 	//fillActiveList();
 	//clearActiveList();
-	console.log('clearing for names!');
+	//console.log('clearing for names!');
 	for(i=0; i<box_list.length; i++){
 		if(blink_name_list.includes(i)){
 			box_list[i].transition()
