@@ -23,7 +23,15 @@
     </head>
     <body>
 
-    	<div id="infobox" class="infoBoxClass infoBoxClassInvisible" >
+    	<div id="infobox" class="infoBoxClass infoBoxClassInvisible" style="width: 100%; z-index: 100" >
+
+
+    		<div style="position: aboslute; top: 0; left: 0; width: 50%; margin: 0 auto; pointer-events: auto">
+	    		<div class="pagerButton previous round textUnselectable" style=" font-size: 40px;" onclick="previous()">&#8249;</div>
+	    		<div class="pagerButton previous round textUnselectable" style=" font-size: 40px;" onclick="untouch()">X</div>
+				<div href="#" class="pagerButton previous round textUnselectable" style=" font-size: 40px;" onclick="next()">&#8250;</div>
+			</div>
+
     		<p>
 			<div id="arabic_text_p" class="arabic_text_p_class"> Aya Text </div>
 			<p>
@@ -36,6 +44,7 @@
 <!-- 				<div  style="float: left;"> &emsp; </div> -->
 				<div id="juz_text_p" style="float: left; width: 30%"> Juz Number </div>
 			</div>
+
 		</div>
 
 		<div id="permanentbox" class="permanentBoxClass permanentBoxClassInvisible">
@@ -69,9 +78,10 @@
 		</div>
 
 		<div id="logo" class="logoClass">
-			<a href="#IntroductionAnchor">
-				<img src="logo.png" height="10%" >
-			</a>
+			<img src="logo.png" height="10%" >
+			<!-- <a href="#IntroductionAnchor">
+
+			</a> -->
 <!-- 			logo pattern from: http://daruliftaamw.com/alhambracoloringadults_th/ -->
 		</div>
 

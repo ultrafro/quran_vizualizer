@@ -1,12 +1,13 @@
 function setupVisualization(){
-	console.log('setup visualization!!!!!!!!!!!!!!!!!!!!!!');
+	//console.log('setup visualization!!!!!!!!!!!!!!!!!!!!!!');
 	//Make an SVG Container
 	svgContainer = d3.select(document.getElementById("quran_container")).append("svg")
 
 		//do touch move test!
 	console.log('touch change!!!!');
-	d3.select("svg").on("touchstart", touchQuran);
-    d3.select("svg").on("touchmove", touchQuran);
+	d3.select("svg").on("touchstart", touchQuranMobile);
+    d3.select("svg").on("touchmove", touchQuranMobile);
+    d3.select("svg").on("mousemove", touchQuranDesktop);
 	console.log('finish touch change!!!!');
 	
 	window.addEventListener("resize",function(){
@@ -21,14 +22,23 @@ function setupVisualization(){
 
 }
 
-function touchQuran(){
-	console.log('TOUCH QURAN!');
+function touchQuranDesktop(){
+	//console.log('touch quran desktop!');
+	touchQuran(d3.mouse(this)[0], d3.mouse(this)[1]);
+}
+
+function touchQuranMobile(){
 	d3.event.preventDefault();
     d3.event.stopPropagation();
     d = d3.touches(this);
+    touchQuran(d[0][0], d[0][1]);
+}
 
-    touch_x = d[0][0] + document.getElementById("quran_container").getBoundingClientRect().left;
-    touch_y = d[0][1] + document.getElementById("quran_container").getBoundingClientRect().top;
+function touchQuran(cursor_x, cursor_y){
+	
+
+    touch_x = cursor_x + document.getElementById("quran_container").getBoundingClientRect().left;
+    touch_y = cursor_y + document.getElementById("quran_container").getBoundingClientRect().top;
 
     //find closest id num.
     id_num = -1;
@@ -81,6 +91,16 @@ function touchQuran(){
 		line_list.push(myLine);
     }
 
+}
+
+function untouch(){
+	for(var i = 0; i<line_list.length; i++){
+		line_list[i].remove();
+	}
+	line_list = [];
+
+	document.getElementById('infobox').classList.remove("infoBoxClassVisible");
+	document.getElementById('infobox').classList.add("infoBoxClassInvisible");
 }
 
 function addBox(text, width, start_x, start_y, id_num){
