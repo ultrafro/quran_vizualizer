@@ -84,3 +84,6 @@ bg_color = 	'#F1ECCC' //dina's light beige 2
 
 sura_blink_color = 'rgb(200,150,150)'
 
+burger_open = 0;
+
+current_swipe_section = 0;

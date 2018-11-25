@@ -22,8 +22,83 @@ function setupVisualization(){
 
 }
 
+function burger(){
+	if(document.getElementById("burger").classList.contains("burgerOpen")){
+		console.log('closing burger!');
+		document.getElementById("burger").classList.remove("burgerOpen");
+		document.getElementById("burger").classList.add("burgerClosed");
+		burger_open = 0;
+
+		document.getElementById("content").style.zIndex=-1;
+		var step_list = document.getElementsByClassName("step");
+		for(var i = 0; i<step_list.length; i++){
+			step_list[i].style.display="none";
+			step_list[i].style.zIndex=0;
+		}
+
+
+	}else{
+		console.log('opening burger');
+		document.getElementById("burger").classList.remove("burgerClosed");
+		document.getElementById("burger").classList.add("burgerOpen");
+				document.getElementById("content").style.zIndex=0;
+		burger_open = 1;
+
+		var step_list = document.getElementsByClassName("step");
+		for(var i = 0; i<step_list.length; i++){
+			if(i==current_swipe_section){
+				step_list[i].style.display="block";	
+				step_list[i].style.zIndex=100;				
+			}
+		}
+	}
+}
+
+function swipe_right(){
+	if(!burger_open){
+		return;
+	}
+
+	var step_list = document.getElementsByClassName("step");
+	current_swipe_section = current_swipe_section + 1;
+	if(current_swipe_section > step_list.length-1){
+		current_swipe_section = step_list.length-1;
+	}
+	for(var i = 0; i<step_list.length; i++){
+		if(i==current_swipe_section){
+			step_list[i].style.display="block";
+			step_list[i].style.zIndex=100;
+		}else{
+			step_list[i].style.display="none";
+			step_list[i].style.zIndex=0;
+		}
+	}
+}
+
+function swipe_left(){
+	if(!burger_open){
+		return;
+	}
+
+	var step_list = document.getElementsByClassName("step");
+
+	current_swipe_section = current_swipe_section -1;
+	if(current_swipe_section < 0){
+		current_swipe_section = 0;
+	}
+	for(var i = 0; i<step_list.length; i++){
+		if(i==current_swipe_section){
+			step_list[i].style.display="block";
+			step_list[i].style.zIndex=100;
+		}else{
+			step_list[i].style.display="none";
+			step_list[i].style.zIndex=0;
+		}
+	}
+}
+
 function touchQuranDesktop(){
-	//console.log('touch quran desktop!');
+	console.log('touch quran desktop!');
 	touchQuran(d3.mouse(this)[0], d3.mouse(this)[1]);
 }
 
@@ -35,10 +110,14 @@ function touchQuranMobile(){
 }
 
 function touchQuran(cursor_x, cursor_y){
+	console.log('touchquran');
+	if(burger_open){
+		return;
+	}
 	console.log('Touch Quran!');
 	document.getElementById('infobox-nav').style.display = "block";
 	console.log('set nav style to: ' + document.getElementById('infobox-nav').style.display);
-	
+
     touch_x = cursor_x + document.getElementById("quran_container").getBoundingClientRect().left;
     touch_y = cursor_y + document.getElementById("quran_container").getBoundingClientRect().top;
 

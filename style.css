@@ -7,6 +7,22 @@
 }
 
 
+.burgerClass img{
+	/*background-color: #727D4B;*/
+	background-color: #527D4B;
+	border-radius: 12px;
+}
+.burgerClass img:hover{
+	background-color: #727D4B;
+	border-radius: 12px;
+}
+.burgerOpen{
+
+}
+.burgerClosed{
+
+}
+
 
 .btn-group button {
     background-color: #527D4B; /* Green background */
@@ -503,6 +519,12 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
   font-style: normal;
   color:#111111FF; /*black*/
   color: #0d2b1a; /*darkgreen*/
+  position: absolute;
+  left: 0%;
+  top: 10%;
+  display: none;
+  background-color:#63A881EF;
+  z-index: 0;
 }
 
 
