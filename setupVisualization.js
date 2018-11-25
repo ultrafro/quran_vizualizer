@@ -35,8 +35,10 @@ function touchQuranMobile(){
 }
 
 function touchQuran(cursor_x, cursor_y){
+	console.log('Touch Quran!');
+	document.getElementById('infobox-nav').style.display = "block";
+	console.log('set nav style to: ' + document.getElementById('infobox-nav').style.display);
 	
-
     touch_x = cursor_x + document.getElementById("quran_container").getBoundingClientRect().left;
     touch_y = cursor_y + document.getElementById("quran_container").getBoundingClientRect().top;
 
@@ -101,6 +103,7 @@ function untouch(){
 
 	document.getElementById('infobox').classList.remove("infoBoxClassVisible");
 	document.getElementById('infobox').classList.add("infoBoxClassInvisible");
+	document.getElementById('infobox-nav').style.display = "none";
 }
 
 function addBox(text, width, start_x, start_y, id_num){

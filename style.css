@@ -6,6 +6,39 @@
   z-index: 90;
 }
 
+
+
+.btn-group button {
+    background-color: #527D4B; /* Green background */
+    border: 1px solid #627D4B; /* Green border */
+    border-radius: 12px;
+    color: white; /* White text */
+    padding: 0px 0px; /* Some padding */
+   /* padding: 1% 2%;&/ /* Some padding */
+    margin-right: 1.67%; 
+    margin-left: 1.66%;
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+}
+
+.btn-group button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+    background-color: #727D4B;
+}
+
+
+
 .logoClass{
 	border-radius: 6px;
 	position: fixed; 
