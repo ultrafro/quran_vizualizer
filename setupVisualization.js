@@ -36,6 +36,9 @@ function burger(){
 			step_list[i].style.zIndex=0;
 		}
 
+		document.getElementById("swipeLeft").style.display="none";
+		document.getElementById("swipeRight").style.display="none";
+
 
 	}else{
 		console.log('opening burger');
@@ -51,6 +54,9 @@ function burger(){
 				step_list[i].style.zIndex=100;				
 			}
 		}
+
+		document.getElementById("swipeLeft").style.display="block";
+		document.getElementById("swipeRight").style.display="block";
 	}
 }
 
