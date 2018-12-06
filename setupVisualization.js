@@ -79,6 +79,8 @@ function swipe_right(){
 			step_list[i].style.zIndex=0;
 		}
 	}
+
+	window.location.href = "#IntroductionAnchor";
 }
 
 function swipe_left(){
@@ -101,6 +103,8 @@ function swipe_left(){
 			step_list[i].style.zIndex=0;
 		}
 	}
+
+	window.location.href = "#IntroductionAnchor";
 }
 
 function touchQuranDesktop(){

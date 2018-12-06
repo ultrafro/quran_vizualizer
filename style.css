@@ -150,7 +150,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
     padding: 10px 10px;
     color: #7c795d;
     background-color:#4CAF50;
-    background-color:#DDDDDE;
+    background-color:#DDDDDEA4;
     margin-right: 10px;
     margin-bottom: 10px; 
     /*border: 1px solid #999999;*/
@@ -161,9 +161,9 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 }
 .exploreOffColor{
 	background-color:#ADD8E6; 
-	background-color:#DDEEDD;
+	background-color:#DDEEDDA4;
 	border-color:#ADD8FF;
-	border-color:#DDDDDD;
+	border-color:#DDDDDDA4;
 }
 .exploreEnglish{
 	 position: relative;
@@ -190,7 +190,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	 text-align: center;
 }
 .exploreSelected{
-	background-color:#CCCCCC;
+	background-color:#CCCCCCA4;
 }
 
 
@@ -211,7 +211,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
     padding: 10px 10px;
     color: #7c795d;
     background-color:#4CAF50;
-    background-color:#DDDDDE;
+    background-color:#DDDDDEA4;
     margin-right: 10px;
     margin-bottom: 10px; 
     /*border: 1px solid #999999;*/
@@ -223,22 +223,22 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 
 
 .prophetColumn:hover{
-   background-color:#EEEEEE;
+   background-color:#EEEEEEA4;
 }
 
 .prophetSelected.prophetColumn:hover{
-	background-color:#BBBBBB;
+	background-color:#BBBBBBA4;
 }
 
 .prophetOffColor{
 	background-color:#ADD8E6; 
-	background-color:#DDEEDD;
+	background-color:#DDEEDDA4;
 	border-color:#ADD8FF;
-	border-color:#DDDDDD;
+	border-color:#DDDDDDA4;
 }
 
 .prophetSelected{
-	background-color:#CCCCCC;
+	background-color:#CCCCCCA4;
 }
 
 /* Clear floats after the columns */
@@ -299,7 +299,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
     padding: 10px 10px;
     color: #7c795d;
     background-color:#4CAF50; 
-    background-color:#DDDDDE;
+    background-color:#DDDDDEA4;
     margin-right: 10px;
     margin-bottom: 10px; 
     /*border: 1px solid #999999;*/
@@ -312,24 +312,24 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 
 .names99Column:hover{
    background-color:#EEEEEE;
-   background-color:#EEEEEE;
+   background-color:#EEEEEEA4;
 }
 
 .names99Selected.names99Column:hover{
 	background-color:#EE99EE;
-	background-color:#BBBBBB;
+	background-color:#BBBBBBA4;
 }
 
 .names99OffColor{
 	background-color:#ADD8E6; 
-	background-color:#DDEEDD;
+	background-color:#DDEEDDA4;
 	border-color:#ADD8FF;
-	border-color:#DDDDDD;
+	border-color:#DDDDDDA4;
 }
 
 .names99Selected{
 	background-color:#ff99ff;
-	background-color:#CCCCCC;
+	background-color:#CCCCCCA4;
 }
 
 /* Clear floats after the columns */
@@ -497,6 +497,10 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	border-style: solid;
 	border-color: #63A881EF;
 	border-radius: 4px;
+	width: 60%;
+	position: relative;
+	left: 20%;
+	background-color:#F1ECCC;
 	/*border-color: green;
 	border-color: #63A881EF;*/
 }
@@ -514,17 +518,23 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 }
 
 .step {
-  margin-bottom: 100%;
+  /*margin-bottom: 100%;*/
   font-family: Verdana;
   font-style: normal;
+  font-size: 20px;
   color:#111111FF; /*black*/
   color: #0d2b1a; /*darkgreen*/
   position: absolute;
   left: 0%;
   top: 10%;
   display: none;
-  background-color:#63A881EF;
+  /*background-color:#F1ECCC;*/
   z-index: 0;
+  padding-bottom: 140%;
+}
+
+.textBlock{
+	background-color:#F1ECCC;
 }
 
 
