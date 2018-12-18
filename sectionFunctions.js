@@ -54,7 +54,10 @@ function handle_selected_blink(){
 	}
 }
 
+
+
 function setupSectionScroll(){
+	return;
 	window.addEventListener('scroll',function(e) {
 		//var pos = window.pageYOffset+10;
 		var pos = window.pageYOffset;

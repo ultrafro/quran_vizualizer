@@ -99,16 +99,16 @@
 		</div>
 
 		<div id="burger" class="burgerClass burgerClosed" onclick="burger()">
-			<img src="images/burger.png" height="10%" style="position: absolute; top: 0%; right: 0%; z-index: 99">
+			<img src="images/burger.png" height="10%" style="position: fixed; top: 0%; right: 0%; z-index: 200">
 		</div>
 
-		<div id="swipeRight" style="display: none; position: fixed; left:0%; top:50%; z-index: 105; font-size: 15px; " class="pagerButton previous round textUnselectable" onclick="swipe_left()">&#8249;</div>
-		<div id="swipeLeft" style="display: none; position: fixed; right:0%; top:50%; z-index: 105; font-size: 15px; " class="pagerButton previous round textUnselectable" onclick="swipe_right()">&#8250;</div>
+		<div id="swipeRight" style="display: none; position: fixed; left:0%; bottom:0%; width: 50%; z-index: 105; font-size: 5vh; text-align: center; border: 1px solid #FFFFFF; " class="pagerButton previous textUnselectable" onclick="swipe_left()">&#8249;</div>
+		<div id="swipeLeft" style="display: none; position: fixed; right:0%; bottom:0%; width: 50%; z-index: 105; font-size: 5vh; text-align: center; border: 1px solid #FFFFFF;" class="pagerButton previous textUnselectable" onclick="swipe_right()">&#8250;</div>
 
 <!--     <div class="row"> -->
     	<div class="column" style="position: fixed; top: 10.5%">
-    		<div class="topnav" align="center" style="position: relative; left: 20%">
-				<input id="search_text_bar" type="search" onsearch="clearSearchIfEmpty(this)" size="60" placeholder="Search for a term in the English translation"> 
+    		<div class="topnav" align="center" style="position: relative; left: 0%">
+				<input id="search_text_bar" type="search" onsearch="clearSearchIfEmpty(this)" size="45" placeholder="Search for a term in the English translation"> 
 				<button id="search_button" > Search! </button>
 				<button id="clear_search_button" > Clear Search </button>
 				<div class="pagerButton previous round textUnselectable" onclick="previous()">&#8249;</div>
@@ -148,7 +148,7 @@
 		      The Quran is the holy book ascribed to by over 1.5 billion Muslims across the world. Muslims worship the same God as Jews and Christians, and they believe the Quran to be the direct word of God transmitted through the final prophet Muhammad (Peace Be Upon Him). On the left, you can see a searchable/dynamic representation of the Quran and the Sahih International English Translation. You can mouse-over each Aya (verses to the left) to highilght it and see what it says.
 
 		      <p>
-		      <img src="images/love_quran.jpg" width=100%>
+		      <img src="images/love_quran.jpg" width=100% class="ImageBorder">
 		    </section>
 
 
@@ -159,7 +159,7 @@
 		    	Muhammad did not know how to read or write, nor did he have knowledge of previous scriptures. He lived in Mecca in the Arabian peninsula at a time of idolatry, social corruption, and injustice. Muslims believe that the angel Gabriel visited Muhammad while he was meditating in the cave of Hira. 
 
 		    	<p>
-		    	<img src="images/hira_map.PNG" width=100%>
+		    	<img src="images/hira_map.PNG" width=100%  class="ImageBorder">
 		    	<p>
 
 		    	<p class="textBlock">
@@ -300,7 +300,7 @@
 		    	Since the Quran is assumed to be from the same source as the Gospel and the Torah, it is no surprise that there is mention of the same stories and people. The written Quran was compiled very quickly after Muhammad's death, within the lifeteimes of those who had memorized it. Manuscripts have been discovered and radio-carbon dated to the time of the Prophet. 
 
 		    	<p>
-		    	<img src="images/Birmingham_Quran_manuscript.jpg" width=100%>
+		    	<img src="images/Birmingham_Quran_manuscript.jpg" width=100% class="ImageBorder">
 
 		    	<p class="textBlock">
 		    	In Islam, Muhammad, Jesus, Moses, and all the prophets are considered non-divine humans who deliver the message of God to the believers. Muslims believe in the virgin-birth of Jesus, but the Quran is clear that he was not divine and was not the son of God. That doesn't stop Jesus from playing a central role in Islam. Jesus is mentioned by name 25 times in the Quran, while Muhammad is mentioned only 4 times by name.

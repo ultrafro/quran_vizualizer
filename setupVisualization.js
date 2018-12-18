@@ -39,7 +39,7 @@ function burger(){
 		document.getElementById("swipeLeft").style.display="none";
 		document.getElementById("swipeRight").style.display="none";
 
-
+		document.getElementById("navbar").style.display="none";
 	}else{
 		console.log('opening burger');
 		document.getElementById("burger").classList.remove("burgerClosed");
@@ -57,6 +57,8 @@ function burger(){
 
 		document.getElementById("swipeLeft").style.display="block";
 		document.getElementById("swipeRight").style.display="block";
+
+		document.getElementById("navbar").style.display="block";
 	}
 }
 
@@ -81,6 +83,7 @@ function swipe_right(){
 	}
 
 	window.location.href = "#IntroductionAnchor";
+	nextSection();
 }
 
 function swipe_left(){
@@ -105,7 +108,88 @@ function swipe_left(){
 	}
 
 	window.location.href = "#IntroductionAnchor";
+
+	previousSection();
 }
+
+
+
+function nextSection(){
+	var last_index = currentIndex;
+	if(currentIndex<0){
+		currentIndex = 0;
+	}else{
+		if(currentIndex<(activateFunctions.length-1)){
+			currentIndex = currentIndex + 1;
+		}else{
+			//grey out next button.
+		}		
+	}
+
+	if(last_index==8){
+		exitAbout();
+	}
+
+	console.log('setting current index to: ' + currentIndex);
+	clearInterval(interval);
+	//currentIndex = sectionIndex;
+	console.log('starting interval: ' + currentIndex);
+
+	//highlight correct nav bar item:
+	highlightNavBar(sectionNames[currentIndex]);
+
+	if(true){	
+		activateFunctions[currentIndex]();
+		interval = setInterval(function(){
+		//console.log('interval function');
+			activateFunctions[currentIndex]()
+		},1600);
+		freeformCleared = 0;
+	}else{
+		activateFunctions[currentIndex]();
+	}
+
+
+}
+
+function previousSection(){
+		var last_index = currentIndex;
+	if(currentIndex<0){
+		//grey out previous button.
+		//current_index = 0;
+	}else{
+		if(currentIndex>0){
+			currentIndex = currentIndex -1;
+		}else{
+			//grey out previous button.
+		}		
+	}
+
+	if(last_index==8){
+		exitAbout();
+	}
+
+	console.log('setting current index to: ' + currentIndex);
+	clearInterval(interval);
+	//currentIndex = sectionIndex;
+	console.log('starting interval: ' + currentIndex);
+
+	//highlight correct nav bar item:
+	highlightNavBar(sectionNames[currentIndex]);
+
+	if(true){	
+		activateFunctions[currentIndex]();
+		interval = setInterval(function(){
+		//console.log('interval function');
+			activateFunctions[currentIndex]()
+		},1600);
+		freeformCleared = 0;
+	}else{
+		activateFunctions[currentIndex]();
+	}
+}
+
+
 
 function touchQuranDesktop(){
 	console.log('touch quran desktop!');

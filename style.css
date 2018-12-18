@@ -1,8 +1,7 @@
 
 #sections {
-  position: relative;
   display: inline-block;
-  width: 35%;
+  width: 100%;
   z-index: 90;
 }
 
@@ -22,6 +21,8 @@
 .burgerClosed{
 
 }
+
+
 
 
 .btn-group button {
@@ -61,7 +62,7 @@
 	width: 100%;
 	left:0%; 
 	top:0%; 
-	z-index: 80;  
+	z-index: 200;  
 	padding:0px;
 
 	background-color: #DDBF8B;
@@ -87,9 +88,11 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 
 .navbarClass{
 	position: fixed; 
-	width: 10%; 
-	left: 88%; 
-	top: 12%
+	width: 100%; 
+	left: 0%; 
+	top: 10%;
+	z-index: 200;
+	display: none;
 }
 
 .pagerButton{
@@ -501,6 +504,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	position: relative;
 	left: 20%;
 	background-color:#F1ECCC;
+	background-color:#A0ECCC;
 	/*border-color: green;
 	border-color: #63A881EF;*/
 }
@@ -526,15 +530,19 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
   color: #0d2b1a; /*darkgreen*/
   position: absolute;
   left: 0%;
-  top: 10%;
+  top: 15%;
   display: none;
   /*background-color:#F1ECCC;*/
   z-index: 0;
-  padding-bottom: 140%;
+  padding-bottom: 20%;
 }
 
 .textBlock{
 	background-color:#F1ECCC;
+	background-color:#A0ECCC;
+	border-radius: 2vh;
+	padding: 1%;
+	font-size: 3vh;
 }
 
 
@@ -547,15 +555,18 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 }
 
 .vertical-menu {
-    width: 200px; /* Set a width if you like */
+    width: 95%; /* Set a width if you like */
 }
 
 .vertical-menu a {
+	font-size: 1.5vh;
     background-color: #eee; /* Grey background color */
     color: black; /* Black text color */
-    display: block; /* Make the links appear below each other */
-    padding: 12px; /* Add some padding */
+    /* display: table; */ /* Make the links appear side by side?*/
+    border: 1px solid green; /* Green border */
+    padding: 1% 1%; /* Add some padding */
     text-decoration: none; /* Remove underline from links */
+    float: left;
 }
 
 .vertical-menu a:hover {
