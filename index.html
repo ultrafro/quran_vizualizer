@@ -25,7 +25,7 @@
 
 
 
-		<div id="infobox-nav" class="btn-group" style="display:none; position: absolute; bottom: 0; left: 0; width:100%; pointer-events: auto">
+		<div id="infobox-nav" class="btn-group" style="display:none; position: absolute; bottom: 0; left: 0; width:100%; pointer-events: auto;">
 		  <button style="width: 30%; font-size: 40px" onclick="previous()">&#8249;</button>
 		  <div style="width: 0%">  </div>
 		  <button style="width: 30%;  font-size: 40px"  onclick="untouch()">X</button>
@@ -33,7 +33,7 @@
 		  <button style="width: 30%;  font-size: 40px" onclick="next()">&#8250;</button>
 		</div>
 
-    	<div id="infobox" class="infoBoxClass infoBoxClassInvisible" style="width: 100%; z-index: 100" >
+    	<div id="infobox" class="infoBoxClass infoBoxClassInvisible" style="width: 100%; z-index: 400" >
 
 
 
@@ -108,7 +108,7 @@
 <!--     <div class="row"> -->
     	<div class="column" style="position: fixed; top: 10.5%">
     		<div class="topnav" align="center" style="position: relative; left: 0%">
-				<input id="search_text_bar" type="search" onsearch="clearSearchIfEmpty(this)" size="45" placeholder="Search for a term in the English translation"> 
+				<input id="search_text_bar" type="search" onsearch="clearSearchIfEmpty(this)" size="25" placeholder="Search for a term in the English translation"> 
 				<button id="search_button" > Search! </button>
 				<button id="clear_search_button" > Clear Search </button>
 				<div class="pagerButton previous round textUnselectable" onclick="previous()">&#8249;</div>
@@ -329,6 +329,10 @@
 		    	Muslims believe that God has 99 names or attributes. These attributes are names that God refers to throughout the Quran. When Muslims pray and ask for grace from God, they often utilize the sepcialization of these names.
 
 				<p>
+				<div id="names99Table">
+		    	</div>
+
+		    	<p>
 		    	<div class="box" chapter=59 verse=24 style="cursor: pointer;">
 			    	<div class="aya" surah=59 aya=24></div>
 					<p>
@@ -336,10 +340,6 @@
 					He is Allah, the Creator, the Inventor, the Fashioner; to Him belong the best names. Whatever is in the heavens and earth is exalting Him. And He is the Exalted in Might, the Wise.
 					</div>
 				</div>
-
-				<p>
-				<div id="names99Table">
-		    	</div>
 		    </section>
 
 			<span class="anchor" id="ExploreAnchor"></span>
@@ -359,6 +359,8 @@
 		    <span class="anchor" id="AboutAnchor"></span>
 		    <section class="step" id="About">
 
+
+
 		    	<p class="textBlock">
 		    	This is an open source project with the intention of making the Quran more approachable to those who are more visually minded. You can contribute on this <a href="https://github.com/ultrafro/quran_vizualizer"> github</a>. We can be contacted at [contact.quranlens (at) gmail.com].
 
@@ -368,18 +370,22 @@
 		    	<p class="textBlock">
 		    	A number of free icons were used in this webpage, their licenses are shown below.
 
-		    	<p class="textBlock">
-		    	<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-		    	<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 
-		    	<p>
+		    	Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
 
-		    	<div class="box" id="marquee" chapter=1 verse=1 style="cursor: pointer;">
+
+		    	Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+		   		</p>
+
+		   		<div class="box" id="marquee" chapter=1 verse=1 style="cursor: pointer;">
 			    	<div class="aya" surah=1 aya=1></div>
 			    	<div class="ayaEnglish"> 
 			    	In the name of Allah, the Entirely Merciful, the Especially Merciful.
 			    	</div>
 			    </div>
+
+
+
 		    </section>
 
     	</div>

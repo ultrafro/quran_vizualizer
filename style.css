@@ -201,7 +201,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 
 
 .prophetTableClass{
-	width: 90%; /*this will center it isA*/
+	width: 100%; /*this will center it isA*/
   	margin: 0 auto;
 
 }
@@ -209,7 +209,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 .prophetColumn {
 	border-radius: 5px;
     float: left;
-    width: 15%;
+    width: 13%;
     min-height: 13vh;
     padding: 10px 10px;
     color: #7c795d;
@@ -297,7 +297,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 .names99Column {
     float: left;
     border-radius: 5px;
-    width: 5%;
+    width: 4%;
     min-height: 6vh;
     padding: 10px 10px;
     color: #7c795d;
@@ -386,7 +386,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	/*height: 20%;*/
 	top:0%;
 	left: 40%; 
-	z-index: 98; 
+	z-index: 200; 
 	background:#63A881EF; 
 	padding:5px;
 }

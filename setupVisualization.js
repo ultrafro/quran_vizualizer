@@ -63,6 +63,8 @@ function burger(){
 }
 
 function swipe_right(){
+	console.log('swipe right');
+	console.log('current swipe sectoin is: ' + current_swipe_section);
 	if(!burger_open){
 		return;
 	}
@@ -82,8 +84,11 @@ function swipe_right(){
 		}
 	}
 
+	console.log('set current swipe section to: ' + current_swipe_section);
+
 	window.location.href = "#IntroductionAnchor";
-	nextSection();
+	loadSection(current_swipe_section);
+	//nextSection();
 }
 
 function swipe_left(){
@@ -109,7 +114,31 @@ function swipe_left(){
 
 	window.location.href = "#IntroductionAnchor";
 
-	previousSection();
+	loadSection(current_swipe_section);
+	//previousSection();
+}
+
+function loadSection(sectionNumber){
+	last_index = currentIndex;
+	currentIndex = sectionNumber;
+	if(last_index==8){
+		exitAbout();
+	}
+	console.log('setting current index to: ' + currentIndex);
+	clearInterval(interval);
+	console.log('starting interval: ' + currentIndex);
+	highlightNavBar(sectionNames[currentIndex]);
+
+	if(true){	
+		activateFunctions[currentIndex]();
+		interval = setInterval(function(){
+		//console.log('interval function');
+			activateFunctions[currentIndex]()
+		},1600);
+		freeformCleared = 0;
+	}else{
+		activateFunctions[currentIndex]();
+	}
 }
 
 
