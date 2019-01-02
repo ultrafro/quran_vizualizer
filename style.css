@@ -59,7 +59,8 @@
 .logoClass{
 	border-radius: 6px;
 	position: fixed; 
-	width: 100%;
+	width: 100vw;
+	height: 10vh;
 	left:0%; 
 	top:0%; 
 	z-index: 200;  
@@ -90,7 +91,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	position: fixed; 
 	width: 100%; 
 	left: 0%; 
-	top: 10%;
+	top: 10vh;
 	z-index: 200;
 	display: none;
 }
@@ -470,9 +471,10 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 .aya{
 	color: #7c795d; 
 	font-family: 'Trocchi', serif; 
-	font-size: 20px; 
+	font-size: 4.2vh; 
 	font-weight: normal; 
-	line-height: 48px; 
+	padding-bottom: 2vh;
+	/*line-height: 48px;*/ 
 	margin: 0;
 }
 
@@ -484,9 +486,9 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	text-align:center;
 	color: #7c795d; 
 	font-family: 'Trocchi', serif; 
-	font-size: 18px; 
+	font-size: 3.5vh; 
 	font-weight: normal; 
-	line-height: 48px; 
+	/*line-height: 6vh;*/ 
 	margin: 0;
 }
 
@@ -500,9 +502,9 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	border-style: solid;
 	border-color: #63A881EF;
 	border-radius: 4px;
-	width: 60%;
+	width: 80vw;
 	position: relative;
-	left: 20%;
+	left: 10vw;
 	background-color:#F1ECCC;
 	background-color:#A0ECCC;
 	/*border-color: green;

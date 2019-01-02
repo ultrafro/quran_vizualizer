@@ -5,14 +5,19 @@ function setupVisualization(){
 
 		//do touch move test!
 	console.log('touch change!!!!');
+	//d3.select("svg").on("touchstart.zoom", null);
 	d3.select("svg").on("touchstart", touchQuranMobile);
     d3.select("svg").on("touchmove", touchQuranMobile);
+    d3.select("svg").on("touchend", untouchQuranMobile);
     d3.select("svg").on("mousemove", touchQuranDesktop);
 	console.log('finish touch change!!!!');
 	
 	window.addEventListener("resize",function(){
-		clearTimeout(resizeId);
-		resizeId = setTimeout(redraw, 100);
+		if(!screen_fixed){
+			clearTimeout(resizeId);
+			resizeId = setTimeout(redraw, 100);			
+		}
+
 	});
 
 	redraw();
@@ -229,7 +234,13 @@ function touchQuranMobile(){
 	d3.event.preventDefault();
     d3.event.stopPropagation();
     d = d3.touches(this);
-    touchQuran(d[0][0], d[0][1]);
+    //console.log('length of touches:');
+    //console.log(d.length);
+    //console.dir(d);
+    if(d.length == 1){
+    	touchQuran(d[0][0], d[0][1]);
+    }
+
 }
 
 function touchQuran(cursor_x, cursor_y){
@@ -297,6 +308,10 @@ function touchQuran(cursor_x, cursor_y){
 
 }
 
+function untouchQuranMobile(){
+	untouch();
+}
+
 function untouch(){
 	for(var i = 0; i<line_list.length; i++){
 		line_list[i].remove();
@@ -356,6 +371,8 @@ function revealBoxSection(sectionNumber, numSections){
 
 function redraw()
 {
+
+	screen_fixed = 1;
 	console.log("redrawing!");
 	// var width = document.getElementById("quran_container").clientWidth;
 //      	var height = document.getElementById("quran_container").clientHeight;
