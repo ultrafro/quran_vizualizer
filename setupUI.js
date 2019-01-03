@@ -74,9 +74,19 @@ function highlightAya(elem, chapter, verse){
 	}
 	line_list = [];
 	//the original aya, hmmmm.
-	var myLine = new LeaderLine( elem, box_list[id_num].node());		
+	var myLine = new LeaderLine( elem, box_list[id_num].node(), {color: 'orange', size: 8});	
+	//myLine.style.zIndex = "400";	
 	line_list.push(myLine);	
 }
+
+window.addEventListener('scroll',function(e) {
+	//go through line list and make sure it's pointed to it's target.
+	for(var i = 0; i<line_list.length; i++){
+		var line = line_list[i];
+		line.position();
+	}
+
+});
 
 function dehighlightAya(elem, chapter, verse){
 	//console.log('dehighlighting: ' + chapter + ' ' + verse);

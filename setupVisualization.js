@@ -302,7 +302,7 @@ function touchQuran(cursor_x, cursor_y){
 			line_list[i].remove();
 		}
 		line_list = [];
-		var myLine = new LeaderLine( document.getElementById('infobox'), box_list[id_num].node());		
+		var myLine = new LeaderLine( document.getElementById('infobox'), box_list[id_num].node(), {color: 'orange', size: 8});		
 		line_list.push(myLine);
     }
 
