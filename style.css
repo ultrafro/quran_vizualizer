@@ -44,6 +44,34 @@
 
 }
 
+.searchClass img{
+	/*background-color: #727D4B;*/
+	background-color: #527D4B;
+	border-radius: 12px;
+}
+/*
+.searchClass img:hover{
+	background-color: #727D4B;
+	border-radius: 12px;
+}
+*/
+
+.searchOpen{
+	
+}
+.searchOpen img{
+	background-color: #727D4B;
+}
+.searchClosed{
+	background-color: #527D4B;
+}
+
+.searchBarClass{
+	position: absolute;
+	top: 12vh;
+	z-index: 200;
+}
+
 
 
 
@@ -115,7 +143,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	left: 0%; 
 	bottom: 7vh;
 	z-index: 200;
-	display: none;
+	display: block;
 }
 
 .pagerButton{
@@ -558,7 +586,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
   top: 10vh;
   display: none;
   /*background-color:#F1ECCC;*/
-  z-index: 0;
+  z-index: 100;
   padding-bottom: 20%;
 }
 
@@ -570,13 +598,14 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	background-color:#A0ECCC;
 	background-color:#DDBEA8FA;
 	background-color:#B8DDDBFA; 
-	background-color:#EEEEEEFA;
+	background-color:#EEEEEEE0;
 	/*border-radius: 2vh;*/
 
 	display: block;
 	/*padding: 1%;*/
 	font-size: 3vh;
 	text-indent: 2vh;
+	width: 100vw;
 }
 
 .titleBlock{

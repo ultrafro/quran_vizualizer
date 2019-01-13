@@ -101,14 +101,23 @@
 <!-- 			logo pattern from: http://daruliftaamw.com/alhambracoloringadults_th/ -->
 		</div>
 
-		<div id="burger" class="burgerClass burgerClosed" onclick="burger()">
+<!-- 		<div id="burger" class="burgerClass burgerOpen" onclick="burger()">
 			<img src="images/burger.png" height="150vh" style="position: fixed; top: 0%; right: 0%; z-index: 200">
+		</div> -->
+
+		<div id="searchBarButton" class="searchClass searchClosed" onclick="searchBar()">
+			<img src="images/searchIcon.png" height="150vh" style="position: fixed; top: 0%; right: 0%; z-index: 200">
+		</div>
+		<div id="searchBar" class="searchBarClass" style="display: none">
+			<!-- <div class="textBlock">
+				SEARCH BAR SEARCH BAR SEARCH BAR
+			</div> -->
 		</div>
 
 
 
 
-		<div id="navbar" class="vertical-menu navbarClass">
+		<div id="navbar" class="vertical-menu navbarClass" style="display: none">
 		  <a href="#IntroductionAnchor" sectionName="Introduction" class="btn active">Intro</a>
 		  <a href="#RevelationAnchor" sectionName="Revelation" class="btn">Revelation</a>
 		  <a href="#ChaptersAnchor" sectionName="Chapters" class="btn">Chapters</a>
@@ -119,19 +128,19 @@
 		  <a href="#AboutAnchor" sectionName="About" class="btn">About</a>
 		</div>
 
-		<div id="swipeRight" style="display: none; position: fixed; left:0%; bottom:0vh; width: 50vw; z-index: 105; font-size: 5vh; text-align: center; border: 1px solid #FFFFFF; " class="pagerButton previous textUnselectable" onclick="swipe_left()">&#8249;</div>
-		<div id="swipeLeft" style="display: none; position: fixed; right:0%; bottom:0vh; width: 50vw; z-index: 105; font-size: 5vh; text-align: center; border: 1px solid #FFFFFF;" class="pagerButton previous textUnselectable" onclick="swipe_right()">&#8250;</div>
+		<div id="swipeRight" style="display: block; position: fixed; left:0%; bottom:0vh; width: 50vw; z-index: 105; font-size: 5vh; text-align: center; border: 1px solid #FFFFFF; " class="pagerButton previous textUnselectable" onclick="swipe_left()">&#8249;</div>
+		<div id="swipeLeft" style="display: block; position: fixed; right:0%; bottom:0vh; width: 50vw; z-index: 105; font-size: 5vh; text-align: center; border: 1px solid #FFFFFF;" class="pagerButton previous textUnselectable" onclick="swipe_right()">&#8250;</div>
 
 
-<!--     <div class="row"> -->
+
     	<div class="column" style="position: fixed; top: 11.0vh">
-    		<div class="topnav" align="center" style="position: relative; left: 0%">
+<!--     		<div class="topnav" align="center" style="position: relative; left: 0%">
 				<input id="search_text_bar" type="search" onsearch="clearSearchIfEmpty(this)" size="45" placeholder="Search for a term in the English translation" style="height: 3.5vh; font-size: 1vh"> 
 				<button id="search_button" style="height: 3vh"> Search! </button>
 				<button id="clear_search_button" style="height: 3vh" > Clear Search </button>
 				<div class="pagerButton previous round textUnselectable" onclick="previous()">&#8249;</div>
 				<div href="#" class="pagerButton previous round textUnselectable" onclick="next()">&#8250;</div>
-			</div>
+			</div> -->
 
 <!-- 
 			<p id="arabic_text_p" align="center"> Aya Text </p>
@@ -140,7 +149,7 @@
 			<p id="aya_text_p" align="center"> Aya Number </p>
 			<p id="juz_text_p" align="center"> Juz Number </p>
  -->
-			<div id="quran_container" style="position: fixed; top: 15vh;">
+			<div id="quran_container" style="position: fixed; top: 14vh;">
 			</div>
 		</div>
 
@@ -148,9 +157,22 @@
 
 
 
-    	<div class="column" id="content" style=" left: 0%; top: 0%; z-index: -100">
+    	<div class="column" id="content" style=" left: 0%; top: 0%; z-index: 0">
+
+
+
+			<section class="step" id="Freeclick" style="display: block">
+				<div class="textBlock">
+					<div class="titleBlock" style="position: relative"> Press and Hold Anywhere to Explore </div>
+
+				</div>
+
+
+		    </section>
+
+
 			<span class="anchor" id="IntroductionAnchor"></span>
-			<section class="step" id="Introduction">
+			<section class="step" id="Introduction" style="display: none">
 			
 				<div class="textBlock">
 				 
@@ -229,7 +251,7 @@
 
 
 		    <span class="anchor" id="ChaptersAnchor"></span>
-		    <section class="step" id="Chapters" style="padding-bottom: 78vh">
+		    <section class="step" id="Chapters" style="padding-bottom: 86vh">
 		    	
 		    	<div class="textBlock">
 			    	The Quran is a compilation of revelations that Muhammad received as the final prophet. The Quran is organized into 114 chapters (Surahs). Every chapter, except one, begins with the line: 
@@ -323,7 +345,7 @@
 		    </section>
 
 			<span class="anchor" id="JesusAnchor"></span>
-		    <section class="step" id="Jesus" style="padding-bottom: 75vh">
+		    <section class="step" id="Jesus" style="padding-bottom: 82vh">
 		    	<div class="textBlock">
 			    	Since the Quran is assumed to be from the same source as the Gospel and the Torah, it is no surprise that there is mention of the same stories and people. The written Quran was compiled very quickly after Muhammad's death, within the lifeteimes of those who had memorized it. Manuscripts have been discovered and radio-carbon dated to the time of the Prophet. 
 
@@ -373,6 +395,8 @@
 			    	<div class="titleBlock" style="position: relative"> Click on each Name to See Where It's Mentioned. </div>
 			    </div>	
 
+			    	<p>
+
 			    	<!-- <p style="padding-top: 100vh"> -->
 					<div class="names-carousel" id="namesCarousel">
 					</div>
@@ -421,6 +445,8 @@
 
 
 				    	Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+
+				    	Icons made by <a href="https://www.flaticon.com/authors/victor-erixon" title="Victor Erixon">Victor Erixon</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a><
 				   		</p>
 			   		</div
 			   	</div>

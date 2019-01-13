@@ -52,8 +52,8 @@ number_of_ayas = 6236;
 //some settings:
 padding_x = 10;
 padding_y = 0.5;
-container_width = 0.9;
-container_height = 0.80;
+container_width = 0.95;
+container_height = 0.72;
 box_width = container_width*(window.innerWidth/30 - padding_x);
 
 
@@ -84,7 +84,8 @@ bg_color = 	'#F1ECCC' //dina's light beige 2
 
 sura_blink_color = 'rgb(200,150,150)'
 
-burger_open = 0;
+burger_open = 1;
+searchBar_open = 0;
 
 current_swipe_section = 0;
 

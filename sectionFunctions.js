@@ -3,14 +3,15 @@
 
 function setupActivateFunctions(){
 	activateFunctions[0] = freeform;
-	activateFunctions[1] = alaq;
-	activateFunctions[2] = surah;
-	activateFunctions[3] = fatiha;
-	activateFunctions[4] = jesus;
-	activateFunctions[5] = prophets;
-	activateFunctions[6] = names;
+	activateFunctions[1] = freeform;
+	activateFunctions[2] = alaq;
+	activateFunctions[3] = surah;
+	activateFunctions[4] = fatiha;
+	activateFunctions[5] = jesus;
+	activateFunctions[6] = prophets;
+	activateFunctions[7] = names;
 	//activateFunctions[7] = explore;
-	activateFunctions[7] = about;		
+	activateFunctions[8] = about;		
 }
 
 function setupSectionPositions(){

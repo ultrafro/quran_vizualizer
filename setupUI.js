@@ -1,7 +1,7 @@
 function setupUI(){
 
 	//sets up the search bar
-	setupSearchBar();
+	//setupSearchBar();
 
 	//setup x button on permanent box div
 	//document.getElementById("permanent_x_button").onclick=handleXOut;

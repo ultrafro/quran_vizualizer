@@ -27,6 +27,57 @@ function setupVisualization(){
 
 }
 
+
+
+function searchBar(){
+	if(document.getElementById("searchBarButton").classList.contains("searchOpen")){
+		console.log('closing searchbar!');
+		document.getElementById("searchBarButton").classList.remove("searchOpen");
+		document.getElementById("searchBarButton").classList.add("searchClosed");
+		document.getElementById("content").style.zIndex=-1;
+		searchBar_open = 0;
+		document.getElementById("searchBar").style.display = "none";
+		/*
+
+		document.getElementById("content").style.zIndex=-1;
+		var step_list = document.getElementsByClassName("step");
+		for(var i = 0; i<step_list.length; i++){
+			step_list[i].style.display="none";
+			step_list[i].style.zIndex=0;
+		}
+
+		document.getElementById("swipeLeft").style.display="none";
+		document.getElementById("swipeRight").style.display="none";
+
+		document.getElementById("navbar").style.display="none";
+		*/
+	}else{
+		console.log('opening searchbar');
+		document.getElementById("searchBarButton").classList.remove("searchClosed");
+		document.getElementById("searchBarButton").classList.add("searchOpen");
+		document.getElementById("content").style.zIndex=0;
+		searchBar_open = 1;
+		document.getElementById("searchBar").style.display = "block";
+
+		/*
+		var step_list = document.getElementsByClassName("step");
+		for(var i = 0; i<step_list.length; i++){
+			if(i==current_swipe_section){
+				step_list[i].style.display="block";	
+				step_list[i].style.zIndex=100;				
+			}
+		}
+
+		document.getElementById("swipeLeft").style.display="block";
+		document.getElementById("swipeRight").style.display="block";
+
+		document.getElementById("navbar").style.display="block";
+		*/
+	}
+}
+
+
+
 function burger(){
 	if(document.getElementById("burger").classList.contains("burgerOpen")){
 		console.log('closing burger!');
@@ -89,6 +140,8 @@ function swipe_right(){
 		}
 	}
 
+
+
 	console.log('set current swipe section to: ' + current_swipe_section);
 
 	window.location.href = "#IntroductionAnchor";
@@ -124,9 +177,17 @@ function swipe_left(){
 }
 
 function loadSection(sectionNumber){
+
+	if(sectionNumber == 0){
+		document.getElementById('navbar').style.display = 'none';
+	}else{
+		document.getElementById('navbar').style.display = 'block';
+	}
+
+
 	last_index = currentIndex;
 	currentIndex = sectionNumber;
-	if(last_index==7){
+	if(last_index==8){
 		exitAbout();
 	}
 	console.log('setting current index to: ' + currentIndex);
@@ -160,7 +221,7 @@ function nextSection(){
 		}		
 	}
 
-	if(last_index==7){
+	if(last_index==8){
 		exitAbout();
 	}
 
@@ -199,7 +260,7 @@ function previousSection(){
 		}		
 	}
 
-	if(last_index==7){
+	if(last_index==8){
 		exitAbout();
 	}
 
@@ -245,7 +306,12 @@ function touchQuranMobile(){
 
 function touchQuran(cursor_x, cursor_y){
 	console.log('touchquran');
+	/*
 	if(burger_open){
+		return;
+	}
+	*/
+	if(current_swipe_section!=0){
 		return;
 	}
 	console.log('Touch Quran!');
