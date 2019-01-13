@@ -16,7 +16,7 @@ function setupUI(){
 	setupNamesTable();
 
 	//setup explore table:
-	setupExploreTable();
+	//setupExploreTable();
 
 	//setup arabic text in the section content (ayas, etc...):
 	setupArabicText();
@@ -360,6 +360,7 @@ function highlightNavBar(sectionName){
 }
 
 function setupProphetTable(){
+	//console.log('SETTING UP PROPHET TABLE');
 	var table = document.getElementById('prophetTable');
 
 	var numRows = 5;
@@ -435,9 +436,27 @@ function setupProphetTable(){
 			prophets(); //call to clear the board.
         });
 
-		rowDiv.appendChild(newColDiv);
+        //add to flickety carousel:
+        //console.log('FLICKETY CAROUSEL');
+        //var testDiv = document.createElement("div");
+        //testDiv.innerHTML = "test!";
+        var carouselCell = document.createElement("div");
+		carouselCell.classList.add("carousel-cell");
+		//carouselCell.appendChild(newColDiv);
+		//carouselCell.appendChild(testDiv);
+        //document.getElementById('prophetCarousel').appendChild(carouselCell);
+        document.getElementById('prophetCarousel').appendChild(newColDiv);
+
+		//rowDiv.appendChild(newColDiv);
 
 	}
+	var elem = document.querySelector('.main-carousel');
+	var flkty = new Flickity( elem, {
+	  // options
+	  cellAlign: 'left',
+	  contain: true,
+	  setGallerySize: false
+	});
 
 }
 
@@ -529,7 +548,7 @@ function setupNamesTable(){
 			//add new row!
 			var newRowDiv = document.createElement("div");
 			newRowDiv.classList.add("names99Row");
-			table.appendChild(newRowDiv);
+			//table.appendChild(newRowDiv);
 			rowDiv = newRowDiv;
 		}
 
@@ -596,6 +615,15 @@ function setupNamesTable(){
 			names(); // call function to basically clear board
         });
 
+
+		var carouselCell = document.createElement("div");
+		carouselCell.classList.add("carousel-cell");
+		//carouselCell.appendChild(newColDiv);
+		//carouselCell.appendChild(testDiv);
+        //document.getElementById('prophetCarousel').appendChild(carouselCell);
+        document.getElementById('namesCarousel').appendChild(newColDiv);
+
+        /*
         newColDiv.addEventListener('mouseover', function(event){
         	document.getElementById('highlightNamesBox').classList.remove("highlightNamesBoxClassInvisible");
 			document.getElementById('highlightNamesBox').classList.add("highlightNamesBoxClassVisible");
@@ -613,6 +641,7 @@ function setupNamesTable(){
         	document.getElementById('highlightNamesBox').classList.remove("highlightNamesBoxClassVisible");
 			document.getElementById('highlightNamesBox').classList.add("highlightNamesBoxClassInvisible");
         });
+        */
 
 
 
@@ -620,9 +649,17 @@ function setupNamesTable(){
 
         names99DivList.push(newColDiv);
 
-		rowDiv.appendChild(newColDiv);
+		//rowDiv.appendChild(newColDiv);
 
 	}
+
+	var elem = document.querySelector('.names-carousel');
+	var flkty = new Flickity( elem, {
+	  // options
+	  cellAlign: 'left',
+	  contain: true,
+	  setGallerySize: false
+	});
 }
 
 function setupBoxHover(){

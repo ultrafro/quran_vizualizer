@@ -5,6 +5,25 @@
   z-index: 90;
 }
 
+.main-carousel{
+	width: 100vw;
+	height: 24vh;
+}
+
+.names-carousel{
+	width: 100vw;
+	height: 24vh;
+}
+
+.carousel-cell {
+  width: 66%;
+  height: 200px;
+  /*margin-right: 10px;*/
+  /*background: #8C8;*/
+  /*border-radius: 5px;*/
+  counter-increment: carousel-cell;
+}
+
 .leader-line {
   z-index: 9999;
 }
@@ -92,9 +111,9 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 
 .navbarClass{
 	position: fixed; 
-	width: 100%; 
+	width: 100vw; 
 	left: 0%; 
-	top: 10vh;
+	bottom: 7vh;
 	z-index: 200;
 	display: none;
 }
@@ -205,22 +224,22 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 
 
 .prophetTableClass{
-	width: 100%; /*this will center it isA*/
+	width: 85vw; /*this will center it isA*/
   	margin: 0 auto;
 
 }
 
 .prophetColumn {
-	border-radius: 5px;
+	border-radius: 1vw;
     float: left;
-    width: 13%;
-    min-height: 13vh;
-    padding: 10px 10px;
+    width: 24vw;
+    min-height: 24vh;
+    padding: 1vw 1vw;
     color: #7c795d;
     background-color:#4CAF50;
-    background-color:#DDDDDEA4;
-    margin-right: 10px;
-    margin-bottom: 10px; 
+    background-color:#DDDDDEDD;
+    margin-right: 1vw;
+    margin-bottom: 1vw; 
     /*border: 1px solid #999999;*/
     border: 1px;
      border-width: 1px 1px 1px 1px;
@@ -234,18 +253,18 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 }
 
 .prophetSelected.prophetColumn:hover{
-	background-color:#BBBBBBA4;
+	background-color:#BBBBBBDD;
 }
 
 .prophetOffColor{
 	background-color:#ADD8E6; 
-	background-color:#DDEEDDA4;
+	background-color:#DDEEDDDD;
 	border-color:#ADD8FF;
 	border-color:#DDDDDDA4;
 }
 
 .prophetSelected{
-	background-color:#CCCCCCA4;
+	background-color:#CCCCCCDD;
 }
 
 /* Clear floats after the columns */
@@ -260,7 +279,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	 top: 0vh;
 	 color: #313; 
 	 font-family: 'Helvetica Neue', sans-serif; 
-	 font-size: 25px; 
+	 font-size: 4vh; 
 	 font-weight: bold; 
 	 letter-spacing: -1px; 
 	 line-height: 1; 
@@ -272,7 +291,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	 top: 3vh;
 	 color: #221; 
 	 font-family: 'Helvetica Neue', sans-serif; 
-	 font-size: 15px; 
+	 font-size: 3vh; 
 	 font-weight: bold; 
 	 letter-spacing: -1px; 
 	 line-height: 1; 
@@ -283,7 +302,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	 position: relative;
 	 color: #111; 
 	 font-family: 'Helvetica Neue', sans-serif; 
-	 font-size: 15px; 
+	 font-size: 3vh; 
 	 font-style: italic;
 	 top: 5vh;
 	 /*font-weight: bold;*/ 
@@ -301,8 +320,8 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 .names99Column {
     float: left;
     border-radius: 5px;
-    width: 4%;
-    min-height: 6vh;
+    width: 25vw;
+    min-height: 40vw;
     padding: 10px 10px;
     color: #7c795d;
     background-color:#4CAF50; 
@@ -352,7 +371,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	 top: 0vh;
 	 color: #313; 
 	 font-family: 'Helvetica Neue', sans-serif; 
-	 font-size: 13px; 
+	 font-size: 4vh; 
 	 font-weight: bold; 
 	 letter-spacing: -1px; 
 	 line-height: 1; 
@@ -364,7 +383,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	 top: 1vh;
 	 color: #221; 
 	 font-family: 'Helvetica Neue', sans-serif; 
-	 font-size: 6px; 
+	 font-size: 3vh; 
 	 font-weight: bold; 
 	 letter-spacing: -1px; 
 	 line-height: 1; 
@@ -376,7 +395,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	 color: #111;
 	 top: 2vh; 
 	 font-family: 'Helvetica Neue', sans-serif; 
-	 font-size: 5px; 
+	 font-size: 3vh; 
 	 font-weight: bold; 
 	 letter-spacing: -1px; 
 	 line-height: 1; 
@@ -510,6 +529,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	left: 10vw;
 	background-color:#F1ECCC;
 	background-color:#A0ECCC;
+	/*background-color:#DDBEA8;*/ /*beige*/
 	/*border-color: green;
 	border-color: #63A881EF;*/
 }
@@ -535,7 +555,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
   color: #0d2b1a; /*darkgreen*/
   position: absolute;
   left: 0%;
-  top: 15%;
+  top: 10vh;
   display: none;
   /*background-color:#F1ECCC;*/
   z-index: 0;
@@ -543,11 +563,26 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 }
 
 .textBlock{
+	position: relative;
+	top: 0vh;
+
 	background-color:#F1ECCC;
 	background-color:#A0ECCC;
-	border-radius: 2vh;
-	padding: 1%;
+	background-color:#DDBEA8FA;
+	background-color:#B8DDDBFA; 
+	background-color:#EEEEEEFA;
+	/*border-radius: 2vh;*/
+
+	display: block;
+	/*padding: 1%;*/
 	font-size: 3vh;
+	text-indent: 2vh;
+}
+
+.titleBlock{
+	font-weight: bold;
+	font-size: 3vh;
+	text-indent: 0vh;
 }
 
 
@@ -560,16 +595,16 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 }
 
 .vertical-menu {
-    width: 95%; /* Set a width if you like */
+    width: 100vw; /* Set a width if you like */
 }
 
 .vertical-menu a {
-	font-size: 1.5vh;
+	font-size: 2.75vw;
     background-color: #eee; /* Grey background color */
     color: black; /* Black text color */
     /* display: table; */ /* Make the links appear side by side?*/
     border: 1px solid green; /* Green border */
-    padding: 1% 1%; /* Add some padding */
+    padding: 1vw 1vw; /* Add some padding */
     text-decoration: none; /* Remove underline from links */
     float: left;
 }

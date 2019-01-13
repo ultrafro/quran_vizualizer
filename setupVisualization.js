@@ -126,7 +126,7 @@ function swipe_left(){
 function loadSection(sectionNumber){
 	last_index = currentIndex;
 	currentIndex = sectionNumber;
-	if(last_index==8){
+	if(last_index==7){
 		exitAbout();
 	}
 	console.log('setting current index to: ' + currentIndex);
@@ -160,7 +160,7 @@ function nextSection(){
 		}		
 	}
 
-	if(last_index==8){
+	if(last_index==7){
 		exitAbout();
 	}
 
@@ -199,7 +199,7 @@ function previousSection(){
 		}		
 	}
 
-	if(last_index==8){
+	if(last_index==7){
 		exitAbout();
 	}
 
