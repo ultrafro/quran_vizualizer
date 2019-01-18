@@ -1,7 +1,7 @@
 function setupUI(){
 
 	//sets up the search bar
-	//setupSearchBar();
+	setupSearchBar();
 
 	//setup x button on permanent box div
 	//document.getElementById("permanent_x_button").onclick=handleXOut;
@@ -140,7 +140,8 @@ function dehighlightAya(elem, chapter, verse){
 
 function clearSearchIfEmpty(){
 	//console.log("test search!");
-	var term =  document.getElementById("search_text_bar").value;
+	//var term =  document.getElementById("search_text_bar").value;
+	var term =  document.getElementById("myInput").value;
 	if(term == ""){
 		clearSearch();
 
@@ -148,7 +149,7 @@ function clearSearchIfEmpty(){
 }
 
 function clearSearch(){
-	//console.log('clear search!');
+	console.log('clear search!');
 	//clear search and go back to normal.
 	fillActiveList();
 	search_idx_list = [];
@@ -164,25 +165,36 @@ function clearSearch(){
 				.attr('fill', base_color);				
 		}
 	}
-	document.getElementById('search_text_bar').placeholder = search_placeholder_string;
+	//document.getElementById('search_text_bar').placeholder = search_placeholder_string;
+	document.getElementById('myInput').placeholder = search_placeholder_string;
+	console.log("current tex: " + document.getElementById('myInput').value);
+	document.getElementById('myInput').value = "";
 }
 
 //sets up the search bar above the Quran Sections
 function setupSearchBar(){
 	//set up search bar button
 	//search is declared within utilities.js
-	document.getElementById('search_button').onclick=search;
-	document.getElementById('clear_search_button').onclick=clearSearch;
-	document.getElementById('search_text_bar').placeholder = search_placeholder_string;
+	
+	//document.getElementById('search_button').onclick=search;
+	//document.getElementById('clear_search_button').onclick=clearSearch;
+	
+
+	//document.getElementById('search_text_bar').placeholder = search_placeholder_string;
+	document.getElementById('myInput').placeholder = search_placeholder_string;
 
 	//make it so when you hit the enter button after typing text, it will act as a click
-	document.getElementById("search_text_bar").addEventListener("keyup", function(event) {
+	document.getElementById("myInput").addEventListener("keyup", function(event) {
+		//console.log("typing!");
+
+	//document.getElementById("search_text_bar").addEventListener("keyup", function(event) {
 		// Cancel the default action, if needed
 		event.preventDefault();
 		// Number 13 is the "Enter" key on the keyboard
 		if (event.keyCode === 13) {
 			// Trigger the button element with a click
-			document.getElementById("search_button").click();
+			//document.getElementById("search_button").click();
+			search();
 		}
 	});
 }

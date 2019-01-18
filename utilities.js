@@ -64,7 +64,8 @@ function shuffleArray(array) {
 
 
 function search(){
-	term = document.getElementById("search_text_bar").value;
+	//term = document.getElementById("search_text_bar").value;
+	term = document.getElementById("myInput").value;
 	console.log('searching for: ' + term.toUpperCase());
 
 	if(term==""){
@@ -223,9 +224,10 @@ function getTopWords(){
 	for(var i = 0; i<quran_json_string.length; i++){
 		words = quran_json_string[i].english.toUpperCase().split(' ');
 		for(var ww = 0; ww<words.length; ww++){
-			var idx = word_list.indexOf(words[ww]);
+			var idx = word_list.indexOf(words[ww].replace(/\W/g, ''));
 			if(idx==-1){
-				word_list.push(words[ww]);
+				
+				word_list.push(words[ww].replace(/\W/g, ''));
 				word_count.push(1);
 				/*
 				var o = new Object();
@@ -252,8 +254,18 @@ function getTopWords(){
 		word_objects.push(o);
 	}
 
+	//for sorting by count:
 	word_objects.sort(function(obj1,obj2){
 		if(obj1.count < obj2.count){
+			return 1;
+		}else{
+			return -1;
+		}
+	});
+
+	//for making it alphabetical:
+	word_objects.sort(function(obj1,obj2){
+		if(obj1.word > obj2.word){
 			return 1;
 		}else{
 			return -1;
@@ -266,7 +278,25 @@ function getTopWords(){
 	}
 
 	console.dir(word_list);
+	console.dir(word_count);
 
+	console.log(JSON.stringify(word_list));
+	console.log(JSON.stringify(word_count));
+
+	/*
+	var output = "[";
+	for(var i = 0; i<word_list.length; i++){
+		output += "\"";
+		output += word_list[i].word;
+		output += "\"";
+		if(i<word_list.length-1){
+			output += ","			
+		}else{
+			output += "]"
+		}
+	}
+	console.log(output);
+	*/
 
 }
 
