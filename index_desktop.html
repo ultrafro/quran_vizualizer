@@ -1,0 +1,380 @@
+<html>
+    <head>
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129293832-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-129293832-1');
+		</script>
+
+
+    	
+        <title>Quran Lens</title>
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <script src="leader-line.min.js"></script>
+
+<!--         <script src="https://cdn.rawgit.com/anvaka/panzoom/v4.4.0/dist/panzoom.min.js"></script> -->
+        <link rel="stylesheet" type="text/css" href="style_desktop.css">
+
+    </head>
+    <body>
+
+    	<div id="infobox" class="infoBoxClass infoBoxClassInvisible" >
+    		<p>
+			<div id="arabic_text_p" class="arabic_text_p_class"> Aya Text </div>
+			<p>
+			<div id="english_text_p" class="english_text_p_class"> English Translation </div>
+			<p>
+			<div id="stats_text_p" class="stats_text_p_class">
+				<div id="sura_text_p" style="float: left;"> Surah Number </div>
+				<div  style="float: left;"> &emsp; </div>
+				<div id="aya_text_p" style="float: left;"> Aya Number </div>
+				<div  style="float: left;"> &emsp; </div>
+				<div id="juz_text_p" style="float: left;"> Juz Number </div>
+			</div>
+		</div>
+
+		<div id="permanentbox" class="permanentBoxClass permanentBoxClassInvisible">
+<!-- 			<div id="permanent_x_button" class="xbuttonClass">
+				<img src="x-symbol.png" class="xbuttonImageClass pointable">
+			</div> -->
+			<div class="pagerButton previous round textUnselectable" onclick="handleXOut()">X</div>
+			<div class="pagerButton previous round textUnselectable" onclick="previous()">&#8249;</div>
+			<div href="#" class="pagerButton previous round textUnselectable" onclick="next()">&#8250;</div>
+
+			<p>
+			<div id="permanent_arabic_text_p" class="arabic_text_p_class"> Aya Text </div>
+			<p>
+			<div id="permanent_english_text_p" class="english_text_p_class"> English Translation </div>
+			<p>
+			<div id="permanent_stats_text_p" class="stats_text_p_class">
+				<div id="permanent_sura_text_p" style="float: left;"> Surah Number </div>
+				<div  style="float: left;"> &emsp; </div>
+				<div id="permanent_aya_text_p" style="float: left;"> Aya Number </div>
+				<div  style="float: left;"> &emsp; </div>
+				<div id="permanent_juz_text_p" style="float: left;"> Juz Number </div>
+			</div>
+		</div>
+
+		<div id="highlightNamesBox" class="highlightNamesBoxClass highlightNamesBoxClassInvisible">
+			<div id="highlightNamesBoxArabic" class="highlightNamesBoxArabicClass"> Arabic Name </div>
+			<p>
+			<div id="highlightNamesBoxTransliterated" class="highlightNamesBoxTransliteratedClass"> Transliterated Name </div>
+			<p>
+			<div id="highlightNamesBoxEnglish" class="highlightNamesBoxEnglishClass"> English Name </div>
+		</div>
+
+		<div id="logo" class="logoClass">
+			<a href="#IntroductionAnchor">
+				<img src="logo.png" height="10%" >
+			</a>
+<!-- 			logo pattern from: http://daruliftaamw.com/alhambracoloringadults_th/ -->
+		</div>
+
+<!--     <div class="row"> -->
+    	<div class="column" style="position: fixed; top: 10.5%">
+    		<div class="topnav" align="center" style="position: relative; left: 20%">
+				<input id="search_text_bar" type="search" onsearch="clearSearchIfEmpty(this)" size="60" placeholder="Search for a term in the English translation"> 
+				<button id="search_button" > Search! </button>
+				<button id="clear_search_button" > Clear Search </button>
+				<div class="pagerButton previous round textUnselectable" onclick="previous()">&#8249;</div>
+				<div href="#" class="pagerButton previous round textUnselectable" onclick="next()">&#8250;</div>
+			</div>
+
+<!-- 
+			<p id="arabic_text_p" align="center"> Aya Text </p>
+			<p id="english_text_p" align="center"> English Translation </p>
+			<p id="sura_text_p" align="center"> Surah Number </p>
+			<p id="aya_text_p" align="center"> Aya Number </p>
+			<p id="juz_text_p" align="center"> Juz Number </p>
+ -->
+			<div id="quran_container" style="position: fixed; top: 15%">
+			</div>
+		</div>
+
+
+		<div id="navbar" class="vertical-menu navbarClass">
+		  <a href="#IntroductionAnchor" sectionName="Introduction" class="btn active">Introduction</a>
+		  <a href="#RevelationAnchor" sectionName="Revelation" class="btn">Revelation</a>
+		  <a href="#ChaptersAnchor" sectionName="Chapters" class="btn">Chapters</a>
+  		  <a href="#OpeningAnchor" sectionName="Opening" class="btn">Opening</a>
+		  <a href="#JesusAnchor" sectionName="Jesus" class="btn">Jesus</a>
+		  <a href="#ProphetsAnchor" sectionName="Prophets" class="btn">Prophets</a>
+		  <a href="#99NamesAnchor" sectionName="99Names" class="btn">99 Names of God</a>
+		  <a href="#ExploreAnchor" sectionName="Explore" class="btn">Explore</a>
+		  <a href="#AboutAnchor" sectionName="About" class="btn">About</a>
+		</div>
+
+
+    	<div class="column" id="content" style="position: absolute; width: 40%; height: 100%; left: 45%; top: 15%">
+			<span class="anchor" id="IntroductionAnchor"></span>
+			<section class="step" id="Introduction">
+			
+		      The Quran is the holy book ascribed to by over 1.5 billion Muslims across the world. Muslims worship the same God as Jews and Christians, and they believe the Quran to be the direct word of God transmitted through the final prophet Muhammad (Peace Be Upon Him). On the left, you can see a searchable/dynamic representation of the Quran and the Sahih International English Translation. You can mouse-over each Aya (verses to the left) to highilght it and see what it says.
+
+		      <p>
+		      <img src="images/love_quran.jpg" width=100%>
+		    </section>
+
+
+			<span class="anchor" id="RevelationAnchor"></span>
+		    <section class="step" id="Revelation">
+
+		    	Muhammad did not know how to read or write, nor did he have knowledge of previous scriptures. He lived in Mecca in the Arabian peninsula at a time of idolatry, social corruption, and injustice. Muslims believe that the angel Gabriel visited Muhammad while he was meditating in the cave of Hira. 
+
+		    	<p>
+		    	<img src="images/hira_map.PNG" width=100%>
+		    	<p>
+
+		    	The angel Gabriel informed the illiterate Muhammad to recite the Quran. The words were captured in the chapter Al-Alaq.
+
+				<p>
+		    	<div class="box" chapter=96 verse=1 style="cursor: pointer;">
+			    	<div class="aya" surah=96 aya=1></div>
+			    	<div class="ayaEnglish"> 
+			    	Recite in the name of your Lord who created -
+			    	</div>
+			    </div>
+
+			    <p>
+			    <div class="box" chapter=96 verse=2 style="cursor: pointer;">
+			    	<div class="aya" surah=96 aya=2></div>
+			    	<div class="ayaEnglish"> 
+			    	Created man from a clinging substance.
+			    	</div>
+			    </div>
+
+				<p>
+			    <div class="box" chapter=96 verse=3 style="cursor: pointer;">
+			    	<div class="aya" surah=96 aya=3></div>
+			    	<div class="ayaEnglish"> 
+			    	Recite, and your Lord is the most Generous - 
+			    	</div>
+			    </div>
+
+				<p>
+			    <div class="box" chapter=96 verse=4 style="cursor: pointer;">
+			    	<div class="aya" surah=96 aya=4></div>
+					<div class="ayaEnglish"> 
+			    	Who taught by the pen -
+			    	</div>
+			    </div>
+
+				<p>
+			    <div class="box" chapter=96 verse=5 style="cursor: pointer;">
+			    	<div class="aya" surah=96 aya=5></div>
+					<div class="ayaEnglish"> 
+			    	Taught man that which he knew not.
+			    	</div>
+			    </div>
+
+
+		    </section>
+
+
+		    <span class="anchor" id="ChaptersAnchor"></span>
+		    <section class="step" id="Chapters">
+		    	The Quran is a compilation of revelations that Muhammad received as the final prophet. The Quran is organized into 114 chapters (Surahs). Every chapter, except one, begins with the line: 
+		    	
+		    	<p>
+		    	<img src="images/bismillah.jpg" class="ImageBorder" width=100%>
+
+		    	<p class="ayaEnglish" style="font-size: 24; font-style: italic">
+		    	In the name of Allah, the Entirely Merciful, the Especially Merciful.
+		    	</p>
+
+		    	<p>
+		    	Muslims begin almost everything they do with this line, including eating, traveling, and business dealings.
+
+		    	<p>
+		    	The Quran is not organized in chronological order of revelation. Instead, it was compiled according to an order of recitation described by the prophet. Many of the beginning Surah's are long, and many at the end are shorter. In addition, the book is also organized into 30 sections of equal parts. This is useful for those who are reciting the Quran during the month of Ramadan. Each column in the visualization represents a different section.
+
+		    </section>
+
+			<span class="anchor" id="OpeningAnchor"></span>
+		    <section class="step" id="Opening">
+
+		    	The first chapter in the Quran is referred to as the "Opening" (Al-Fatiha). It is composed of seven lines. These are recited in each cycle of every muslim prayer. The lines go:
+
+			    <p>
+		    	<div class="box" chapter=1 verse=1 style="cursor: pointer;">
+			    	<div class="aya" surah=1 aya=1></div>
+			    	<div class="ayaEnglish"> 
+			    	In the name of Allah, the Entirely Merciful, the Especially Merciful.
+			    	</div>
+			    </div>
+
+			    <p>
+				<div class="box" chapter=1 verse=2 style="cursor: pointer;">
+			    	<div class="aya" surah=1 aya=2></div>
+			    	<div class="ayaEnglish"> 
+			    	[All] praise is [due] to Allah, Lord of the worlds -
+			    	</div>
+			    </div>
+
+			    <p>
+				<div class="box" chapter=1 verse=3 style="cursor: pointer;">
+			    	<div class="aya" surah=1 aya=3></div>
+			    	<div class="ayaEnglish"> 
+			    	The Entirely Merciful, the Especially Merciful,
+			    	</div>
+			    </div>
+
+			   	<p>
+			    <div class="box" chapter=1 verse=4 style="cursor: pointer;">
+			    	<div class="aya" surah=1 aya=4></div>
+			    	<div class="ayaEnglish"> 
+			    	Sovereign of the Day of Recompense.
+			    	</div>
+			    </div>
+
+			    <p>
+			    <div class="box" chapter=1 verse=5 style="cursor: pointer;">
+			    	<div class="aya" surah=1 aya=5></div>
+			    	<div class="ayaEnglish"> 
+			    	It is You we worship and You we ask for help.
+			    	</div>
+			    </div>
+
+			    <p>
+			    <div class="box" chapter=1 verse=6 style="cursor: pointer;">
+			    	<div class="aya" surah=1 aya=6></div>
+			    	<div class="ayaEnglish"> 
+			    	Guide us to the straight path -
+			    	</div>
+			    </div>
+
+			   	<p>
+			    <div class="box" chapter=1 verse=7 style="cursor: pointer;">
+			    	<div class="aya" surah=1 aya=7></div>
+			    	<div class="ayaEnglish"> 
+			    	The path of those upon whom You have bestowed favor, not of those who have evoked [Your] anger or of those who are astray.
+			    	</div>
+			    </div>
+
+		    </section>
+
+			<span class="anchor" id="JesusAnchor"></span>
+		    <section class="step" id="Jesus">
+		    	Since the Quran is assumed to be from the same source as the Gospel and the Torah, it is no surprise that there is mention of the same stories and people. The written Quran was compiled very quickly after Muhammad's death, within the lifeteimes of those who had memorized it. Manuscripts have been discovered and radio-carbon dated to the time of the Prophet. 
+
+		    	<p>
+		    	<img src="images/Birmingham_Quran_manuscript.jpg" width=100%>
+
+		    	<p>
+		    	In Islam, Muhammad, Jesus, Moses, and all the prophets are considered non-divine humans who deliver the message of God to the believers. Muslims believe in the virgin-birth of Jesus, but the Quran is clear that he was not divine and was not the son of God. That doesn't stop Jesus from playing a central role in Islam. Jesus is mentioned by name 25 times in the Quran, while Muhammad is mentioned only 4 times by name.
+
+		    	<p>
+		    	Here we highlight all the times Jesus is mentioned in white and Mary in yellow.
+
+		    </section>
+
+			<span class="anchor" id="ProphetsAnchor"></span>
+		    <section class="step" id="Prophets">
+
+		    	In fact, you can explore all the prophets and their mentions by name. Highlight your mouse over the name to see where they are mentioned.
+
+		    	<p>
+		    	<p>
+
+		    	<div id="prophetTable" class="prophetTableClass">
+		    	</div>
+		    </section>
+
+			<span class="anchor" id="99NamesAnchor"></span>
+		    <section class="step" id="99Names">
+		    	Muslims believe that God has 99 names or attributes. These attributes are names that God refers to throughout the Quran. When Muslims pray and ask for grace from God, they often utilize the sepcialization of these names.
+
+				<p>
+		    	<div class="box" chapter=59 verse=24 style="cursor: pointer;">
+			    	<div class="aya" surah=59 aya=24></div>
+					<p>
+					<div class="ayaEnglish"> 
+					He is Allah, the Creator, the Inventor, the Fashioner; to Him belong the best names. Whatever is in the heavens and earth is exalting Him. And He is the Exalted in Might, the Wise.
+					</div>
+				</div>
+
+				<p>
+				<div id="names99Table">
+		    	</div>
+		    </section>
+
+			<span class="anchor" id="ExploreAnchor"></span>
+		    <section class="step" id="Explore">
+		    	Feel free to explore the Quran by searching for terms in the English translation, highlighting your mouse over verses, or clicking one of the suggested search terms below!
+
+		    	<p>
+		    	<div id="exploreTable">
+		    	</div>
+
+		    	<p>
+
+
+		    </section>
+
+		    <span class="anchor" id="AboutAnchor"></span>
+		    <section class="step" id="About">
+
+		    	This is an open source project with the intention of making the Quran more approachable to those who are more visually minded. You can contribute on this <a href="https://github.com/ultrafro/quran_vizualizer"> github</a>. We can be contacted at [contact.quranlens (at) gmail.com].
+
+		    	<p>
+		    	The English translation used for this is Sahih International. The search functions will look through the English translations to find a match. In the case of the 99 names, the Ayas which are referenced are hard-coded and taken from <a href="https://en.wikipedia.org/wiki/Names_of_God_in_Islam"> this wikipedia page </a> which compiles the information from various sources. The arabic text is loaded from: <a href="http://tanzil.net">Tanzil.net</a>, and the english translation is loaded from: <a href="https://alquran.cloud/api">quran cloud</a>.
+
+		    	<p>
+		    	A number of free icons were used in this webpage, their licenses are shown below.
+
+		    	<p>
+		    	<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+		    	<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+		    	<p>
+
+		    	<div class="box" id="marquee" chapter=1 verse=1 style="cursor: pointer;">
+			    	<div class="aya" surah=1 aya=1></div>
+			    	<div class="ayaEnglish"> 
+			    	In the name of Allah, the Entirely Merciful, the Especially Merciful.
+			    	</div>
+			    </div>
+		    </section>
+
+    	</div>
+
+        <script src = "quran_json_string.js"></script>
+        <script src = "prophet_json_string.js"></script>
+        <script src = "names99_string.js"></script>
+        <script src = "diacritics.js"></script>
+        <script src = "cache99_string.js"></script>
+        <script src = "explore_string.js"></script>
+        
+	<script src = "globalVariables_desktop.js"></script>
+	<script src = "utilities_desktop.js"></script>
+	<script src = "setupUI_desktop.js"></script>
+	<script src = "sectionFunctions_desktop.js"></script>
+	<script src = "setupVisualization_desktop.js"></script>
+	<script>
+		document.body.style.backgroundColor = bg_color;
+
+		window.onload = init;
+
+
+		function init(){
+			
+			fillActiveList(); //todo: describe activeList
+			setupActivateFunctions(); //defined in sectionFunctions.js
+			setupSectionPositions(); //defined in sectionFunctions.js9
+			setupSectionScroll();
+			setupVisualization();
+			setupUI(); //first function in setupUI.js
+			//getTopWords();
+		}
+
+
+		//preSearch99wikipedia();
+	</script>
+
+	</body>
+</html>
