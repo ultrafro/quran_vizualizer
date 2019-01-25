@@ -348,6 +348,39 @@ function setupNavBar(){
 	    var current = document.getElementsByClassName("active");
 	    current[0].className = current[0].className.replace(" active", "");
 	    this.className += " active";
+
+	    //switch pages!
+	    //find the swipe section based on which button index this is:
+	    var btn_list = document.getElementById("navbar").getElementsByClassName("btn");
+	    var btn_idx = -1;
+	    for(var j = 0; j<btn_list.length; j++){
+	    	if(btn_list[j] == this){
+	    		btn_idx = j;
+	    	}
+	    }
+
+	    if(btn_idx>-1){
+			//need to make sure that the number of buttons equals the number of swipe sections...
+	    	current_swipe_section = btn_idx;
+	    	var step_list = document.getElementsByClassName("step");
+			for(var i = 0; i<step_list.length; i++){
+				if(i==current_swipe_section){
+					step_list[i].style.display="block";
+					step_list[i].style.zIndex=100;
+				}else{
+					step_list[i].style.display="none";
+					step_list[i].style.zIndex=0;
+				}
+			}
+			console.log('set current swipe section to: ' + current_swipe_section);
+			window.location.href = "#IntroductionAnchor";
+
+	    	loadSection(current_swipe_section);	    	
+	    }else{
+	    	console.log('could not find btn idx for  button: ');
+	    	console.dir(this);
+	    }
+
 	  });
 	}			
 }

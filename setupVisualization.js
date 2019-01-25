@@ -186,7 +186,7 @@ function loadSection(sectionNumber){
 	}
 	*/
 
-
+	
 	last_index = currentIndex;
 	currentIndex = sectionNumber;
 	if(last_index==8){
