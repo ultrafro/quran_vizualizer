@@ -16,6 +16,13 @@ sectionPositions = [];
 sectionNames = [];
 
 var box_list = [];
+var box_juz_dict = new Object(); //this is for pre-indexing the boxes
+								 //the idea is that each box is placed
+								 //in a list in the dictionary with the key being
+								 //each section. That way, we can search for just
+								 //the boxes in each section
+								 //this is filled up in the redraw/addbox function
+								 //in the setupVisualization.js file
 
 //this list will be populated with the functions that get activated
 activateFunctions = [];

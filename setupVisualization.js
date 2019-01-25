@@ -323,7 +323,46 @@ function touchQuran(cursor_x, cursor_y){
     touch_x = cursor_x + document.getElementById("quran_container").getBoundingClientRect().left;
     touch_y = cursor_y + document.getElementById("quran_container").getBoundingClientRect().top;
 
-    //find closest id num.
+
+    //d = new Date();
+	//start = d.getMilliseconds();
+
+    //get id num which is closest to click, but do it fast! measured to 4ms on pixel 2
+    q_width = document.getElementById("quran_container").getBoundingClientRect().right - document.getElementById("quran_container").getBoundingClientRect().left;
+    q_height = document.getElementById("quran_container").getBoundingClientRect().bottom - document.getElementById("quran_container").getBoundingClientRect().top;
+    percent_x = (cursor_x - document.getElementById("quran_container").getBoundingClientRect().left) / q_width;
+    percent_y = (cursor_y - document.getElementById("quran_container").getBoundingClientRect().top) / q_height;
+
+    selected_juz = Math.floor((1-percent_x)*30); //i don't know why i have to flip the percentage, but it works...
+    box_list_in_juz = box_juz_dict[selected_juz];
+
+    id_num = -1;
+    closest_dist = 1000000000;
+    for(var i = 0; i<box_list_in_juz.length; i++){
+    	dist = Math.abs(box_list_in_juz[i].node().getBoundingClientRect().left - touch_x) + Math.abs(box_list_in_juz[i].node().getBoundingClientRect().top - touch_y);
+		//dist = Math.abs(box_list[i].node().offsetLeft - touch_x) + Math.abs(box_list[i].node().getBoundingClientRect().top - touch_y);
+
+    	if(dist<closest_dist){
+    		closest_dist = dist;
+    		id_num = box_list_in_juz[i].id_num;
+    	}
+    	box_list_in_juz[i].transition()
+				.attr('fill', base_color)
+    }
+
+    console.log('found id num: ' + id_num);
+    console.dir('foudn box: ' + box_list[id_num]);
+       
+    //d = new Date();
+	//stop = d.getMilliseconds();
+	//console.log('fast method elapsed time: ' + (stop-start) + ' milliseconds');
+
+
+	/*
+    d = new Date();
+	start = d.getMilliseconds();
+
+    //find closest id num. brute force search. measured to 95ms on pixel 2
     id_num = -1;
     closest_dist = 1000000000;
     for(var i = 0; i<box_list.length; i++){
@@ -337,6 +376,11 @@ function touchQuran(cursor_x, cursor_y){
     	box_list[i].transition()
 				.attr('fill', base_color)
     }
+
+    d = new Date();
+	stop = d.getMilliseconds();
+	console.log('slow method elapsed time: ' + (stop-start) + ' milliseconds');
+	*/
 
     if(id_num != -1){
     	   box_list[id_num].transition()
@@ -391,7 +435,7 @@ function untouch(){
 	document.getElementById('infobox-nav').style.display = "none";
 }
 
-function addBox(text, width, start_x, start_y, id_num){
+function addBox(text, width, start_x, start_y, id_num, juz_num){
 	var box = svgContainer.append("rect")
 			                            .attr("x", start_x)
 			                            .attr("y", start_y)
@@ -413,8 +457,14 @@ function addBox(text, width, start_x, start_y, id_num){
 	// 		                            .attr("width", width)
 	// 		                            .attr("height", factor*text.length)										
 	box.id = "id_" + id_num;
+	box.id_num = id_num;
+	box.juz = juz_num;
 	box.node().classList.add("pointable");
 	box_list.push(box);
+	if(box_juz_dict[juz_num] == null){
+		box_juz_dict[juz_num]=[];
+	}
+	box_juz_dict[juz_num].push(box);
 
 	return factor* text.length;
 }
@@ -517,7 +567,8 @@ function redraw()
 
 
 
-		addBox(arabic,box_width,c_start_x,c_start_y,i);
+		//addBox(arabic,box_width,c_start_x,c_start_y,i);
+		addBox(arabic,box_width,c_start_x,c_start_y,i,juz); //made a change to add juz number and place box in juz list.
 
 		/*
 		//add circles on top.
