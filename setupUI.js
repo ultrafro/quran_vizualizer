@@ -168,7 +168,12 @@ function clearSearch(){
 	//document.getElementById('search_text_bar').placeholder = search_placeholder_string;
 	document.getElementById('myInput').placeholder = search_placeholder_string;
 	console.log("current tex: " + document.getElementById('myInput').value);
-	document.getElementById('myInput').value = "";
+	if(document.getElementById('myInput').value == ""){
+		searchBar();
+	}else{
+		document.getElementById('myInput').value = "";		
+	}
+
 }
 
 //sets up the search bar above the Quran Sections
