@@ -868,3 +868,18 @@ input[type=submit] {
 	-ms-user-select: none; /* IE10+/Edge */
 	user-select: none; /* Standard */
 }
+
+.loader {
+  border: 16px solid #F1ECCC; /* Light grey */
+  border-top: 16px solid #527D4B; /* Blue */
+  border-bottom: 16px solid #527D4B;
+  border-radius: 50%;
+  width: 30vw;
+  height: 30vw;
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

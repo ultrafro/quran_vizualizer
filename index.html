@@ -131,6 +131,14 @@
 		</div>
 
 
+		<div id="loader" class="loader" style="position: absolute; top: 30vh; left: 35vw; display: block">
+			
+
+
+
+		</div>
+
+
 
 
 		<div id="navbar" class="vertical-menu navbarClass" style="display: block">
@@ -482,14 +490,36 @@
 
     	</div>
 
-        <script src = "quran_json_string.js"></script>
-        <script src = "prophet_json_string.js"></script>
-        <script src = "names99_string.js"></script>
-        <script src = "diacritics.js"></script>
-        <script src = "cache99_string.js"></script>
-        <script src = "explore_string.js"></script>
-        
 	<script src = "globalVariables.js"></script>
+    <script>
+    	//this loads the quran string
+    	var xmlhttp = new XMLHttpRequest();
+    	xmlhttp.overrideMimeType("application/json");
+		xmlhttp.onreadystatechange = function() {
+		  if (this.readyState == 4 && this.status == 200) {
+		  	//console.log('loaded q json string');
+		  	//console.log('length: ' + this.responseText.length);
+		    quran_json_string = JSON.parse(this.responseText);
+		  }
+		};
+		xmlhttp.onprogress = function (event) {
+		  //console.log('loaded: ' + event.loaded + '/' + event.total);
+		  event.loaded;
+		  event.total;
+
+		};
+		xmlhttp.open("GET", "quran_json_string.json", true);
+		xmlhttp.send();
+    </script>
+
+<!-- <script src = "quran_json_string.js"></script> -->
+    <script src = "prophet_json_string.js"></script>
+    <script src = "names99_string.js"></script>
+    <script src = "diacritics.js"></script>
+    <script src = "cache99_string.js"></script>
+    <script src = "explore_string.js"></script>
+        
+	
 	<script src = "utilities.js"></script>
 	<script src = "setupUI.js"></script>
 	<script src = "sectionFunctions.js"></script>
@@ -500,7 +530,7 @@
 		autocomplete(document.getElementById("myInput"), presearch, mentions);
 	</script>
 	<script>
-		document.body.style.backgroundColor = bg_color;
+		
 
 		window.onload = init;
 
@@ -513,6 +543,7 @@
 			setupSectionScroll();
 			setupVisualization();
 			setupUI(); //first function in setupUI.js
+			document.getElementById('loader').style.display = 'none';
 			//getTopWords();
 		}
 
