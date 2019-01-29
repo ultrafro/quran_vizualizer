@@ -313,7 +313,20 @@ function touchQuran(cursor_x, cursor_y){
 		return;
 	}
 	*/
-	if(current_swipe_section!=0){
+	if(current_swipe_section!=0){ //todo: add if search bar is on condition
+		//do classical behavior of touching and highlighting ayas
+
+		//cycle through active list to find closest one.
+
+		//handle the click/declick
+
+
+
+
+
+
+
+
 		return;
 	}
 	console.log('Touch Quran!');
@@ -445,9 +458,9 @@ function addBox(text, width, start_x, start_y, id_num, juz_num){
 			                            .attr("fill",base_color)
 			                            .attr("visibility","hidden")
 			                            .attr("state","default")
+			                            //.on("click",handleMouseDown)
+			                            //.on("mouseout", handleMouseOut)
 			                            //.on("mouseover", handleMouseOver)
-  										//.on("mouseout", handleMouseOut)
-  										//.on("click",handleMouseDown)
   										//.on("touchmove",handleMouseOver);
 
 
