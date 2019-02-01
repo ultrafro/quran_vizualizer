@@ -7,12 +7,12 @@
 
 .main-carousel{
 	width: 100vw;
-	height: 24vh;
+	height: 28vh;
 }
 
 .names-carousel{
 	width: 100vw;
-	height: 24vh;
+	height: 30vh;
 }
 
 .carousel-cell {
@@ -260,8 +260,8 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 .prophetColumn {
 	border-radius: 1vw;
     float: left;
-    width: 24vw;
-    min-height: 24vh;
+    width: 28vw;
+    min-height: 30vh;
     padding: 1vw 1vw;
     color: #7c795d;
     background-color:#4CAF50;
@@ -339,6 +339,20 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	 text-align: center;
 }
 
+.prophetMentions{
+	 position: absolute;
+	 color: #111; 
+	 font-family: 'Helvetica Neue', sans-serif; 
+	 font-size: 3vh; 
+	 font-style: italic;
+	 top: 23vh;
+	 left: 0vw;
+	 /*font-weight: bold;*/ 
+	 letter-spacing: -1px; 
+	 line-height: 1; 
+	 text-align: center;
+}
+
 
 
 
@@ -348,8 +362,8 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 .names99Column {
     float: left;
     border-radius: 5px;
-    width: 25vw;
-    min-height: 40vw;
+    width: 30vw;
+    min-height: 50vh;
     padding: 10px 10px;
     color: #7c795d;
     background-color:#4CAF50; 
@@ -408,7 +422,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 
 .names99Transliterated{
 	 position: relative;
-	 top: 1vh;
+	 top: 3vh;
 	 color: #221; 
 	 font-family: 'Helvetica Neue', sans-serif; 
 	 font-size: 3vh; 
@@ -421,10 +435,24 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 .names99English{
 	position: relative;
 	 color: #111;
-	 top: 2vh; 
+	 top: 5vh; 
 	 font-family: 'Helvetica Neue', sans-serif; 
 	 font-size: 3vh; 
-	 font-weight: bold; 
+	 /*font-weight: bold;*/ 
+	 letter-spacing: -1px; 
+	 line-height: 1; 
+	 text-align: center;
+}
+
+.names99Mentions{
+	 position: absolute;
+	 color: #111; 
+	 font-family: 'Helvetica Neue', sans-serif; 
+	 font-size: 3vh; 
+	 font-style: italic;
+	 top: 25vh;
+	 left: 0vw;
+	 /*font-weight: bold;*/ 
 	 letter-spacing: -1px; 
 	 line-height: 1; 
 	 text-align: center;

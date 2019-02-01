@@ -26,6 +26,9 @@ function setupUI(){
 	//setupBoxClick();
 	setupBoxHover();
 
+	//reset system:
+	loadSection(0);
+
 
 
 }
@@ -484,6 +487,14 @@ function setupProphetTable(){
 		englishDiv.innerHTML = prophet_json_string[i].EnglishName;
 		newColDiv.appendChild(englishDiv);
 
+		//add number of mentions:
+		searchTerm(prophet_json_string[i].TranslationName);
+		var numMentions = search_idx_list.length;
+		var mentionDiv = document.createElement("div");
+		mentionDiv.classList.add("prophetMentions");
+		mentionDiv.innerHTML = "[" + numMentions + "]";
+		newColDiv.appendChild(mentionDiv);
+
 
 
 		newColDiv.addEventListener('click', function (event) {
@@ -655,6 +666,16 @@ function setupNamesTable(){
 		englishDiv.classList.add("names99English");
 		englishDiv.innerHTML = names99_string[i].Translation;
 		newColDiv.appendChild(englishDiv);
+
+
+		//add number of mentions:
+		var numMentions = cache99_string[i].AyaList.length;
+		var mentionDiv = document.createElement("div");
+		mentionDiv.classList.add("names99Mentions");
+		mentionDiv.innerHTML = "[" + numMentions + "]";
+		newColDiv.appendChild(mentionDiv);
+
+
 
 		newColDiv.addEventListener('click', function (event) {
 			console.log('names99 selected: ' + names99_string[this.index].Translation);
