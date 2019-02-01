@@ -3,7 +3,8 @@ var names99DivList = [];
 var exploreDivList = [];
 
 //active list:
-var activeList = [];
+var activeList = []; //this is an array as long as the number of Aya's with a 1 where its active and a 0 where its not
+var interestingList = []; //this is the list of active elemetns, its a list of ayas in activeList which are 1, but only happens when the entire list isn't filled.
 
 var highlighted_list = [];
 

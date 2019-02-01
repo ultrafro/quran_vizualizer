@@ -2,6 +2,7 @@ function setupVisualization(){
 	//console.log('setup visualization!!!!!!!!!!!!!!!!!!!!!!');
 	//Make an SVG Container
 	svgContainer = d3.select(document.getElementById("quran_container")).append("svg")
+	svgContainer.node().id = "quranSVG";
 
 		//do touch move test!
 	console.log('touch change!!!!');
@@ -9,6 +10,27 @@ function setupVisualization(){
 	d3.select("svg").on("touchstart", touchQuranMobile);
     d3.select("svg").on("touchmove", touchQuranMobile);
     d3.select("svg").on("touchend", untouchQuranMobile);
+    d3.selectAll(".textBlock,.main-carousel,.names-carousel").on("touchstart", touchQuranMobile);
+    d3.selectAll(".textBlock,.main-carousel,.names-carousel").on("touchmove", touchQuranMobile);
+   	d3.select(".textBlock,.main-carousel,.names-carousel").on("touchend", untouchQuranMobile);
+
+
+
+
+
+    //d3.select(".nonclick").on("touchmove", touchQuranMobile);
+    //d3.select(".nonclick").on("touchend", untouchQuranMobile);
+	d3.select("#content").on("touchstart", touchQuranMobile);
+	//d3.select(".nonclick").on("touchstart", touchQuranMobile);
+    d3.select("#content").on("touchmove", touchQuranMobile);
+    d3.select("#content").on("touchend", untouchQuranMobile);
+    
+
+
+    //d3.select("#content").on("touchstart", touchAyaMobile);
+    //d3.select("#content").on("touchmove", touchAyaMobile);
+    //d3.select("#content").on("touchend",untouchAyaMobile);
+    
     d3.select("svg").on("mousemove", touchQuranDesktop);
 	console.log('finish touch change!!!!');
 	
@@ -21,10 +43,6 @@ function setupVisualization(){
 	});
 
 	redraw();
-	
-
-
-
 }
 
 
@@ -35,29 +53,59 @@ function searchBar(){
 		document.getElementById("searchBarButton").classList.remove("searchOpen");
 		document.getElementById("searchBarButton").classList.add("searchClosed");
 		document.getElementById("content").style.zIndex=-1;
-		searchBar_open = 0;
-		document.getElementById("searchBar").style.display = "none";
-		/*
+		//document.getElementById("content").style.display="block";
 
-		document.getElementById("content").style.zIndex=-1;
 		var step_list = document.getElementsByClassName("step");
+		
 		for(var i = 0; i<step_list.length; i++){
-			step_list[i].style.display="none";
-			step_list[i].style.zIndex=0;
+			if(i==current_swipe_section){
+				step_list[i].style.display="block";
+				step_list[i].style.zIndex=100;
+			}else{
+				step_list[i].style.display="none";
+				step_list[i].style.zIndex=0;
+			}
 		}
 
-		document.getElementById("swipeLeft").style.display="none";
-		document.getElementById("swipeRight").style.display="none";
+		searchBar_open = 0;
+		document.getElementById("searchBar").style.display = "none";
 
-		document.getElementById("navbar").style.display="none";
-		*/
+		clearInterval(interval);
+		activateFunctions[currentIndex]();
+		interval = setInterval(function(){
+		//console.log('interval function');
+			activateFunctions[currentIndex]()
+		},1600);
 	}else{
 		console.log('opening searchbar');
 		document.getElementById("searchBarButton").classList.remove("searchClosed");
 		document.getElementById("searchBarButton").classList.add("searchOpen");
-		document.getElementById("content").style.zIndex=0;
+		document.getElementById("content").style.zIndex=-1;
+		//document.getElementById("content").style.display="none";
+
+
+		var step_list = document.getElementsByClassName("step");
+		
+		for(var i = 0; i<step_list.length; i++){
+			if(i==0){
+				step_list[i].style.display="block";
+				step_list[i].style.zIndex=100;
+			}else{
+				step_list[i].style.display="none";
+				step_list[i].style.zIndex=0;
+			}
+		}
+
 		searchBar_open = 1;
 		document.getElementById("searchBar").style.display = "block";
+
+		clearInterval(interval);
+		activateFunctions[0]();
+		//console.log('starting interval: ' + currentIndex);
+		//highlightNavBar(sectionNames[currentIndex]);
+	}
+
+	if(true){	
 
 		/*
 		var step_list = document.getElementsByClassName("step");
@@ -197,6 +245,13 @@ function loadSection(sectionNumber){
 	console.log('starting interval: ' + currentIndex);
 	highlightNavBar(sectionNames[currentIndex]);
 
+	//if search is open, close it?
+	if(searchBar_open){
+		clearSearch(); 
+		closeAutocompleteList();
+		searchBar();
+	}
+
 	if(true){	
 		activateFunctions[currentIndex]();
 		interval = setInterval(function(){
@@ -294,32 +349,314 @@ function touchQuranDesktop(){
 }
 
 function touchQuranMobile(){
-	d3.event.preventDefault();
-    d3.event.stopPropagation();
+	//console.log("touch quran. This: " + this);
+	//console.dir(this);
+
+	//console.log("target: " + d3.event.target);
+	//console.dir(d3.event.target);
+
+	if(searchBar_open || current_swipe_section==0){
+		d3.event.preventDefault();
+	    d3.event.stopPropagation();		
+	}
+
+	if(this.classList.contains("textBlock")){
+		console.log('element contains class nonclick, stopping propagation');
+		d3.event.stopPropagation();
+		return;
+	}else{
+		console.log('element does not contain class nonclick, continuing propagation');
+	}
+
     d = d3.touches(this);
     //console.log('length of touches:');
     //console.log(d.length);
     //console.dir(d);
+
+
+
     if(d.length == 1){
-    	touchQuran(d[0][0], d[0][1]);
+    	//var touch_x = d[0][0];
+    	//var touch_y = ;
+    	var element = null;
+    	if(!this.classList.contains("textBlock")){
+    		touchQuran(d[0][0], d[0][1], this);
+    	}
+    	
     }
 
 }
 
-function touchQuran(cursor_x, cursor_y){
-	console.log('touchquran');
+function touchAyaMobile(){
+	console.log("touch aya");
+	d = d3.touches(this);
+	cursor_x = d[0][0];
+	cursor_y = d[0][1];
+
+
+	touch_x = cursor_x + document.getElementById("content").getBoundingClientRect().left;
+    touch_y = cursor_y + document.getElementById("content").getBoundingClientRect().top;
+
+
+
+
+
+
+
+
+
+    /*
+	if(current_swipe_section == 8){
+		//about section:
+		return;
+	}
+	*/
+
+
+
+    console.log('not in beginning section: ' + current_swipe_section);
+	console.log('touch is: ' + cursor_x + ' ' + cursor_y);
+	//do classical behavior of touching and highlighting ayas
+
+	//cycle through active list to find closest one.
+	//concatenate highlighted_list and search_idx_list
+	var option_list = highlighted_list.concat(search_idx_list);
+
+	if(!searchBar_open && current_swipe_section!=8){
+
+		option_list = option_list.concat(interestingList);    	
+    }
+
+    if(searchBar_open){
+    	console.log('AMENDING FOR SEARCH BEING OPEN AND TOUCHING AYA')
+    	touch_x = cursor_x + document.getElementById("quran_container").getBoundingClientRect().left;
+    	touch_y = cursor_y + document.getElementById("quran_container").getBoundingClientRect().top;
+    }
+
+
+
+	//console.log('option list: ' + option_list);
+	//find closest one:
+	id_num = -1;
+    closest_dist = 1000000000;
+    for(var i = 0; i<option_list.length; i++){
+    	dist = Math.abs(box_list[option_list[i]].node().getBoundingClientRect().left - touch_x) + Math.abs(box_list[option_list[i]].node().getBoundingClientRect().top - touch_y);
+		//dist = Math.abs(box_list[i].node().offsetLeft - touch_x) + Math.abs(box_list[i].node().getBoundingClientRect().top - touch_y);
+
+    	if(dist<closest_dist){
+    		closest_dist = dist;
+    		id_num = box_list[option_list[i]].id_num;
+    	}
+    }
+    if(closest_dist > window.innerWidth*.1){
+    	id_num = -1;
+    }
+    console.log('closest id num: ' + id_num);
+
+	//handle the click/declick
+	if(id_num!=-1){
+		d3.event.preventDefault();
+    	d3.event.stopPropagation();
+
+		untouch();
+
+		document.getElementById('infobox').classList.remove("infoBoxClassInvisible");
+		document.getElementById('infobox').classList.add("infoBoxClassVisible");
+		document.getElementById('arabic_text_p').innerHTML= quran_json_string[id_num].arabic;
+		document.getElementById('english_text_p').innerHTML = quran_json_string[id_num].english;
+		document.getElementById('juz_text_p').innerHTML ="juz: " + quran_json_string[id_num].juz_number;
+		document.getElementById('sura_text_p').innerHTML ="surah: " + quran_json_string[id_num].chapter;
+		document.getElementById('aya_text_p').innerHTML ="aya: " + quran_json_string[id_num].verse;
+
+		//add a leader line?*
+		for(var i = 0; i<line_list.length; i++){
+			line_list[i].remove();
+		}
+		line_list = [];
+		var myLine = new LeaderLine( document.getElementById('infobox'), box_list[id_num].node(), {color: 'orange', size: 8});		
+		line_list.push(myLine);
+	}
+
+}
+
+function untouchAyaMobile(){
+	untouch();
+}
+
+function touchQuran(cursor_x, cursor_y, element){
+	//console.log('touchquran');
+	//console.log('element: ' + element);
+
+
+	//if search: do search for closest search idx
+	//if current_swipe_section == 0, do main page functionality
+	//if >0, do interesting list functionality (highlighted ayas)
+
+	touch_x = cursor_x + element.getBoundingClientRect().left;
+    touch_y = cursor_y + element.getBoundingClientRect().top;
+
+	//console.log("touch quran. element: " + element);
+	//console.dir(element);
+	id_num = -1;
+	closest_dist = 1000000000;
+
+	if(searchBar_open){
+		id_num = -1;
+		closest_dist = 1000000000;
+		for(var i = 0; i<search_idx_list.length; i++){
+	    	dist = Math.abs(box_list[search_idx_list[i]].node().getBoundingClientRect().left - touch_x) + Math.abs(box_list[search_idx_list[i]].node().getBoundingClientRect().top - touch_y);
+			//dist = Math.abs(box_list[i].node().offsetLeft - touch_x) + Math.abs(box_list[i].node().getBoundingClientRect().top - touch_y);
+
+	    	if(dist<closest_dist){
+	    		closest_dist = dist;
+	    		id_num = box_list[search_idx_list[i]].id_num;
+	    	}
+	    	box_list[search_idx_list[i]].transition()
+					.attr('fill', base_color)
+	    }
+
+		
+	}else{
+		if(current_swipe_section == 0){
+		 	q_width = document.getElementById("quran_container").getBoundingClientRect().right - document.getElementById("quran_container").getBoundingClientRect().left;
+		    q_height = document.getElementById("quran_container").getBoundingClientRect().bottom - document.getElementById("quran_container").getBoundingClientRect().top;
+		    percent_x = (cursor_x - document.getElementById("quran_container").getBoundingClientRect().left) / q_width;
+		    percent_y = (cursor_y - document.getElementById("quran_container").getBoundingClientRect().top) / q_height;
+
+		    selected_juz = Math.floor((1-percent_x)*30); //i don't know why i have to flip the percentage, but it works...
+		    box_list_in_juz = box_juz_dict[selected_juz];
+
+		    closest_dist = 1000000000;
+		    for(var i = 0; i<box_list_in_juz.length; i++){
+		    	dist = Math.abs(box_list_in_juz[i].node().getBoundingClientRect().left - touch_x) + Math.abs(box_list_in_juz[i].node().getBoundingClientRect().top - touch_y);
+				//dist = Math.abs(box_list[i].node().offsetLeft - touch_x) + Math.abs(box_list[i].node().getBoundingClientRect().top - touch_y);
+
+		    	if(dist<closest_dist){
+		    		closest_dist = dist;
+		    		id_num = box_list_in_juz[i].id_num;
+		    	}
+		    	box_list_in_juz[i].transition()
+						.attr('fill', base_color)
+			}
+
+		}else{
+			var option_list = highlighted_list.concat(search_idx_list);
+			option_list = option_list.concat(interestingList);
+			console.log('option list: ' + option_list);
+			//find closest one:
+			id_num = -1;
+		    closest_dist = 1000000000;
+		    for(var i = 0; i<option_list.length; i++){
+		    	dist = Math.abs(box_list[option_list[i]].node().getBoundingClientRect().left - touch_x) + Math.abs(box_list[option_list[i]].node().getBoundingClientRect().top - touch_y);
+				//dist = Math.abs(box_list[i].node().offsetLeft - touch_x) + Math.abs(box_list[i].node().getBoundingClientRect().top - touch_y);
+
+		    	if(dist<closest_dist){
+		    		closest_dist = dist;
+		    		id_num = box_list[option_list[i]].id_num;
+		    	}
+		    }
+		}
+	}
+
+
+	if(closest_dist > window.innerWidth*.1){
+    	id_num = -1;
+    }
+
+
+	if(id_num != -1){
+    	   box_list[id_num].transition()
+				.attr('fill', hover_color)
+
+
+
+
+		document.getElementById('infobox').classList.remove("infoBoxClassInvisible");
+		document.getElementById('infobox').classList.add("infoBoxClassVisible");
+		document.getElementById('arabic_text_p').innerHTML= quran_json_string[id_num].arabic;
+		document.getElementById('english_text_p').innerHTML = quran_json_string[id_num].english;
+		document.getElementById('juz_text_p').innerHTML ="juz: " + quran_json_string[id_num].juz_number;
+		document.getElementById('sura_text_p').innerHTML ="surah: " + quran_json_string[id_num].chapter;
+		document.getElementById('aya_text_p').innerHTML ="aya: " + quran_json_string[id_num].verse;
+
+		/*
+		//put id box in right spot
+		var newX = box_list[id_num].node().getBoundingClientRect().left;
+		var newY = box_list[id_num].node().getBoundingClientRect().top - 500;
+
+		newX = Math.min( (window.innerWidth - 200), newX);
+		
+
+		document.getElementById('infobox').style.left = newX;
+		document.getElementById('infobox').style.top = newY;	
+		*/
+
+		//add a leader line?*
+		for(var i = 0; i<line_list.length; i++){
+			line_list[i].remove();
+		}
+		line_list = [];
+		var myLine = new LeaderLine( document.getElementById('infobox'), box_list[id_num].node(), {color: 'orange', size: 8});		
+		line_list.push(myLine);
+    }
+
+    return;
+
+
+
+
+
+
 	/*
 	if(burger_open){
 		return;
 	}
 	*/
 	if(current_swipe_section!=0){ //todo: add if search bar is on condition
+		console.log('not in beginning section: ' + current_swipe_section);
+		console.log('touch is: ' + cursor_x + ' ' + cursor_y);
 		//do classical behavior of touching and highlighting ayas
 
 		//cycle through active list to find closest one.
+		//concatenate highlighted_list and search_idx_list
+		var option_list = highlighted_list.concat(search_idx_list);
+
+		console.log('option list: ' + option_list);
+		//find closest one:
+		id_num = -1;
+	    closest_dist = 1000000000;
+	    for(var i = 0; i<option_list.length; i++){
+	    	dist = Math.abs(box_list[option_list[i]].node().getBoundingClientRect().left - cursor_x) + Math.abs(box_list[option_list[i]].node().getBoundingClientRect().top - cursor_y);
+			//dist = Math.abs(box_list[i].node().offsetLeft - touch_x) + Math.abs(box_list[i].node().getBoundingClientRect().top - touch_y);
+
+	    	if(dist<closest_dist){
+	    		closest_dist = dist;
+	    		id_num = box_list[option_list[i]].id_num;
+	    	}
+	    }
+	    console.log('closest id num: ' + id_num);
 
 		//handle the click/declick
+		if(id_num!=-1){
 
+			untouch();
+
+			document.getElementById('infobox').classList.remove("infoBoxClassInvisible");
+			document.getElementById('infobox').classList.add("infoBoxClassVisible");
+			document.getElementById('arabic_text_p').innerHTML= quran_json_string[id_num].arabic;
+			document.getElementById('english_text_p').innerHTML = quran_json_string[id_num].english;
+			document.getElementById('juz_text_p').innerHTML ="juz: " + quran_json_string[id_num].juz_number;
+			document.getElementById('sura_text_p').innerHTML ="surah: " + quran_json_string[id_num].chapter;
+			document.getElementById('aya_text_p').innerHTML ="aya: " + quran_json_string[id_num].verse;
+
+			//add a leader line?*
+			for(var i = 0; i<line_list.length; i++){
+				line_list[i].remove();
+			}
+			line_list = [];
+			var myLine = new LeaderLine( document.getElementById('infobox'), box_list[id_num].node(), {color: 'orange', size: 8});		
+			line_list.push(myLine);
+		}
 
 
 
@@ -329,12 +666,18 @@ function touchQuran(cursor_x, cursor_y){
 
 		return;
 	}
+
+
 	console.log('Touch Quran!');
 	document.getElementById('infobox-nav').style.display = "block";
 	console.log('set nav style to: ' + document.getElementById('infobox-nav').style.display);
 
     touch_x = cursor_x + document.getElementById("quran_container").getBoundingClientRect().left;
     touch_y = cursor_y + document.getElementById("quran_container").getBoundingClientRect().top;
+
+
+
+
 
 
     //d = new Date();
@@ -350,18 +693,35 @@ function touchQuran(cursor_x, cursor_y){
     box_list_in_juz = box_juz_dict[selected_juz];
 
     id_num = -1;
-    closest_dist = 1000000000;
-    for(var i = 0; i<box_list_in_juz.length; i++){
-    	dist = Math.abs(box_list_in_juz[i].node().getBoundingClientRect().left - touch_x) + Math.abs(box_list_in_juz[i].node().getBoundingClientRect().top - touch_y);
-		//dist = Math.abs(box_list[i].node().offsetLeft - touch_x) + Math.abs(box_list[i].node().getBoundingClientRect().top - touch_y);
+    if(!searchBar_open){
+	    closest_dist = 1000000000;
+	    for(var i = 0; i<box_list_in_juz.length; i++){
+	    	dist = Math.abs(box_list_in_juz[i].node().getBoundingClientRect().left - touch_x) + Math.abs(box_list_in_juz[i].node().getBoundingClientRect().top - touch_y);
+			//dist = Math.abs(box_list[i].node().offsetLeft - touch_x) + Math.abs(box_list[i].node().getBoundingClientRect().top - touch_y);
 
-    	if(dist<closest_dist){
-    		closest_dist = dist;
-    		id_num = box_list_in_juz[i].id_num;
-    	}
-    	box_list_in_juz[i].transition()
-				.attr('fill', base_color)
+	    	if(dist<closest_dist){
+	    		closest_dist = dist;
+	    		id_num = box_list_in_juz[i].id_num;
+	    	}
+	    	box_list_in_juz[i].transition()
+					.attr('fill', base_color)
+	    }
+    }else{
+     	closest_dist = 1000000000;
+	    for(var i = 0; i<search_idx_list.length; i++){
+	    	dist = Math.abs(box_list[search_idx_list[i]].node().getBoundingClientRect().left - touch_x) + Math.abs(box_list[search_idx_list[i]].node().getBoundingClientRect().top - touch_y);
+			//dist = Math.abs(box_list[i].node().offsetLeft - touch_x) + Math.abs(box_list[i].node().getBoundingClientRect().top - touch_y);
+
+	    	if(dist<closest_dist){
+	    		closest_dist = dist;
+	    		id_num = box_list[search_idx_list[i]].id_num;
+	    	}
+	    	box_list[search_idx_list[i]].transition()
+					.attr('fill', base_color)
+	    }   	
     }
+
+
 
     console.log('found id num: ' + id_num);
     console.dir('foudn box: ' + box_list[id_num]);
@@ -986,9 +1346,9 @@ function autocomplete(inp, arr, mentions) {
     except the one passed as an argument:*/
     var x = document.getElementsByClassName("autocomplete-items");
     for (var i = 0; i < x.length; i++) {
-      if (elmnt != x[i] && elmnt != inp) {
-      x[i].parentNode.removeChild(x[i]);
+      	if (elmnt != x[i] && elmnt != inp) {
+      		x[i].parentNode.removeChild(x[i]);
+    	}
     }
   }
-}
 }

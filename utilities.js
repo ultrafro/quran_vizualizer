@@ -2,18 +2,22 @@
 //todo: what is active list again? haha.
 function addToActiveList(index){
 	activeList[index]=1;
+	interestingList.push(index);
 }
 
 function clearActiveList(){
 	for(var i = 0; i<number_of_ayas; i++){
 		activeList[i] = 0;
-	}			
+	}
+	interestingList = [];			
 }
 
 function fillActiveList(){
 	for(var i = 0; i<number_of_ayas; i++){
 		activeList[i] = 1;
-	}				
+		//activeListGroup.push(i);
+	}
+
 }
 
 //strips the diacritics (harakat) from arabic text. not the fastest, but works.

@@ -606,6 +606,11 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	font-size: 3vh;
 	text-indent: 2vh;
 	width: 100vw;
+
+	-webkit-user-select: none;         
+	-moz-user-select: none; 
+	-ms-user-select: none; 
+	user-select: none; 
 }
 
 .titleBlock{
@@ -636,6 +641,10 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
     padding: 1vw 1vw; /* Add some padding */
     text-decoration: none; /* Remove underline from links */
     float: left;
+    	-webkit-user-select: none; /* Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
 }
 
 .vertical-menu a:hover {
