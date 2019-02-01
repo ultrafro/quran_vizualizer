@@ -475,6 +475,12 @@ function touchAyaMobile(){
 		line_list = [];
 		var myLine = new LeaderLine( document.getElementById('infobox'), box_list[id_num].node(), {color: 'orange', size: 8});		
 		line_list.push(myLine);
+
+		if(isInViewport(myLine.start)){
+			myLine.show();
+		}else{
+			myLine.hide();
+		}
 	}
 
 }
@@ -540,21 +546,24 @@ function touchQuran(cursor_x, cursor_y, element){
 			}
 
 		}else{
-			var option_list = highlighted_list.concat(search_idx_list);
-			option_list = option_list.concat(interestingList);
-			console.log('option list: ' + option_list);
-			//find closest one:
-			id_num = -1;
-		    closest_dist = 1000000000;
-		    for(var i = 0; i<option_list.length; i++){
-		    	dist = Math.abs(box_list[option_list[i]].node().getBoundingClientRect().left - touch_x) + Math.abs(box_list[option_list[i]].node().getBoundingClientRect().top - touch_y);
-				//dist = Math.abs(box_list[i].node().offsetLeft - touch_x) + Math.abs(box_list[i].node().getBoundingClientRect().top - touch_y);
+			if(current_swipe_section == 5 || current_swipe_section == 6 || current_swipe_section == 7){
+				var option_list = highlighted_list.concat(search_idx_list);
+				option_list = option_list.concat(interestingList);
+				console.log('option list: ' + option_list);
+				//find closest one:
+				id_num = -1;
+			    closest_dist = 1000000000;
+			    for(var i = 0; i<option_list.length; i++){
+			    	dist = Math.abs(box_list[option_list[i]].node().getBoundingClientRect().left - touch_x) + Math.abs(box_list[option_list[i]].node().getBoundingClientRect().top - touch_y);
+					//dist = Math.abs(box_list[i].node().offsetLeft - touch_x) + Math.abs(box_list[i].node().getBoundingClientRect().top - touch_y);
 
-		    	if(dist<closest_dist){
-		    		closest_dist = dist;
-		    		id_num = box_list[option_list[i]].id_num;
-		    	}
-		    }
+			    	if(dist<closest_dist){
+			    		closest_dist = dist;
+			    		id_num = box_list[option_list[i]].id_num;
+			    	}
+			    }				
+			}
+
 		}
 	}
 
@@ -598,6 +607,11 @@ function touchQuran(cursor_x, cursor_y, element){
 		line_list = [];
 		var myLine = new LeaderLine( document.getElementById('infobox'), box_list[id_num].node(), {color: 'orange', size: 8});		
 		line_list.push(myLine);
+		if(isInViewport(myLine.start)){
+			myLine.show();
+		}else{
+			myLine.hide();
+		}
     }
 
     return;
@@ -656,6 +670,12 @@ function touchQuran(cursor_x, cursor_y, element){
 			line_list = [];
 			var myLine = new LeaderLine( document.getElementById('infobox'), box_list[id_num].node(), {color: 'orange', size: 8});		
 			line_list.push(myLine);
+
+			if(isInViewport(myLine.start)){
+				myLine.show();
+			}else{
+				myLine.hide();
+			}
 		}
 
 
@@ -789,6 +809,12 @@ function touchQuran(cursor_x, cursor_y, element){
 		line_list = [];
 		var myLine = new LeaderLine( document.getElementById('infobox'), box_list[id_num].node(), {color: 'orange', size: 8});		
 		line_list.push(myLine);
+
+		if(isInViewport(myLine.start)){
+			myLine.show();
+		}else{
+			myLine.hide();
+		}
     }
 
 }
@@ -1156,6 +1182,12 @@ function handleMouseOver(d,i){
 	line_list = [];
 	var myLine = new LeaderLine( document.getElementById('infobox'), box_list[id_num].node());		
 	line_list.push(myLine);
+
+	if(isInViewport(myLine.start)){
+		myLine.show();
+	}else{
+		myLine.hide();
+	}
 }
 
 

@@ -77,13 +77,40 @@ function highlightAya(elem, chapter, verse){
 	var myLine = new LeaderLine( elem, box_list[id_num].node(), {color: 'orange', size: 8});	
 	//myLine.style.zIndex = "400";	
 	line_list.push(myLine);	
+	if(isInViewport(myLine.start)){
+		myLine.show();
+	}else{
+		myLine.hide();
+	}
+
 }
+
+
+var isInViewport = function (elem) {
+    var bounding = elem.getBoundingClientRect();
+    return (
+        bounding.top >= 0 &&
+        bounding.left >= 0 &&
+        bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+};
 
 window.addEventListener('scroll',function(e) {
 	//go through line list and make sure it's pointed to it's target.
 	for(var i = 0; i<line_list.length; i++){
 		var line = line_list[i];
 		line.position();
+
+		//if line element is not in view, hide!
+		if(isInViewport(line.start)){
+			line.show();
+		}else{
+			line.hide();
+		}
+
+		//if line elment is in view, unhide!
+
 	}
 
 });
