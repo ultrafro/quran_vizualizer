@@ -153,17 +153,21 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
     cursor: pointer;
 }
 
+/*
 .pagerButton:hover {
     background-color: #ddd;
     color: white;
     cursor: pointer;
 }
+*/
 
+/*
 .pagerButton:active {
     background-color: #aaa;
     color: white;
     cursor: pointer;
 }
+*/
 
 .textUnselectable{
 	-webkit-user-select: none; /* Safari */        
