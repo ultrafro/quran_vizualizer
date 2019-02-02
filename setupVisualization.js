@@ -360,12 +360,14 @@ function touchQuranMobile(){
 	    d3.event.stopPropagation();		
 	}
 
-	if(this.classList.contains("textBlock")){
-		console.log('element contains class nonclick, stopping propagation');
+	if(this.classList.contains("textBlock") ||
+		this.classList.contains("main-carousel") ||
+		this.classList.contains("names-carousel") ){
+		//console.log('element contains class nonclick, stopping propagation');
 		d3.event.stopPropagation();
 		return;
 	}else{
-		console.log('element does not contain class nonclick, continuing propagation');
+		//console.log('element does not contain class nonclick, continuing propagation');
 	}
 
     d = d3.touches(this);
@@ -549,7 +551,7 @@ function touchQuran(cursor_x, cursor_y, element){
 			if(current_swipe_section == 5 || current_swipe_section == 6 || current_swipe_section == 7){
 				var option_list = highlighted_list.concat(search_idx_list);
 				option_list = option_list.concat(interestingList);
-				console.log('option list: ' + option_list);
+				//console.log('option list: ' + option_list);
 				//find closest one:
 				id_num = -1;
 			    closest_dist = 1000000000;
