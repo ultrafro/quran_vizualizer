@@ -585,6 +585,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	left: 10vw;
 	background-color:#F1ECCC;
 	background-color:#A0ECCC;
+	background-color:#EEEEEEE0;
 	/*background-color:#DDBEA8;*/ /*beige*/
 	/*border-color: green;
 	border-color: #63A881EF;*/
@@ -597,6 +598,7 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 }
 .boxClickedClass{
 	background-color: #63A881;
+	background-color: #CCCCCCE0;
 }
 .boxUnclickedClass{
 	background-color: #00000000;
