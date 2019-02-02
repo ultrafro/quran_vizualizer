@@ -77,7 +77,9 @@ function highlightAya(elem, chapter, verse){
 	}
 	line_list = [];
 	//the original aya, hmmmm.
-	var myLine = new LeaderLine( elem, box_list[id_num].node(), {color: 'orange', size: 8});	
+	var myLine = new LeaderLine( elem, box_list[id_num].node(), {color: 'orange', size: 8});
+	//var myLine = new LeaderLine( LeaderLine.pointAnchor(elem, {x: '50%', y: '100%'}), box_list[id_num].node(), {color: 'orange', size: 8});		
+	
 	//myLine.style.zIndex = "400";	
 	line_list.push(myLine);	
 	if(isInViewport(myLine.start)){

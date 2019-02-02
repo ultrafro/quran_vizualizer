@@ -389,107 +389,6 @@ function touchQuranMobile(){
 
 }
 
-function touchAyaMobile(){
-	console.log("touch aya");
-	d = d3.touches(this);
-	cursor_x = d[0][0];
-	cursor_y = d[0][1];
-
-
-	touch_x = cursor_x + document.getElementById("content").getBoundingClientRect().left;
-    touch_y = cursor_y + document.getElementById("content").getBoundingClientRect().top;
-
-
-
-
-
-
-
-
-
-    /*
-	if(current_swipe_section == 8){
-		//about section:
-		return;
-	}
-	*/
-
-
-
-    console.log('not in beginning section: ' + current_swipe_section);
-	console.log('touch is: ' + cursor_x + ' ' + cursor_y);
-	//do classical behavior of touching and highlighting ayas
-
-	//cycle through active list to find closest one.
-	//concatenate highlighted_list and search_idx_list
-	var option_list = highlighted_list.concat(search_idx_list);
-
-	if(!searchBar_open && current_swipe_section!=8){
-
-		option_list = option_list.concat(interestingList);    	
-    }
-
-    if(searchBar_open){
-    	console.log('AMENDING FOR SEARCH BEING OPEN AND TOUCHING AYA')
-    	touch_x = cursor_x + document.getElementById("quran_container").getBoundingClientRect().left;
-    	touch_y = cursor_y + document.getElementById("quran_container").getBoundingClientRect().top;
-    }
-
-
-
-	//console.log('option list: ' + option_list);
-	//find closest one:
-	id_num = -1;
-    closest_dist = 1000000000;
-    for(var i = 0; i<option_list.length; i++){
-    	dist = Math.abs(box_list[option_list[i]].node().getBoundingClientRect().left - touch_x) + Math.abs(box_list[option_list[i]].node().getBoundingClientRect().top - touch_y);
-		//dist = Math.abs(box_list[i].node().offsetLeft - touch_x) + Math.abs(box_list[i].node().getBoundingClientRect().top - touch_y);
-
-    	if(dist<closest_dist){
-    		closest_dist = dist;
-    		id_num = box_list[option_list[i]].id_num;
-    	}
-    }
-    if(closest_dist > window.innerWidth*.1){
-    	id_num = -1;
-    }
-    console.log('closest id num: ' + id_num);
-
-	//handle the click/declick
-	if(id_num!=-1){
-		d3.event.preventDefault();
-    	d3.event.stopPropagation();
-
-		untouch();
-
-		document.getElementById('infobox').classList.remove("infoBoxClassInvisible");
-		document.getElementById('infobox').classList.add("infoBoxClassVisible");
-		document.getElementById('arabic_text_p').innerHTML= quran_json_string[id_num].arabic;
-		document.getElementById('english_text_p').innerHTML = quran_json_string[id_num].english;
-		document.getElementById('juz_text_p').innerHTML ="juz: " + quran_json_string[id_num].juz_number;
-		document.getElementById('sura_text_p').innerHTML ="surah: " + quran_json_string[id_num].chapter + "-" + surah_info[quran_json_string[id_num].chapter-1].transliterated;
-		document.getElementById('aya_text_p').innerHTML ="aya: " + quran_json_string[id_num].verse;
-
-		//add a leader line?*
-		for(var i = 0; i<line_list.length; i++){
-			line_list[i].remove();
-		}
-		line_list = [];
-		var myLine = new LeaderLine( document.getElementById('infobox'), box_list[id_num].node(), {color: 'orange', size: 8});		
-		line_list.push(myLine);
-
-		if(isInViewport(myLine.start)){
-			myLine.show();
-		}else{
-			myLine.hide();
-		}
-	}
-
-}
-
-function untouchAyaMobile(){
-	untouch();
-}
 
 function touchQuran(cursor_x, cursor_y, element){
 	//console.log('touchquran');
@@ -607,7 +506,10 @@ function touchQuran(cursor_x, cursor_y, element){
 			line_list[i].remove();
 		}
 		line_list = [];
-		var myLine = new LeaderLine( document.getElementById('infobox'), box_list[id_num].node(), {color: 'orange', size: 8});		
+		//var myLine = new LeaderLine( document.getElementById('infobox'), box_list[id_num].node(), {color: 'orange', size: 8});		
+		var myLine = new LeaderLine( LeaderLine.pointAnchor(document.getElementById('infobox'), {x: '50%', y: '100%'}), box_list[id_num].node(), {color: 'orange', size: 8});		
+		//LeaderLine.pointAnchor(document.getElementById('infobox'), {x: '50%', y: '100%'})
+
 		line_list.push(myLine);
 		if(isInViewport(myLine.start)){
 			myLine.show();
@@ -670,7 +572,8 @@ function touchQuran(cursor_x, cursor_y, element){
 				line_list[i].remove();
 			}
 			line_list = [];
-			var myLine = new LeaderLine( document.getElementById('infobox'), box_list[id_num].node(), {color: 'orange', size: 8});		
+			//var myLine = new LeaderLine( document.getElementById('infobox'), box_list[id_num].node(), {color: 'orange', size: 8});		
+			var myLine = new LeaderLine( LeaderLine.pointAnchor(document.getElementById('infobox'), {x: '50%', y: '100%'}), box_list[id_num].node(), {color: 'orange', size: 8});		
 			line_list.push(myLine);
 
 			if(isInViewport(myLine.start)){
@@ -809,7 +712,8 @@ function touchQuran(cursor_x, cursor_y, element){
 			line_list[i].remove();
 		}
 		line_list = [];
-		var myLine = new LeaderLine( document.getElementById('infobox'), box_list[id_num].node(), {color: 'orange', size: 8});		
+		//var myLine = new LeaderLine( document.getElementById('infobox'), box_list[id_num].node(), {color: 'orange', size: 8});		
+		var myLine = new LeaderLine( LeaderLine.pointAnchor(document.getElementById('infobox'), {x: '50%', y: '100%'}), box_list[id_num].node(), {color: 'orange', size: 8});		
 		line_list.push(myLine);
 
 		if(isInViewport(myLine.start)){
@@ -1184,7 +1088,8 @@ function handleMouseOver(d,i){
 		line_list[i].remove();
 	}
 	line_list = [];
-	var myLine = new LeaderLine( document.getElementById('infobox'), box_list[id_num].node());		
+	//var myLine = new LeaderLine( document.getElementById('infobox'), box_list[id_num].node());
+	var myLine = new LeaderLine( LeaderLine.pointAnchor(document.getElementById('infobox'), {x: '50%', y: '100%'}), box_list[id_num].node(), {color: 'orange', size: 8});				
 	line_list.push(myLine);
 
 	if(isInViewport(myLine.start)){
