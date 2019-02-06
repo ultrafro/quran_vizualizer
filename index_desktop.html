@@ -70,21 +70,28 @@
 
 		<div id="logo" class="logoClass">
 			<a href="#IntroductionAnchor">
-				<img src="logo.png" height="10%" >
+				<img src="logo.png" height="100%" style="position: absolute; left: 1vw" >
 			</a>
+
+
+			<div class="autocomplete" style="width: 100vw; height: 100%">
+<!-- 			    <input id="myInput" type="text" name="myCountry" placeholder="Country" style="position: absolute; top: 100%; left: 50%; width: 60vw; height: 75%;"> -->
+			    <input id="myInput" type="text" name="myCountry" placeholder="Country" style="position: absolute; top: 1.5vh; right: 2vw;  width: 70vw; height: 3vh;">
+			    <div style="position: absolute; width: 3vh; height: 3vh; top:1.5vh; right: 72.5vw;">
+			    	<img src="images/searchIcon.png" height="100%" onclick="searchTerm(document.getElementById('myInput').value); closeAutocompleteList();">
+			    </div>
+<!-- 			   	<img src="images/searchIcon.png" height="3vh" style="position: absolute; top: 1.5vh; right: 36vw; "> -->
+			    <div onclick="clearSearch(); closeAutocompleteList();" class="closeSearchIcon" style="position: absolute; top: 1.8vh; right: 3.5vh"> X </div>
+			    
+			    <!-- <div onclick="searchBar()" class="returnSearchIcon" style="position: absolute; top: 0vh; right: 0vw"> < </div> -->
+		  	</div>
+
+
 <!-- 			logo pattern from: http://daruliftaamw.com/alhambracoloringadults_th/ -->
 		</div>
 
 <!--     <div class="row"> -->
-    	<div class="column" style="position: fixed; top: 10.5%">
-    		<div class="topnav" align="center" style="position: relative; left: 20%">
-				<input id="search_text_bar" type="search" onsearch="clearSearchIfEmpty(this)" size="60" placeholder="Search for a term in the English translation"> 
-				<button id="search_button" > Search! </button>
-				<button id="clear_search_button" > Clear Search </button>
-				<div class="pagerButton previous round textUnselectable" onclick="previous()">&#8249;</div>
-				<div href="#" class="pagerButton previous round textUnselectable" onclick="next()">&#8250;</div>
-			</div>
-
+    	<div class="column" style="position: fixed; top: 10.5vh">
 <!-- 
 			<p id="arabic_text_p" align="center"> Aya Text </p>
 			<p id="english_text_p" align="center"> English Translation </p>
@@ -92,9 +99,24 @@
 			<p id="aya_text_p" align="center"> Aya Number </p>
 			<p id="juz_text_p" align="center"> Juz Number </p>
  -->
-			<div id="quran_container" style="position: fixed; top: 15%">
+			<div id="quran_container" style="position: fixed; top: 8vh">
 			</div>
 		</div>
+
+
+
+
+<!-- 
+	   	<div class="topnav" align="center" style="position: fixed; top: 13vh; left: 10vw">
+				<input id="search_text_bar" type="search" onsearch="clearSearchIfEmpty(this)" size="60" placeholder="Search for a term in the English translation"> 
+
+
+
+			<button id="search_button" > Search! </button>
+			<button id="clear_search_button" > Clear Search </button>
+			<div class="pagerButton previous round textUnselectable" onclick="previous()">&#8249;</div>
+			<div href="#" class="pagerButton previous round textUnselectable" onclick="next()">&#8250;</div>
+		</div> -->
 
 
 		<div id="navbar" class="vertical-menu navbarClass">
@@ -110,7 +132,7 @@
 		</div>
 
 
-    	<div class="column" id="content" style="position: absolute; width: 40%; height: 100%; left: 45%; top: 15%">
+    	<div class="column" id="content" style="position: absolute; width: 40%; height: 100%; left: 45%; top: 8%">
 			<span class="anchor" id="IntroductionAnchor"></span>
 			<section class="step" id="Introduction">
 			
@@ -355,6 +377,11 @@
 	<script src = "setupUI_desktop.js"></script>
 	<script src = "sectionFunctions_desktop.js"></script>
 	<script src = "setupVisualization_desktop.js"></script>
+	<script src = "presearch.js"></script>
+	<script>
+		autocomplete(document.getElementById("myInput"), presearch, mentions);
+ 	</script>
+
 	<script>
 		document.body.style.backgroundColor = bg_color;
 
@@ -365,10 +392,11 @@
 			
 			fillActiveList(); //todo: describe activeList
 			setupActivateFunctions(); //defined in sectionFunctions.js
+			setupUI(); //first function in setupUI.js
 			setupSectionPositions(); //defined in sectionFunctions.js9
 			setupSectionScroll();
 			setupVisualization();
-			setupUI(); //first function in setupUI.js
+
 			//getTopWords();
 		}
 

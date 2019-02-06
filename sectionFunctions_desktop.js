@@ -56,8 +56,8 @@ function handle_selected_blink(){
 
 function setupSectionScroll(){
 	window.addEventListener('scroll',function(e) {
-		//var pos = window.pageYOffset+10;
-		var pos = window.pageYOffset;
+		var pos = window.pageYOffset + 0.25*window.innerHeight; //25% of window height
+		//var pos = window.pageYOffset;
 		console.log(pos);
 
 		//find first element > pos, select oen right before it:

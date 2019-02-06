@@ -53,7 +53,7 @@ number_of_ayas = 6236;
 padding_x = 10;
 padding_y = 0.5;
 container_width = 0.4;
-container_height = 0.80;
+container_height = 0.9;
 box_width = container_width*(window.innerWidth/30 - padding_x);
 
 
