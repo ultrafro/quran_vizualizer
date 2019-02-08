@@ -282,7 +282,8 @@ function handleMouseDown(d,i){
 		document.getElementById('permanent_arabic_text_p').innerHTML= quran_json_string[id_num].arabic;
 		document.getElementById('permanent_english_text_p').innerHTML = quran_json_string[id_num].english;
 		document.getElementById('permanent_juz_text_p').innerHTML ="juz: " + quran_json_string[id_num].juz_number;
-		document.getElementById('permanent_sura_text_p').innerHTML ="surah: " + quran_json_string[id_num].chapter;
+		document.getElementById('sura_text_p').innerHTML ="surah: " + quran_json_string[id_num].chapter + " - " + surah_info[quran_json_string[id_num].chapter-1].transliterated;
+		document.getElementById('permanent_sura_text_p').innerHTML ="surah: " + quran_json_string[id_num].chapter + " - " + surah_info[quran_json_string[id_num].chapter-1].transliterated;
 		document.getElementById('permanent_aya_text_p').innerHTML ="aya: " + quran_json_string[id_num].verse;						
 	}
 
@@ -334,7 +335,7 @@ function handleMouseOver(d,i){
 	document.getElementById('arabic_text_p').innerHTML= quran_json_string[id_num].arabic;
 	document.getElementById('english_text_p').innerHTML = quran_json_string[id_num].english;
 	document.getElementById('juz_text_p').innerHTML ="juz: " + quran_json_string[id_num].juz_number;
-	document.getElementById('sura_text_p').innerHTML ="surah: " + quran_json_string[id_num].chapter;
+	document.getElementById('sura_text_p').innerHTML ="surah: " + quran_json_string[id_num].chapter + " - " + surah_info[quran_json_string[id_num].chapter-1].transliterated;
 	document.getElementById('aya_text_p').innerHTML ="aya: " + quran_json_string[id_num].verse;
 
 	//put id box in right spot

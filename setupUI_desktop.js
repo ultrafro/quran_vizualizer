@@ -123,7 +123,7 @@ function dehighlightAya(elem, chapter, verse){
 	document.getElementById('arabic_text_p').innerHTML = 'arabic text:';
 	document.getElementById('english_text_p').innerHTML = 'english translation:';
 	document.getElementById('juz_text_p').innerHTML ='juz number';
-	document.getElementById('sura_text_p').innerHTML ='sura number';
+	document.getElementById('sura_text_p').innerHTML ="surah: " + quran_json_string[id_num].chapter + " - " + surah_info[quran_json_string[id_num].chapter-1].transliterated;
 	document.getElementById('aya_text_p').innerHTML ='aya number';
 
 }

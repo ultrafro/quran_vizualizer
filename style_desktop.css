@@ -509,7 +509,8 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	top:0%;
 	left: 0%; 
 	z-index: 100; 
-	background: #63A881EF; 
+	 background: #63A881EF;  
+	/*background: #CCB38AEF; *//*brown?*/
 	padding:5px;
 	pointer-events: none
 }
@@ -547,8 +548,9 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 .stats_text_p_class{
 	position: relative;
 	top: 0vh;
+	left: 10%;
 	margin: auto;
-    width: 20%;
+    width: 50%;
 		 color: #111; 
 	 font-family: 'Helvetica Neue', sans-serif; 
 	 font-size: 16px; 
@@ -565,7 +567,8 @@ a[href], input[type='submit'], input[type='image'], label[for], select, button, 
 	top:0%;
 	left: 40%; 
 	z-index: 98; 
-	background:#63A881EF; 
+	/*background:#63A881EF;*/ 
+	background: #CCB38AEF; /*dark brown*/
 	padding:5px;
 }
 
