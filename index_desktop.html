@@ -66,6 +66,8 @@
 			<div id="highlightNamesBoxTransliterated" class="highlightNamesBoxTransliteratedClass"> Transliterated Name </div>
 			<p>
 			<div id="highlightNamesBoxEnglish" class="highlightNamesBoxEnglishClass"> English Name </div>
+			<p>
+			<div id="highlightNamesBoxMentions" class="highlightNamesBoxMentionsClass"> [#] </div>
 		</div>
 
 		<div id="logo" class="logoClass">
@@ -365,7 +367,7 @@
 
     	</div>
 
-        <script src = "quran_json_string.js"></script>
+<!--         <script src = "quran_json_string.js"></script> -->
         <script src = "prophet_json_string.js"></script>
         <script src = "names99_string.js"></script>
         <script src = "diacritics.js"></script>
@@ -386,21 +388,46 @@
 	<script>
 		document.body.style.backgroundColor = bg_color;
 
-		window.onload = init;
-
 
 		function init(){
 			
-			fillActiveList(); //todo: describe activeList
-			setupActivateFunctions(); //defined in sectionFunctions.js
-			setupUI(); //first function in setupUI.js
-			setupSectionPositions(); //defined in sectionFunctions.js9
-			setupSectionScroll();
-			setupVisualization();
 
-			//getTopWords();
+
+			//this loads the quran string
+	    	var xmlhttp = new XMLHttpRequest();
+	    	xmlhttp.overrideMimeType("application/json");
+			xmlhttp.onreadystatechange = function() {
+			  if (this.readyState == 4 && this.status == 200) {
+			  	//console.log('loaded q json string');
+			  	//console.log('length: ' + this.responseText.length);
+			    quran_json_string = JSON.parse(this.responseText);
+			    
+
+				fillActiveList(); //todo: describe activeList
+				setupActivateFunctions(); //defined in sectionFunctions.js
+				setupSectionPositions(); //defined in sectionFunctions.js9
+				setupSectionScroll();
+				setupVisualization();
+				setupUI(); //first function in setupUI.js
+				document.getElementById('loader').style.display = 'none';
+				//getTopWords();
+
+			  }
+			};
+			xmlhttp.onprogress = function (event) {
+			  //console.log('loaded: ' + event.loaded + '/' + event.total);
+			  event.loaded;
+			  event.total;
+
+			};
+			xmlhttp.open("GET", "quran_json_string.json", true);
+			xmlhttp.send();
+
+
+			
 		}
 
+		window.onload = init;
 
 		//preSearch99wikipedia();
 	</script>

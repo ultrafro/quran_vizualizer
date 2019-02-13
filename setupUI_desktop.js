@@ -400,6 +400,14 @@ function setupProphetTable(){
 		englishDiv.innerHTML = prophet_json_string[i].EnglishName;
 		newColDiv.appendChild(englishDiv);
 
+		//add number of mentions:
+		searchTerm(prophet_json_string[i].TranslationName);
+		var numMentions = search_idx_list.length;
+		var mentionDiv = document.createElement("div");
+		mentionDiv.classList.add("prophetMentions");
+		mentionDiv.innerHTML = "[" + numMentions + "]";
+		newColDiv.appendChild(mentionDiv);
+
 
 
 		newColDiv.addEventListener('click', function (event) {
@@ -597,6 +605,12 @@ function setupNamesTable(){
 			document.getElementById('highlightNamesBoxArabic').innerHTML = names99_string[this.index].Arabic;
 			document.getElementById('highlightNamesBoxTransliterated').innerHTML = names99_string[this.index].Transliteration;
 			document.getElementById('highlightNamesBoxEnglish').innerHTML = names99_string[this.index].Translation;
+			if(cache99_string[this.index].AyaList.length > 1){
+				document.getElementById('highlightNamesBoxMentions').innerHTML = "[" + cache99_string[this.index].AyaList.length + " mentions]";
+			}else{
+				document.getElementById('highlightNamesBoxMentions').innerHTML = "[" + cache99_string[this.index].AyaList.length + " mention]";
+			}
+
 
 			document.getElementById('highlightNamesBox').style.left = this.getBoundingClientRect().right + 20;
 			document.getElementById('highlightNamesBox').style.top = this.getBoundingClientRect().top - 20;	
