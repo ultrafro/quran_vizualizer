@@ -159,6 +159,7 @@ function clearSearch(){
 	//document.getElementById('search_text_bar').placeholder = search_placeholder_string;
 	document.getElementById('myInput').placeholder = search_placeholder_string;
 	document.getElementById('myInput').value = "";
+	document.getElementById("closeSearch").style.display = "none";
 }
 
 //sets up the search bar above the Quran Sections
@@ -171,6 +172,10 @@ function setupSearchBar(){
 
 	//make it so when you hit the enter button after typing text, it will act as a click
 	document.getElementById("myInput").addEventListener("keyup", function(event) {
+
+		if(document.getElementById("closeSearch").style.display == "none"){
+			document.getElementById("closeSearch").style.display = "block";
+		}
 		// Cancel the default action, if needed
 		event.preventDefault();
 		// Number 13 is the "Enter" key on the keyboard
