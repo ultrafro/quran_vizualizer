@@ -445,6 +445,7 @@ function setupProphetTable(){
 		rowDiv.appendChild(newColDiv);
 
 	}
+	clearSearch();
 
 }
 

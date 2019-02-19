@@ -5,6 +5,7 @@ function setupVisualization(){
 	window.addEventListener("resize",function(){
 		clearTimeout(resizeId);
 		resizeId = setTimeout(redraw, 100);
+		setupSectionPositions();
 	});
 
 	redraw();

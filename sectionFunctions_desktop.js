@@ -15,7 +15,8 @@ function setupActivateFunctions(){
 
 function setupSectionPositions(){
 	//get section positions:
-	var startPos;
+	sectionPositions = [];
+	var startPos = 0;
 	d3.selectAll('section').each(function(d,i) {
 	  var top = this.getBoundingClientRect().top;
 
