@@ -2,6 +2,10 @@ function setupVisualization(){
 	//Make an SVG Container
 	svgContainer = d3.select(document.getElementById("quran_container")).append("svg")
 	
+
+
+
+
 	window.addEventListener("resize",function(){
 		clearTimeout(resizeId);
 		resizeId = setTimeout(redraw, 100);
@@ -9,9 +13,177 @@ function setupVisualization(){
 	});
 
 	redraw();
+
+	d3.select("svg").on("mousemove", moveQuran);
+	d3.select("svg").on("mousedown", clickQuran);
+	d3.select("svg").on("mouseout", mouseOutQuran);
 }
 
-function addBox(text, width, start_x, start_y, id_num){
+function moveQuran(){
+	console.log("touchQuran");
+	element = document.getElementById("quran_container");
+	d = d3.mouse(this);
+	cursor_x = d[0];
+	cursor_y = d[1];
+
+
+	//find closest one and activate it?
+	touch_x = cursor_x + element.getBoundingClientRect().left;
+    touch_y = cursor_y + element.getBoundingClientRect().top;
+
+	//console.log("touch quran. element: " + element);
+	//console.dir(element);
+	id_num = -1;
+	closest_dist = 1000000000;
+
+	q_width = document.getElementById("quran_container").getBoundingClientRect().right - document.getElementById("quran_container").getBoundingClientRect().left;
+    q_height = document.getElementById("quran_container").getBoundingClientRect().bottom - document.getElementById("quran_container").getBoundingClientRect().top;
+    percent_x = (cursor_x - document.getElementById("quran_container").getBoundingClientRect().left) / q_width;
+    percent_y = (cursor_y - document.getElementById("quran_container").getBoundingClientRect().top) / q_height;
+
+    selected_juz = Math.floor((1-percent_x)*30); //i don't know why i have to flip the percentage, but it works...
+    box_list_in_juz = box_juz_dict[selected_juz];
+
+    closest_dist = 1000000000;
+    for(var i = 0; i<box_list_in_juz.length; i++){
+    	dist = Math.abs(box_list_in_juz[i].node().getBoundingClientRect().left - touch_x) + Math.abs(box_list_in_juz[i].node().getBoundingClientRect().top - touch_y);
+		//dist = Math.abs(box_list[i].node().offsetLeft - touch_x) + Math.abs(box_list[i].node().getBoundingClientRect().top - touch_y);
+
+    	if(dist<closest_dist){
+    		closest_dist = dist;
+    		id_num = box_list_in_juz[i].id_num;
+    	}
+    	box_list_in_juz[i].transition()
+				.attr('fill', base_color)
+	}
+
+
+	if(id_num != -1){
+		//console.log('id num: ' + id_num);
+		//console.log('current highlight: ' + current_highlight_box_id);
+		//console.dir(box_list_in_juz);
+		//box_list[id_num].on("mouseover").call(box_list[id_num].node(), box_list[id_num].datum)
+
+		
+		if(current_highlight_box_id!=id_num){
+			//console.log('mousing out of: ' + current_highlight_box_id);
+			//console.log('current id: ' + id_num);
+			//console.log('mousing out: ' + current_highlight_box_id);
+			temp = id_num;
+			if(current_highlight_box_id != -1){
+				handleMouseOut(box_list[current_highlight_box_id].node(), box_list[current_highlight_box_id].datum);				
+			}
+			//console.log('mousing over: ' + temp);
+			handleMouseOver(box_list[temp].node(), box_list[temp].datum);
+
+
+
+			current_highlight_box_id = temp;
+		}
+		
+
+
+
+	}
+}
+
+function clickQuran(){
+	console.log("clickQuran");
+	element = document.getElementById("quran_container");
+	d = d3.mouse(this);
+	cursor_x = d[0];
+	cursor_y = d[1];
+
+
+	//find closest one and activate it?
+	touch_x = cursor_x + element.getBoundingClientRect().left;
+    touch_y = cursor_y + element.getBoundingClientRect().top;
+
+	//console.log("touch quran. element: " + element);
+	//console.dir(element);
+	id_num = -1;
+	closest_dist = 1000000000;
+
+	q_width = document.getElementById("quran_container").getBoundingClientRect().right - document.getElementById("quran_container").getBoundingClientRect().left;
+    q_height = document.getElementById("quran_container").getBoundingClientRect().bottom - document.getElementById("quran_container").getBoundingClientRect().top;
+    percent_x = (cursor_x - document.getElementById("quran_container").getBoundingClientRect().left) / q_width;
+    percent_y = (cursor_y - document.getElementById("quran_container").getBoundingClientRect().top) / q_height;
+
+    selected_juz = Math.floor((1-percent_x)*30); //i don't know why i have to flip the percentage, but it works...
+    box_list_in_juz = box_juz_dict[selected_juz];
+
+    closest_dist = 1000000000;
+    for(var i = 0; i<box_list_in_juz.length; i++){
+    	dist = Math.abs(box_list_in_juz[i].node().getBoundingClientRect().left - touch_x) + Math.abs(box_list_in_juz[i].node().getBoundingClientRect().top - touch_y);
+		//dist = Math.abs(box_list[i].node().offsetLeft - touch_x) + Math.abs(box_list[i].node().getBoundingClientRect().top - touch_y);
+
+    	if(dist<closest_dist){
+    		closest_dist = dist;
+    		id_num = box_list_in_juz[i].id_num;
+    	}
+    	box_list_in_juz[i].transition()
+				.attr('fill', base_color)
+	}
+
+
+	if(id_num != -1){
+		//box_list[id_num].on("mouseover").call(box_list[id_num].node(), box_list[id_num].datum)
+		handleMouseDown(box_list[id_num].node(), box_list[id_num].datum);
+	}
+}
+
+function mouseOutQuran(){
+	console.log("mouseOutQuran");
+	//find closest one and activate it?
+	element = document.getElementById("quran_container");
+	d = d3.mouse(this);
+	cursor_x = d[0];
+	cursor_y = d[1];
+
+	touch_x = cursor_x + element.getBoundingClientRect().left;
+    touch_y = cursor_y + element.getBoundingClientRect().top;
+
+	//console.log("touch quran. element: " + element);
+	//console.dir(element);
+	id_num = -1;
+	closest_dist = 1000000000;
+
+	q_width = document.getElementById("quran_container").getBoundingClientRect().right - document.getElementById("quran_container").getBoundingClientRect().left;
+    q_height = document.getElementById("quran_container").getBoundingClientRect().bottom - document.getElementById("quran_container").getBoundingClientRect().top;
+    percent_x = (cursor_x - document.getElementById("quran_container").getBoundingClientRect().left) / q_width;
+    percent_y = (cursor_y - document.getElementById("quran_container").getBoundingClientRect().top) / q_height;
+
+    selected_juz = Math.floor((1-percent_x)*29); //i don't know why i have to flip the percentage, but it works...
+    selected_juz = Math.max(selected_juz, 0);
+    selected_juz = Math.min(selected_juz, 29);
+    box_list_in_juz = box_juz_dict[selected_juz];
+    console.log('selected juz in mouse out: '  + selected_juz);
+
+    closest_dist = 1000000000;
+    for(var i = 0; i<box_list_in_juz.length; i++){
+    	dist = Math.abs(box_list_in_juz[i].node().getBoundingClientRect().left - touch_x) + Math.abs(box_list_in_juz[i].node().getBoundingClientRect().top - touch_y);
+		//dist = Math.abs(box_list[i].node().offsetLeft - touch_x) + Math.abs(box_list[i].node().getBoundingClientRect().top - touch_y);
+
+    	if(dist<closest_dist){
+    		closest_dist = dist;
+    		id_num = box_list_in_juz[i].id_num;
+    	}
+    	box_list_in_juz[i].transition()
+				.attr('fill', base_color)
+	}
+
+
+	if(id_num != -1){
+		//box_list[id_num].on("mouseout").call(box_list[id_num].node(), box_list[id_num].datum)
+		handleMouseOut(box_list[id_num].node(), box_list[id_num].datum);
+	}
+	if(current_highlight_box_id != -1){
+		handleMouseOut(box_list[current_highlight_box_id].node(), box_list[current_highlight_box_id].datum);
+	}
+	current_highlight_box_id = -1;
+}
+
+function addBox(text, width, start_x, start_y, id_num, juz_num){
 	var box = svgContainer.append("rect")
 			                            .attr("x", start_x)
 			                            .attr("y", start_y)
@@ -21,9 +193,9 @@ function addBox(text, width, start_x, start_y, id_num){
 			                            .attr("fill",base_color)
 			                            .attr("visibility","hidden")
 			                            .attr("state","default")
-			                            .on("mouseover", handleMouseOver)
-  										.on("mouseout", handleMouseOut)
-  										.on("click",handleMouseDown);
+			                            //.on("mouseover", handleMouseOver)
+  										//.on("mouseout", handleMouseOut)
+  										//.on("click",handleMouseDown);
 
 
 	// var box = svgContainer.append("rect")
@@ -32,8 +204,13 @@ function addBox(text, width, start_x, start_y, id_num){
 	// 		                            .attr("width", width)
 	// 		                            .attr("height", factor*text.length)										
 	box.id = "id_" + id_num;
+	box.id_num = id_num;
 	box.node().classList.add("pointable");
 	box_list.push(box);
+	if(box_juz_dict[juz_num] == null){
+		box_juz_dict[juz_num]=[];
+	}
+	box_juz_dict[juz_num].push(box);
 
 	return factor* text.length;
 }
@@ -134,7 +311,8 @@ function redraw()
 
 
 
-		addBox(arabic,box_width,c_start_x,c_start_y,i);
+		//addBox(arabic,box_width,c_start_x,c_start_y,i);
+		addBox(arabic,box_width,c_start_x,c_start_y,i,juz); //made a change to add juz number and place box in juz list.
 
 		/*
 		//add circles on top.
@@ -181,7 +359,7 @@ function redraw()
 function handleMouseDown(d,i){
 	console.log("handle mousedown for: ");
 	console.dir(d);
-	id_num = this.id.substring(3,this.id.length);
+	id_num = d.id.substring(3,d.id.length);
 	id_num = parseInt(id_num);
 	console.log(id_num);
 
@@ -297,7 +475,7 @@ function handleMouseOver(d,i){
 	//console.dir(d);
 	//console.dir(i);
 	//console.dir(d3.select(this));
-	id_num = this.id.substring(3,this.id.length);
+	id_num = d.id.substring(3,d.id.length);
 	id_num = parseInt(id_num);
 	//console.log('found id num: ' + id_num);
 
@@ -340,8 +518,8 @@ function handleMouseOver(d,i){
 	document.getElementById('aya_text_p').innerHTML ="aya: " + quran_json_string[id_num].verse;
 
 	//put id box in right spot
-	document.getElementById('infobox').style.left = this.getBoundingClientRect().left + 50;
-	document.getElementById('infobox').style.top = this.getBoundingClientRect().top + 0;	
+	document.getElementById('infobox').style.left = d.getBoundingClientRect().left + 50;
+	document.getElementById('infobox').style.top = d.getBoundingClientRect().top + 0;	
 
 	//add a leader line?
 	for(var i = 0; i<line_list.length; i++){
@@ -361,7 +539,7 @@ function handleMouseOut(d,i){
 	}
 	line_list = [];
 
-	id_num = this.id.substring(3,this.id.length);
+	id_num = d.id.substring(3,d.id.length);
 	id_num = parseInt(id_num);
 
 	//console.log('handling mouseout for: ' + id_num);

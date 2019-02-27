@@ -16,6 +16,13 @@ sectionPositions = [];
 sectionNames = [];
 
 var box_list = [];
+var box_juz_dict = new Object(); //this is for pre-indexing the boxes
+								 //the idea is that each box is placed
+								 //in a list in the dictionary with the key being
+								 //each section. That way, we can search for just
+								 //the boxes in each section
+								 //this is filled up in the redraw/addbox function
+								 //in the setupVisualization_dekstop.js file
 
 //this list will be populated with the functions that get activated
 activateFunctions = [];
@@ -85,3 +92,4 @@ bg_color = '#FAEDDD' //light beige?
 
 sura_blink_color = 'rgb(200,150,150)'
 
+current_highlight_box_id = -1;
