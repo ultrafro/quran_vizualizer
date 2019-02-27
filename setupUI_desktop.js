@@ -239,9 +239,12 @@ function next(){
 	//click next active:
 
 	console.log('clicking on next Active: ' + nextActive);
-	var e = document.createEvent('UIEvents');
-	e.initUIEvent('click', true, true, /* ... */);
-	box_list[nextActive].node().dispatchEvent(e);
+
+	//var e = document.createEvent('UIEvents');
+	//e.initUIEvent('click', true, true, /* ... */);
+	//box_list[nextActive].node().dispatchEvent(e);
+	
+	handleMouseDown(box_list[nextActive].node(), box_list[nextActive].datum());
 }
 
 
@@ -292,9 +295,11 @@ function previous(){
 
 	//click previous active:
 	console.log('clicking on previous Active: ' + previousActive);
-	var e = document.createEvent('UIEvents');
-	e.initUIEvent('click', true, true, /* ... */);
-	box_list[previousActive].node().dispatchEvent(e);
+	//var e = document.createEvent('UIEvents');
+	//e.initUIEvent('click', true, true, /* ... */);
+	//box_list[nextActive].node().dispatchEvent(e);
+	
+	handleMouseDown(box_list[previousActive].node(), box_list[previousActive].datum());
 }
 
 

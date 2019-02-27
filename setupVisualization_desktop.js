@@ -121,8 +121,8 @@ function clickQuran(){
     		closest_dist = dist;
     		id_num = box_list_in_juz[i].id_num;
     	}
-    	box_list_in_juz[i].transition()
-				.attr('fill', base_color)
+    	//box_list_in_juz[i].transition()
+		//		.attr('fill', base_color)
 	}
 
 
@@ -168,8 +168,8 @@ function mouseOutQuran(){
     		closest_dist = dist;
     		id_num = box_list_in_juz[i].id_num;
     	}
-    	box_list_in_juz[i].transition()
-				.attr('fill', base_color)
+    	//box_list_in_juz[i].transition()
+		//		.attr('fill', base_color)
 	}
 
 
