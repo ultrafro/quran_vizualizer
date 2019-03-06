@@ -14,20 +14,37 @@ function setupVisualization(){
 
 	redraw();
 
-	d3.select("svg").on("mousemove", moveQuran);
-	d3.select("svg").on("mousedown", clickQuran);
+	document.getElementById("quran_container").onmousemove = function(e){moveQuran(e);};
+	document.getElementById("quran_container").onmousedown = function(e){clickQuran(e);};
+	//d3.select("svg").on("mousemove", moveQuran);
+	//d3.select("svg").on("mousedown", clickQuran);
 	d3.select("svg").on("mouseout", mouseOutQuran);
 }
 
-function moveQuran(){
-	console.log("touchQuran");
+function findElement(){
+	if(searchBar_open){
+		id_num = -1;
+		closest_dist = 1000000000;
+		for(var i = 0; i<search_idx_list.length; i++){
+	    	dist = Math.abs(box_list[search_idx_list[i]].node().getBoundingClientRect().left - touch_x) + Math.abs(box_list[search_idx_list[i]].node().getBoundingClientRect().top - touch_y);
+			//dist = Math.abs(box_list[i].node().offsetLeft - touch_x) + Math.abs(box_list[i].node().getBoundingClientRect().top - touch_y);
+
+	    	if(dist<closest_dist){
+	    		closest_dist = dist;
+	    		id_num = box_list[search_idx_list[i]].id_num;
+	    	}
+	    	box_list[search_idx_list[i]].transition()
+					.attr('fill', base_color)
+	    }
+
+		
+	}
+}
+
+
+function findClosestAya(cursor_x, cursor_y){
+
 	element = document.getElementById("quran_container");
-	d = d3.mouse(this);
-	cursor_x = d[0];
-	cursor_y = d[1];
-
-
-	//find closest one and activate it?
 	touch_x = cursor_x + element.getBoundingClientRect().left;
     touch_y = cursor_y + element.getBoundingClientRect().top;
 
@@ -41,22 +58,85 @@ function moveQuran(){
     percent_x = (cursor_x - document.getElementById("quran_container").getBoundingClientRect().left) / q_width;
     percent_y = (cursor_y - document.getElementById("quran_container").getBoundingClientRect().top) / q_height;
 
-    selected_juz = Math.floor((1-percent_x)*30); //i don't know why i have to flip the percentage, but it works...
+    //console.log('percent x: ' + percent_x);
+    //percent_x = Math.max(percent_x, 0);
+    //percent_x = Math.min(percent_x, 1);
+
+
+    //selected_juz = Math.floor((1-percent_x)*30); //i don't know why i have to flip the percentage, but it works...
+    selected_juz = Math.floor( (1-percent_x)*30 - 0.5);
+    selected_juz = Math.max(selected_juz, 0);
+    selected_juz = Math.min(selected_juz,29);
+    //console.log('selected juz: ' + selected_juz);
     box_list_in_juz = box_juz_dict[selected_juz];
 
-    closest_dist = 1000000000;
-    for(var i = 0; i<box_list_in_juz.length; i++){
-    	dist = Math.abs(box_list_in_juz[i].node().getBoundingClientRect().left - touch_x) + Math.abs(box_list_in_juz[i].node().getBoundingClientRect().top - touch_y);
-		//dist = Math.abs(box_list[i].node().offsetLeft - touch_x) + Math.abs(box_list[i].node().getBoundingClientRect().top - touch_y);
 
-    	if(dist<closest_dist){
-    		closest_dist = dist;
-    		id_num = box_list_in_juz[i].id_num;
-    	}
-    	//box_list_in_juz[i].transition()
-		//		.attr('fill', base_color)
+	if(search_idx_list.length > 0){
+		//console.log('looking for searched terms');
+		id_num = -1;
+		closest_dist = 1000000000;
+		for(var i = 0; i<search_idx_list.length; i++){
+	    	dist = Math.abs(box_list[search_idx_list[i]].node().getBoundingClientRect().left - cursor_x) + Math.abs(box_list[search_idx_list[i]].node().getBoundingClientRect().top - cursor_y);
+			//dist = Math.abs(box_list[i].node().offsetLeft - touch_x) + Math.abs(box_list[i].node().getBoundingClientRect().top - touch_y);
+
+	    	if(dist<closest_dist){
+	    		closest_dist = dist;
+	    		id_num = box_list[search_idx_list[i]].id_num;
+	    	}
+	    	box_list[search_idx_list[i]].transition()
+					.attr('fill', base_color)
+	    }
+
+		
+	}else{
+
+		//var option_list = highlighted_list.concat(interesting_list);
+		var option_list = interesting_list;
+		if(option_list.length>0){
+			//console.log('looking through options list');
+			id_num = -1;
+		    closest_dist = 1000000000;
+		    for(var i = 0; i<option_list.length; i++){
+		    	dist = Math.abs(box_list[option_list[i]].node().getBoundingClientRect().left - cursor_x) + Math.abs(box_list[option_list[i]].node().getBoundingClientRect().top - cursor_y);
+				//dist = Math.abs(box_list[i].node().offsetLeft - touch_x) + Math.abs(box_list[i].node().getBoundingClientRect().top - touch_y);
+
+		    	if(dist<closest_dist){
+		    		closest_dist = dist;
+		    		id_num = box_list[option_list[i]].id_num;
+		    	}
+		    }				
+		}else{
+			//console.log('doing normal search');
+			id_num = -1;
+		    closest_dist = 1000000000;
+		    for(var i = 0; i<box_list_in_juz.length; i++){
+		    	dist = Math.abs(box_list_in_juz[i].node().getBoundingClientRect().left - cursor_x) + Math.abs(box_list_in_juz[i].node().getBoundingClientRect().top - cursor_y);
+				//dist = Math.abs(box_list[i].node().offsetLeft - touch_x) + Math.abs(box_list[i].node().getBoundingClientRect().top - touch_y);
+
+		    	if(dist<closest_dist){
+		    		closest_dist = dist;
+		    		id_num = box_list_in_juz[i].id_num;
+		    	}
+		    	//box_list_in_juz[i].transition()
+				//		.attr('fill', base_color)
+			}
+		}
 	}
 
+	return id_num;
+}
+
+
+
+function moveQuran(e){
+	//console.log("touchQuran");
+	element = document.getElementById("quran_container");
+	//d = d3.mouse(this);
+
+	//id_num = findClosestAya(d[0],d[1]);
+	console.log(e.clientX + '-' + e.clientY);
+	id_num = findClosestAya(e.clientX, e.clientY);
+	console.log(id_num);
 
 	if(id_num != -1){
 		//console.log('id num: ' + id_num);
@@ -76,55 +156,17 @@ function moveQuran(){
 			//console.log('mousing over: ' + temp);
 			handleMouseOver(box_list[temp].node(), box_list[temp].datum);
 
-
-
 			current_highlight_box_id = temp;
 		}
-		
-
-
-
 	}
 }
 
-function clickQuran(){
-	console.log("clickQuran");
+function clickQuran(e){
+	//console.log("clickQuran");
 	element = document.getElementById("quran_container");
-	d = d3.mouse(this);
-	cursor_x = d[0];
-	cursor_y = d[1];
-
-
-	//find closest one and activate it?
-	touch_x = cursor_x + element.getBoundingClientRect().left;
-    touch_y = cursor_y + element.getBoundingClientRect().top;
-
-	//console.log("touch quran. element: " + element);
-	//console.dir(element);
-	id_num = -1;
-	closest_dist = 1000000000;
-
-	q_width = document.getElementById("quran_container").getBoundingClientRect().right - document.getElementById("quran_container").getBoundingClientRect().left;
-    q_height = document.getElementById("quran_container").getBoundingClientRect().bottom - document.getElementById("quran_container").getBoundingClientRect().top;
-    percent_x = (cursor_x - document.getElementById("quran_container").getBoundingClientRect().left) / q_width;
-    percent_y = (cursor_y - document.getElementById("quran_container").getBoundingClientRect().top) / q_height;
-
-    selected_juz = Math.floor((1-percent_x)*30); //i don't know why i have to flip the percentage, but it works...
-    box_list_in_juz = box_juz_dict[selected_juz];
-
-    closest_dist = 1000000000;
-    for(var i = 0; i<box_list_in_juz.length; i++){
-    	dist = Math.abs(box_list_in_juz[i].node().getBoundingClientRect().left - touch_x) + Math.abs(box_list_in_juz[i].node().getBoundingClientRect().top - touch_y);
-		//dist = Math.abs(box_list[i].node().offsetLeft - touch_x) + Math.abs(box_list[i].node().getBoundingClientRect().top - touch_y);
-
-    	if(dist<closest_dist){
-    		closest_dist = dist;
-    		id_num = box_list_in_juz[i].id_num;
-    	}
-    	//box_list_in_juz[i].transition()
-		//		.attr('fill', base_color)
-	}
-
+	//d = d3.mouse(this);
+	//id_num = findClosestAya(d[0],d[1]);
+	id_num = findClosestAya(e.clientX, e.clientY);
 
 	if(id_num != -1){
 		//box_list[id_num].on("mouseover").call(box_list[id_num].node(), box_list[id_num].datum)
@@ -133,46 +175,11 @@ function clickQuran(){
 }
 
 function mouseOutQuran(){
-	console.log("mouseOutQuran");
+	//console.log("mouseOutQuran");
 	//find closest one and activate it?
 	element = document.getElementById("quran_container");
 	d = d3.mouse(this);
-	cursor_x = d[0];
-	cursor_y = d[1];
-
-	touch_x = cursor_x + element.getBoundingClientRect().left;
-    touch_y = cursor_y + element.getBoundingClientRect().top;
-
-	//console.log("touch quran. element: " + element);
-	//console.dir(element);
-	id_num = -1;
-	closest_dist = 1000000000;
-
-	q_width = document.getElementById("quran_container").getBoundingClientRect().right - document.getElementById("quran_container").getBoundingClientRect().left;
-    q_height = document.getElementById("quran_container").getBoundingClientRect().bottom - document.getElementById("quran_container").getBoundingClientRect().top;
-    percent_x = (cursor_x - document.getElementById("quran_container").getBoundingClientRect().left) / q_width;
-    percent_y = (cursor_y - document.getElementById("quran_container").getBoundingClientRect().top) / q_height;
-
-    selected_juz = Math.floor((1-percent_x)*29); //i don't know why i have to flip the percentage, but it works...
-    selected_juz = Math.max(selected_juz, 0);
-    selected_juz = Math.min(selected_juz, 29);
-    box_list_in_juz = box_juz_dict[selected_juz];
-    console.log('selected juz in mouse out: '  + selected_juz);
-
-    closest_dist = 1000000000;
-    for(var i = 0; i<box_list_in_juz.length; i++){
-    	dist = Math.abs(box_list_in_juz[i].node().getBoundingClientRect().left - touch_x) + Math.abs(box_list_in_juz[i].node().getBoundingClientRect().top - touch_y);
-		//dist = Math.abs(box_list[i].node().offsetLeft - touch_x) + Math.abs(box_list[i].node().getBoundingClientRect().top - touch_y);
-
-    	if(dist<closest_dist){
-    		closest_dist = dist;
-    		id_num = box_list_in_juz[i].id_num;
-    	}
-    	//box_list_in_juz[i].transition()
-		//		.attr('fill', base_color)
-	}
-
-
+	id_num = findClosestAya(d[0],d[1]);
 	if(id_num != -1){
 		//box_list[id_num].on("mouseout").call(box_list[id_num].node(), box_list[id_num].datum)
 		handleMouseOut(box_list[id_num].node(), box_list[id_num].datum);
@@ -244,7 +251,7 @@ function redraw()
       .attr("width", width*container_width)
       .attr("height", height*container_height);
     box_width = ((container_width*window.innerWidth)/31 - padding_x);
-
+    box_width = ((container_width*window.innerWidth)/30 - padding_x);
 
     //number of ayas in first juz: 111
     //length of arabic text in first juz (characters): 23959

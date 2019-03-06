@@ -61,7 +61,8 @@ padding_x = 10;
 padding_y = 0.5;
 container_width = 0.4;
 container_height = 0.9;
-box_width = container_width*(window.innerWidth/30 - padding_x);
+//box_width = container_width*(window.innerWidth/30 - padding_x);
+box_width = (container_width*window.innerWidth)/30 - padding_x;
 
 
 
@@ -93,3 +94,5 @@ bg_color = '#FAEDDD' //light beige?
 sura_blink_color = 'rgb(200,150,150)'
 
 current_highlight_box_id = -1;
+
+var interesting_list = [];

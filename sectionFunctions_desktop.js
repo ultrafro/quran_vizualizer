@@ -81,7 +81,7 @@ function setupSectionScroll(){
 
 		if (currentIndex !== sectionIndex) {
 			console.log('change in scroll, going from: ' + currentIndex + ' to: ' + sectionIndex );
-
+			clearSearch();
 			if(currentIndex == 8){
 				//exiting about section:
 				exitAbout();
@@ -102,7 +102,12 @@ function setupSectionScroll(){
 			    activateFunctions[sectionIndex]();
 			    interval = setInterval(function(){
 			    	//console.log('interval function');
-			    	activateFunctions[sectionIndex]()
+			    	if(search_idx_list.length == 0){ //....hmmmmm, now ppl cant use search javascript utility in section functions?
+			    		activateFunctions[sectionIndex]()			    		
+			    	}else{
+			    		
+			    	}
+
 			    },1600);
 			    freeformCleared = 0;
 		    }else{
