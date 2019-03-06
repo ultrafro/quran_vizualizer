@@ -105,6 +105,12 @@
 			</div>
 		</div>
 
+		<div id="loader" class="loader" style="position: fixed; top: 30vh; left: 2.5vw; display: block">
+
+		</div>
+		<div id="loaderString" style="position: fixed; top: 50vh; left: 10vw; display:block">
+		</div>
+
 
 
 
@@ -138,7 +144,10 @@
 			<span class="anchor" id="IntroductionAnchor"></span>
 			<section class="step" id="Introduction">
 			
-		      The Quran is the holy book ascribed to by over 1.5 billion Muslims across the world. Muslims worship the same God as Jews and Christians, and they believe the Quran to be the direct word of God transmitted through the final prophet Muhammad (Peace Be Upon Him). On the left, you can see a searchable/dynamic representation of the Quran and the Sahih International English Translation. You can mouse-over each Aya (verses to the left) to highilght it and see what it says.
+		      The Quran is the holy book ascribed to by over 1.5 billion Muslims across the world. Muslims worship the same God as Jews and Christians, and they believe the Quran to be the direct word of God transmitted through the final prophet Muhammad (Peace Be Upon Him). On the left, you can see a searchable/dynamic representation of the Quran and the Sahih International English Translation. 
+
+		      <p>
+		      <b>You can mouse-over each Aya (verses to the left) to highilght it and see what it says.</b>
 
 		      <p>
 		      <img src="images/love_quran.jpg" width=100%>
@@ -149,6 +158,9 @@
 		    <section class="step" id="Revelation">
 
 		    	Muhammad did not know how to read or write, nor did he have knowledge of previous scriptures. He lived in Mecca in the Arabian peninsula at a time of idolatry, social corruption, and injustice. Muslims believe that the angel Gabriel visited Muhammad while he was meditating in the cave of Hira. 
+
+		    	<p>
+		    	<b> Click on the verses below to see where </b>
 
 		    	<p>
 		    	<img src="images/hira_map.PNG" width=100%>
@@ -217,12 +229,18 @@
 		    	<p>
 		    	The Quran is not organized in chronological order of revelation. Instead, it was compiled according to an order of recitation described by the prophet. Many of the beginning Surah's are long, and many at the end are shorter. In addition, the book is also organized into 30 sections of equal parts. This is useful for those who are reciting the Quran during the month of Ramadan. Each column in the visualization represents a different section.
 
+		    	<p>
+		    	<b> Each color represents a different chapter in the Quran </b>
+
 		    </section>
 
 			<span class="anchor" id="OpeningAnchor"></span>
 		    <section class="step" id="Opening">
 
-		    	The first chapter in the Quran is referred to as the "Opening" (Al-Fatiha). It is composed of seven lines. These are recited in each cycle of every muslim prayer. The lines go:
+		    	The first chapter in the Quran is referred to as the "Opening" (Al-Fatiha). It is composed of seven lines. These are recited in each cycle of every muslim prayer. 
+
+		    	<p>
+		    	<b> Click on each verse to see the opening of the Quran </b>
 
 			    <p>
 		    	<div class="box" chapter=1 verse=1 style="cursor: pointer;">
@@ -293,7 +311,7 @@
 		    	In Islam, Muhammad, Jesus, Moses, and all the prophets are considered non-divine humans who deliver the message of God to the believers. Muslims believe in the virgin-birth of Jesus, but the Quran is clear that he was not divine and was not the son of God. That doesn't stop Jesus from playing a central role in Islam. Jesus is mentioned by name 25 times in the Quran, while Muhammad is mentioned only 4 times by name.
 
 		    	<p>
-		    	Here we highlight all the times Jesus is mentioned in white and Mary in yellow.
+		    	<b> Here we highlight all the times Jesus is mentioned in white and Mary in yellow. </b>
 
 		    </section>
 
@@ -303,6 +321,8 @@
 		    	In fact, you can explore all the prophets and their mentions by name. Highlight your mouse over the name to see where they are mentioned.
 
 		    	<p>
+		    	<b> Click on each box to see where the prophet is mentioned in the Quran </b>
+
 		    	<p>
 
 		    	<div id="prophetTable" class="prophetTableClass">
@@ -312,6 +332,9 @@
 			<span class="anchor" id="99NamesAnchor"></span>
 		    <section class="step" id="99Names">
 		    	Muslims believe that God has 99 names or attributes. These attributes are names that God refers to throughout the Quran. When Muslims pray and ask for grace from God, they often utilize the sepcialization of these names.
+
+		    	<p>
+		    	<b> Click on each box to see where the name of God is mentioned in the Quran </b>
 
 				<p>
 		    	<div class="box" chapter=59 verse=24 style="cursor: pointer;">
@@ -402,14 +425,16 @@
 			  	//console.log('length: ' + this.responseText.length);
 			    quran_json_string = JSON.parse(this.responseText);
 			    
-
+			    
 				fillActiveList(); //todo: describe activeList
 				setupActivateFunctions(); //defined in sectionFunctions.js
+				document.getElementById('loaderString').innerHTML = 'setting up visualization';
 				setupVisualization();
 				setupUI(); //first function in setupUI.js
 				setupSectionPositions(); //defined in sectionFunctions.js9
 				setupSectionScroll();
 				document.getElementById('loader').style.display = 'none';
+				document.getElementById('loaderString').style.display = 'none';
 				//getTopWords();
 
 			  }
@@ -418,7 +443,8 @@
 			  //console.log('loaded: ' + event.loaded + '/' + event.total);
 			  event.loaded;
 			  event.total;
-
+			  progress_string = 'loading Quran: ' + (event.loaded/event.total*100).toFixed(2) + '%';
+			  document.getElementById('loaderString').innerHTML = progress_string;
 			};
 			xmlhttp.open("GET", "quran_json_string.json", true);
 			xmlhttp.send();

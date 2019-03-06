@@ -1,3 +1,13 @@
+.loader {
+  border: 16px solid #F1ECCC; /* Light grey */
+  border-top: 16px solid #527D4B; /* Blue */
+  border-bottom: 16px solid #527D4B;
+  border-radius: 50%;
+  width: 30vw;
+  height: 30vw;
+  animation: spin 3s linear infinite;
+}
+
 
 #sections {
   display: inline-block;
