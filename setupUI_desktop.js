@@ -16,7 +16,7 @@ function setupUI(){
 	setupNamesTable();
 
 	//setup explore table:
-	setupExploreTable();
+	//setupExploreTable();
 
 	//setup arabic text in the section content (ayas, etc...):
 	setupArabicText();

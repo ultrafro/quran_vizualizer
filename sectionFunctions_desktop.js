@@ -9,8 +9,8 @@ function setupActivateFunctions(){
 	activateFunctions[4] = jesus;
 	activateFunctions[5] = prophets;
 	activateFunctions[6] = names;
-	activateFunctions[7] = explore;
-	activateFunctions[8] = about;		
+	activateFunctions[7] = about;
+	//activateFunctions[8] = about;		
 }
 
 function setupSectionPositions(){
@@ -82,7 +82,7 @@ function setupSectionScroll(){
 		if (currentIndex !== sectionIndex) {
 			console.log('change in scroll, going from: ' + currentIndex + ' to: ' + sectionIndex );
 			clearSearch();
-			if(currentIndex == 8){
+			if(currentIndex == 7){
 				//exiting about section:
 				exitAbout();
 			}
