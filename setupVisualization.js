@@ -1189,6 +1189,11 @@ function autocomplete(inp, arr, mentions) {
   var currentFocus;
   /*execute a function when someone writes in the text field:*/
   inp.addEventListener("input", function(e) {
+
+	if(document.getElementById("closeSearch").style.display == "none"){
+		document.getElementById("closeSearch").style.display = "block";
+	}
+
       var a, b, i, val = this.value;
       /*close any already open lists of autocompleted values*/
       closeAllLists();
@@ -1243,6 +1248,9 @@ function autocomplete(inp, arr, mentions) {
   });
   /*execute a function presses a key on the keyboard:*/
   inp.addEventListener("keydown", function(e) {
+
+
+
       var x = document.getElementById(this.id + "autocomplete-list");
       if (x) x = x.getElementsByTagName("div");
       if (e.keyCode == 40) {

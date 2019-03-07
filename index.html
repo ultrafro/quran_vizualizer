@@ -116,7 +116,7 @@
 		</div> -->
 
 		<div id="searchBarButton" class="searchClass searchClosed" onclick="searchBar()">
-			<img src="images/searchIcon.png" height="145vh" style="position: fixed; top: 0%; right: 0%; z-index: 200">
+			<img src="images/searchIcon.png" height="145vh" style="position: fixed; top: 0%; right: 0%; z-index: 200; background-color: #80AB79;">
 		</div>
 		<div id="searchBar" class="searchBarClass" style="display: none">
 			<!-- <div class="textBlock">
@@ -125,7 +125,7 @@
 
 			  <div class="autocomplete" style="position: fixed; top: 0vh; left: 0vw;">
 			    <input id="myInput" type="text" name="myCountry" placeholder="Country" style="width: 100vw; height: 15vw">
-			    <div onclick="clearSearch(); closeAutocompleteList();" class="closeSearchIcon" style="position: fixed; top: 2.5vw; right: 10vw"> X </div>
+			    <div id="closeSearch" onclick="clearSearch(); closeAutocompleteList();" class="closeSearchIcon" style="position: fixed; top: 2.5vw; right: 10vw; display: none"> X </div>
 			    <div onclick="searchBar()" class="returnSearchIcon" style="position: fixed; top: 2.5vw; right: 0vw"> < </div>
 			  </div>
 		</div>

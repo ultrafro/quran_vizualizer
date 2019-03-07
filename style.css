@@ -57,6 +57,7 @@
 .searchClass img{
 	/*background-color: #727D4B;*/
 	background-color: #527D4B;
+	/*background-color: #FFFFFF;*/
 	border-radius: 12px;
 }
 /*
@@ -71,6 +72,7 @@
 }
 .searchOpen img{
 	background-color: #727D4B;
+	/*background-color: #ffffff;*/
 }
 .searchClosed{
 	background-color: #527D4B;

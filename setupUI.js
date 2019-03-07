@@ -205,6 +205,7 @@ function clearSearch(){
 	}else{
 		document.getElementById('myInput').value = "";		
 	}
+	document.getElementById("closeSearch").style.display = "none";
 
 }
 
@@ -223,6 +224,9 @@ function setupSearchBar(){
 	//make it so when you hit the enter button after typing text, it will act as a click
 	document.getElementById("myInput").addEventListener("keyup", function(event) {
 		//console.log("typing!");
+		if(document.getElementById("closeSearch").style.display == "none"){
+			document.getElementById("closeSearch").style.display = "block";
+		}
 
 	//document.getElementById("search_text_bar").addEventListener("keyup", function(event) {
 		// Cancel the default action, if needed
